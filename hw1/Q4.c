@@ -1,7 +1,8 @@
 /* CS261- Assignment 1 - Q.4*/
 /* Name:Li, Tingzhi & Zhang, Chunyang
  * Date:4/6/2015
- * Solution description:
+ * Development environment: Xcode & MSVC
+ * Solution description: Sort an array of n students based on their scores in ascending order.
  */
  
 #include <stdio.h>

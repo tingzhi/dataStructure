@@ -1,7 +1,11 @@
-/* CS261- Assignment 1 - Q. 0*/
+/* CS261- Assignment 1 - Q.0*/
 /* Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/6/2015
- * Solution description:
+ * Development: Xcode & MSVC
+ * Solution description: 
+ * In the main function, declare an integer, x. Print the address of x. Pass x as an argument to fooA function.
+ * In fooA function, print the value of the integer pointed to by iptr, the address pointed to by iptr, and the address of iptr itself.
+ * In the main function, after calling fooA function, print the value of x.
  */
  
 #include <stdio.h>

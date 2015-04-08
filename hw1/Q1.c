@@ -1,7 +1,10 @@
 /* CS261- Assignment 1 - Q.1*/
 /* Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/6/2015
+ * Development environment: Xcode & MSVC
  * Solution description:
+ * Generate unique random students ID and random score. Print out all students IDs and scores. 
+ * Then summarize their scores by printing out maximum and minimum scores and average score.
  */
  
 #include <stdio.h>
@@ -13,6 +16,9 @@ struct student{
 	int score;
 };
 
+/*
+  allocates a contiguous chunk of memory for ten students and returns the pointer.
+*/
 struct student* allocate(){
     /*Allocate memory for ten students*/
     struct student *mystudent = malloc(10 * sizeof(struct student));
@@ -24,8 +30,7 @@ struct student* allocate(){
 }
 
 void generate(struct student* students){
-    /*Generate random ID and scores for 10 students, ID being between 1 and 10, scores between 0 and 100*/
-    
+    /*Generate random unique ID and scores for 10 students, ID being between 1 and 10, scores between 0 and 100*/
     int i, j, flag, idNum;
     // flag == 1 means id is new. flag == 0 means id has already seen.
     for (i = 0; i < 10; i++) {
@@ -52,7 +57,7 @@ void output(struct student* students){
               ID10 score10*/
     int i;
     for (i = 0; i < 10; i++) {
-        printf("\tID: %d Score: %d\n", students[i].id, students[i].score);
+        printf("\t%d %d\n", students[i].id, students[i].score);
     }
 }
 

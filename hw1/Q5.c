@@ -1,7 +1,8 @@
 /* CS261- Assignment 1 - Q.5*/
 /* Name:Li, Tingzhi & Zhang, Chunyang
  * Date:4/6/2015
- * Solution description:
+ * Development environment: Xcode & MSVC
+ * Solution description: Modify the word that user typed in the command line to appear with "studly caps." The first letter of the output will be upper case.
  */
  
 #include <stdio.h>

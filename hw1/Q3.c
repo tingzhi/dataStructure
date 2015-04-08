@@ -1,7 +1,8 @@
 /* CS261- Assignment 1 - Q.3*/
 /* Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/6/2015
- * Solution description:
+ * Development environment: Xcode & MSVC
+ * Solution description: Sort a given array of n random generated integers in ascending order.
  */
  
 #include <stdio.h>
