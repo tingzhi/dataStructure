@@ -1,5 +1,5 @@
 /* CS261- Assignment 1 - Q.5*/
-/* Name:Tingzhi Li
+/* Name:Li, Tingzhi & Zhang, Chunyang
  * Date:4/6/2015
  * Solution description:
  */

@@ -1,6 +1,6 @@
 /* CS261- Assignment 1 - Q.3*/
-/* Name:Tingzhi Li
- * Date:4/6/2015
+/* Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 4/6/2015
  * Solution description:
  */
  
@@ -9,6 +9,7 @@
 
 void sort(int* number, int n){
     /*Sort the given array number , of length n*/
+    // bubble sort
     int temp;
     for (int i = n-1; i > 0; i--) {
         for (int j = 0; j < i; j++) {
@@ -50,6 +51,9 @@ int main(){
         ptr++;
     }
     printf("\n");
-    free(ptr-n);
+    ptr = ptr -n;
+    if (ptr != 0) {
+        free(ptr);
+    }
     return 0;
 }

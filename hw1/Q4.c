@@ -1,5 +1,5 @@
 /* CS261- Assignment 1 - Q.4*/
-/* Name:Tingzhi Li
+/* Name:Li, Tingzhi & Zhang, Chunyang
  * Date:4/6/2015
  * Solution description:
  */
@@ -15,6 +15,7 @@ struct student{
 void sort(struct student* students, int n){
     /*Sort the n students based on their score*/
     /* Remember, each student must be matched with their original score after sorting */
+    // bubble sort
     int temp;
     for (int i = n-1; i > 0; i--) {
         for (int j = 0; j < i; j++) {
@@ -54,20 +55,23 @@ int main(){
             }
         } while (flag == 0);
         mystudent[i].id = idNum;
-        mystudent[i].score = rand() % 100 + 1;
+        mystudent[i].score = rand() % 101;
     }
     
     /*Print the contents of the array of n students.*/
-    printf("The contents of the array of n students:\n");
+    printf("The contents of the array of %d students:\n", n);
     for (i = 0; i < n; i++) {
-        printf("\t%d %d\n", mystudent[i].id, mystudent[i].score);
+        printf("\tID: %d Score: %d\n", mystudent[i].id, mystudent[i].score);
     }
     /*Pass this array along with n to the sort() function*/
     sort(mystudent, n);
     /*Print the contents of the array of n students.*/
-    printf("The contents of the sorted array of n students:\n");
+    printf("The contents of the sorted array of %d students:\n", n);
     for (i = 0; i < n; i++) {
-        printf("\t%d %d\n", mystudent[i].id, mystudent[i].score);
+        printf("\tID: %d Score: %d\n", mystudent[i].id, mystudent[i].score);
+    }
+    if (mystudent != 0) {
+        free(mystudent);
     }
     return 0;
 }

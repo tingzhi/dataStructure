@@ -1,5 +1,5 @@
 /* CS261- Assignment 1 - Q.1*/
-/* Name: Tingzhi Li
+/* Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/6/2015
  * Solution description:
  */
@@ -52,7 +52,7 @@ void output(struct student* students){
               ID10 score10*/
     int i;
     for (i = 0; i < 10; i++) {
-        printf("\t%d %d\n", students[i].id, students[i].score);
+        printf("\tID: %d Score: %d\n", students[i].id, students[i].score);
     }
 }
 
