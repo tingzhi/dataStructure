@@ -7,5 +7,8 @@
 
 1. In the entire process of performing 16 consecutive push operations on an empty array which starts out at capacity 8, the first 8 consecutive push operations cost 8 units. In the 9th push operation, it would cost 9 units as 8 units from copying the elements and 1 unit for pushing the new elment. For the 10th to 16th operations, each operation costs 1 units, which is 7 units in total. On the whole, the 16 consecutive push operations would cost 8 + 9 + 7 = 24 units.
 
-For 32 consecutive push operations, the first 16 push operations cost 24 units, and the 17th operation cost 16 + 1 = 17 units. For 18th to 24th operations, the cost would be 7 units. The last 8 operations cost 24 + 8 = 32 units. The total cost would be 24 + 17 + 7 + 32 = 80 units.
+For 32 consecutive push operations, the first 16 push operations cost 24 units, and the 17th operation cost 16 + 1 = 17 units. The last 15 operations cost 15 units. The total cost would be 24 + 17 + 15 = 56 units.
 
+Under this strategy for resizing, for 16 consecutive push operations, the cost is 16 + 8. For 32 consecutive push operations, the cost is 32 + 16 + 8. Therefore, as N (ie. the number of pushes) grows large, the big-oh complexity for push is O(N).
+
+2. 
