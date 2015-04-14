@@ -85,7 +85,6 @@ void freeDynArr(DynArr *v)
 */
 void deleteDynArr(DynArr *v)
 {
-	assert(v);
 	freeDynArr(v);
 	free(v);
 }
