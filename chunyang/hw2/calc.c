@@ -83,7 +83,7 @@ void subtract(struct DynArr *stack)
 void divide(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
-	TYPE a, b, c;
+	TYPE a, b, c = 0;
 	a = topDynArr(stack);
 	popDynArr(stack);
 	b = topDynArr(stack);
@@ -95,8 +95,10 @@ void divide(struct DynArr *stack)
 		pushDynArr(stack, a);
 	}
 	else
+	{
 		c = a / b;
-	pushDynArr(stack, c);
+		pushDynArr(stack, c);
+	}
 }
 
 void multiply(struct DynArr *stack)
@@ -156,7 +158,7 @@ void absolute(struct DynArr *stack)
 void squareroot(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
-	TYPE a, c;
+	TYPE a, c = 0;
 	a = topDynArr(stack);
 	popDynArr(stack);
 	if (a < 0)
@@ -165,8 +167,10 @@ void squareroot(struct DynArr *stack)
 		pushDynArr(stack, a);
 	}
 	else
+	{
 		c = sqrt(a);
-	pushDynArr(stack, c);
+		pushDynArr(stack, c);
+	}
 }
 
 void exponential(struct DynArr *stack)
