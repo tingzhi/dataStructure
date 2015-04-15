@@ -270,8 +270,7 @@ double calculate(int numInputTokens, char **inputString)
 		else if (strcmp(s, "log") == 0)
 			/* FIXME: replace printf with your own function */
 			base10log(stack);
-		else 
-		{
+		else {
 			// FIXME: You need to develop the code here (when s is not an operator)
 			// Remember to deal with special values ("pi" and "e")
 			if (strcmp(s, "e") == 0)
@@ -303,7 +302,8 @@ int main(int argc , char** argv)
 	// argc-1 determines the number of operands + operators
 	if (argc == 1)
 		return 0;
-
+    //printf("argc = %d.\n", argc);
+    //printf("argv = %c\n", *argv[3]);
 	calculate(argc,argv);
 	return 0;
 }
