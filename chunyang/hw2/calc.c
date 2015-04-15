@@ -302,8 +302,6 @@ int main(int argc , char** argv)
 	// argc-1 determines the number of operands + operators
 	if (argc == 1)
 		return 0;
-    //printf("argc = %d.\n", argc);
-    //printf("argv = %c\n", *argv[3]);
 	calculate(argc,argv);
 	return 0;
 }
