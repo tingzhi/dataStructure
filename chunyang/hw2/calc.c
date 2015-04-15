@@ -218,7 +218,7 @@ void pitonum(struct DynArr *stack)
 double calculate(int numInputTokens, char **inputString)
 {
 	int i;
-	double result = 0.0, *num = 0;
+	double result = 0.0, *num = malloc(sizeof(double));
 	char *s;
 	struct DynArr *stack;
 
@@ -289,7 +289,11 @@ double calculate(int numInputTokens, char **inputString)
 	 * (1) Check if everything looks OK and produce an error if needed.
 	 * (2) Store the final value in result and print it out.
 	 */
+	if(!stack)
+		printf("Error: The stack is empty.\n");
 	result = topDynArr(stack);
+	printf("Final value = %f\n", result);
+	free(num);
 	return result;
 }
 
