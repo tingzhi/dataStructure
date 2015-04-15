@@ -3,7 +3,8 @@
  * Date: 4/14/2015
  * Development: Xcode & MSVC
  * Solution description:
-   Application of the Stack ADT - Build an RPN Calculator */
+   Application of the Stack ADT - Build an RPN Calculator
+   In order to accomplish the needed calculating operators' goals.*/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -90,7 +91,7 @@ void divide(struct DynArr *stack)
 	popDynArr(stack);
 	if (a == 0)
 	{
-		printf("Devide Error: Den is 0. Automatically ignore this operator. May cause wrong result. Please check your input.\n");
+		printf("Devide Error: Den is 0. Automatically ignore divide operator. May cause wrong result. Please check your input.\n");
 		pushDynArr(stack, b);
 		pushDynArr(stack, a);
 	}
@@ -101,6 +102,11 @@ void divide(struct DynArr *stack)
 	}
 }
 
+/*	param: stack the stack being manipulated
+	pre: the stack contains at least two elements
+	post: the top two elements are popped and
+	their multiplication is pushed back onto the stack.
+*/
 void multiply(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
@@ -113,6 +119,11 @@ void multiply(struct DynArr *stack)
 	pushDynArr(stack, c);
 }
 
+/*	param: stack the stack being manipulated
+	pre: the stack contains at least two elements
+	post: the top two elements are popped and
+	the power of the first element to the second element is pushed back onto the stack.
+*/
 void power(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
@@ -125,6 +136,11 @@ void power(struct DynArr *stack)
 	pushDynArr(stack, c);
 }
 
+/*	param: stack the stack being manipulated
+	pre: the stack contains at least one elements
+	post: the top 1 element is popped and
+	squared and pushed back onto the stack.
+*/
 void square(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
@@ -135,6 +151,11 @@ void square(struct DynArr *stack)
 	pushDynArr(stack, c);
 }
 
+/*	param: stack the stack being manipulated
+	pre: the stack contains at least one elements
+	post: the top 1 element is popped and
+	cubed and pushed back onto the stack.
+*/
 void cube(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
@@ -145,6 +166,11 @@ void cube(struct DynArr *stack)
 	pushDynArr(stack, c);
 }
 
+/*	param: stack the stack being manipulated
+	pre: the stack contains at least one elements
+	post: the top 1 element is popped and
+	its absolute value is pushed back onto the stack.
+*/
 void absolute(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
@@ -155,6 +181,11 @@ void absolute(struct DynArr *stack)
 	pushDynArr(stack, c);
 }
 
+/*	param: stack the stack being manipulated
+	pre: the stack contains at least one elements
+	post: the top 1 element is popped and
+	its squareroot value is pushed back onto the stack.
+*/
 void squareroot(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
@@ -173,6 +204,11 @@ void squareroot(struct DynArr *stack)
 	}
 }
 
+/*	param: stack the stack being manipulated
+	pre: the stack contains at least one elements
+	post: the top 1 element is popped and
+	the power of e to the element is pushed back onto the stack.
+*/
 void exponential(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
@@ -183,6 +219,11 @@ void exponential(struct DynArr *stack)
 	pushDynArr(stack, c);
 }
 
+/*	param: stack the stack being manipulated
+	pre: the stack contains at least one elements
+	post: the top 1 element is popped and
+	its natural log value is pushed back onto the stack.
+*/
 void naturalln(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
@@ -193,6 +234,11 @@ void naturalln(struct DynArr *stack)
 	pushDynArr(stack, c);
 }
 
+/*	param: stack the stack being manipulated
+	pre: the stack contains at least one elements
+	post: the top 1 element is popped and
+	its base 10 log value is pushed back onto the stack.
+*/
 void base10log(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
@@ -203,12 +249,14 @@ void base10log(struct DynArr *stack)
 	pushDynArr(stack, c);
 }
 
+/*transfer e to real number*/
 void etonum(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	pushDynArr(stack, 2.7182818);
 }
 
+/*transfer pi to real number*/
 void pitonum(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
@@ -277,10 +325,13 @@ double calculate(int numInputTokens, char **inputString)
 				etonum(stack);
 			else if (strcmp(s, "pi") == 0)
 				pitonum(stack);
-			else if (isNumber(s, num) == 1)
+			else if (isNumber(s, num) == 1)  /*Check if the input is a number. If so, push it onto the stack*/
 				pushDynArr(stack, *num);
 			else
-				printf("Input error. Please check.\n");			
+			{
+				printf("Input error. Please check.\n");  /*If the input is nothing above, break this program.*/
+				return 0;
+			}
 		}
 	}	//end for 
 
@@ -288,11 +339,14 @@ double calculate(int numInputTokens, char **inputString)
 	 * (1) Check if everything looks OK and produce an error if needed.
 	 * (2) Store the final value in result and print it out.
 	 */
-	if(!stack)
+	if (!stack)									/*Same use as assert*/
+	{
 		printf("Error: The stack is empty.\n");
-	result = topDynArr(stack);
+		return 0;
+	}
+	result = topDynArr(stack);				/*Store the final result*/
 	printf("Final value = %f\n", result);
-	free(num);
+	free(num);								/*free malloc*/
 	return result;
 }
 
