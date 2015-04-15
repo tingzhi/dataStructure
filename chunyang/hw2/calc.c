@@ -71,7 +71,7 @@ void subtract(struct DynArr *stack)
 	popDynArr(stack);
 	b = topDynArr(stack);
 	popDynArr(stack);
-	c = a - b;
+	c = b - a;
 	pushDynArr(stack, c);
 }
 
@@ -88,7 +88,7 @@ void divide(struct DynArr *stack)
 	popDynArr(stack);
 	b = topDynArr(stack);
 	popDynArr(stack);
-	if (b == 0)
+	if (a == 0)
 	{
 		printf("Devide Error: Den is 0. Automatically ignore this operator. May cause wrong result. Please check your input.\n");
 		pushDynArr(stack, b);
@@ -96,7 +96,7 @@ void divide(struct DynArr *stack)
 	}
 	else
 	{
-		c = a / b;
+		c = b / a;
 		pushDynArr(stack, c);
 	}
 }
@@ -121,7 +121,7 @@ void power(struct DynArr *stack)
 	popDynArr(stack);
 	b = topDynArr(stack);
 	popDynArr(stack);
-	c = pow(a,b);
+	c = pow(b,a);
 	pushDynArr(stack, c);
 }
 
