@@ -12,7 +12,6 @@
 #include "dynamicArray.h"
 #include <math.h>
 
-
 /* param: s the string
    param: num a pointer to double
    returns: true (1) if s is a number else 0 or false.

@@ -28,8 +28,24 @@ void assertTrue(int predicate, char *message)
 int main(int argc, char* argv[]){
 
 	DynArr *dyn;
-	dyn = createDynArr(2);
+	dyn = createDynArr(3);
+    printf("\n\nCreating a dynamic array with the capacity of 3.\n");
+    
+    printf("\nTesting add to an empty array...\n");
+    printf("The size of the dynamic array is %d.\n", sizeDynArr(dyn));
+    
+    printf("Add 6.3 to the dynamic array...\n");
+    addDynArr(dyn, 6.3);
+    printf("The size of the dynamic array now is %d.\n", sizeDynArr(dyn));
+    assertTrue(EQ(getDynArr(dyn, 0), 6.3), "Test 1st element == 6.3");
 	
+    printf("\nTesting add 9.5 to the array...\n");
+    addDynArr(dyn, 9.5);
+    printf("The size of the dynamic array now is %d.\n", sizeDynArr(dyn));
+    assertTrue(EQ(getDynArr(dyn, 1), 9.5), "Test 2nd element == 9.5");
+    
+    
+    
 	printf("\n\nTesting addDynArr...\n");
 	addDynArr(dyn, 3);
 	addDynArr(dyn, 4);
