@@ -1,13 +1,14 @@
-/* CS261- Assignment 2 - Part1*/
-/* Name: Li, Tingzhi & Zhang, Chunyang
+/* CS261- Assignment 2 - Part1
+* Name: Li, Tingzhi & Zhang, Chunyang
 * Date: 4/14/2015
 * Development: Xcode & MSVC
 * Solution description:
+*/
 /* testDynArray.c
  * This file is used for testing the dynamicArray.c file. 
  * This test suite is by no means complete or thorough.
  * More testing is needed on your own.
- */
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "dynamicArray.h"

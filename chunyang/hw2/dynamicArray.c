@@ -1,9 +1,11 @@
-/* CS261- Assignment 2 - Part1*/
-/* Name: Li, Tingzhi & Zhang, Chunyang
-/* Date: 4/14/2015
-/* Development: Xcode & MSVC
-/* Solution description: 
-   dynamicArray.c: Dynamic Array implementation. */
+/* CS261- Assignment 2 - Part1
+Name: Li, Tingzhi & Zhang, Chunyang
+Date: 4/14/2015
+Development: Xcode & MSVC
+Solution description:
+*/
+
+/* dynamicArray.c: Dynamic Array implementation. */
 
 #include <assert.h>
 #include <stdlib.h>
@@ -100,8 +102,8 @@ void _dynArrSetCapacity(DynArr *v, int newCap)
 {	
 	/* FIXME: You will write this function */
 	TYPE *newArray = malloc(newCap * sizeof(TYPE));
-	assert(newArray);
-	assert(v != 0);
+    assert(newArray != 0);
+    assert(v != 0);
 	for (int i = 0; i < v->size; i++)
 		newArray[i] = v->data[i];
 	free(v->data);
@@ -155,6 +157,7 @@ TYPE getDynArr(DynArr *v, int pos)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
+    assert(v->size != 0);
 	assert(pos < v->size);
 	assert(pos >= 0);
 	/* FIXME: you must change this return value */
@@ -176,6 +179,7 @@ void putDynArr(DynArr *v, int pos, TYPE val)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
+    assert(v->size != 0);
 	assert(pos < v->size);
 	assert(pos >= 0);
 	v->data[pos] = val;
