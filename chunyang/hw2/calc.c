@@ -1,8 +1,8 @@
-/* CS261- Assignment 2 - Part1*/
-/* Name: Li, Tingzhi & Zhang, Chunyang
-/* Date: 4/14/2015
-/* Development: Xcode & MSVC
-/* Solution description:
+/* CS261- Assignment 2 - Part1
+ * Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 4/14/2015
+ * Development: Xcode & MSVC
+ * Solution description:
    Application of the Stack ADT - Build an RPN Calculator */
 
 #include <stdlib.h>
@@ -202,14 +202,12 @@ void base10log(struct DynArr *stack)
 void etonum(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
-	popDynArr(stack);
 	pushDynArr(stack, 2.7182818);
 }
 
 void pitonum(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
-	popDynArr(stack);
 	pushDynArr(stack, 3.14159265);
 }
 
