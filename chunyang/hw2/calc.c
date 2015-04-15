@@ -1,7 +1,15 @@
+/* CS261- Assignment 2 - Part1*/
+/* Name: Li, Tingzhi & Zhang, Chunyang
+/* Date: 4/14/2015
+/* Development: Xcode & MSVC
+/* Solution description:
+   Application of the Stack ADT - Build an RPN Calculator */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "dynamicArray.h"
+#include <math.h>
 
 
 /* param: s the string
@@ -41,6 +49,13 @@ int isNumber(char *s, double *num)
 void add (struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
+	TYPE a, b, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	b = topDynArr(stack);
+	popDynArr(stack);
+	c = a + b;
+	pushDynArr(stack, c);
 }
 
 /*	param: stack the stack being manipulated
@@ -51,6 +66,13 @@ void add (struct DynArr *stack)
 void subtract(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
+	TYPE a, b, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	b = topDynArr(stack);
+	popDynArr(stack);
+	c = a - b;
+	pushDynArr(stack, c);
 }
 
 /*	param: stack the stack being manipulated
@@ -61,12 +83,140 @@ void subtract(struct DynArr *stack)
 void divide(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
+	TYPE a, b, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	b = topDynArr(stack);
+	popDynArr(stack);
+	if (b == 0)
+	{
+		printf("Devide Error: Den is 0. Automatically ignore this operator. May cause wrong result. Please check your input.\n");
+		pushDynArr(stack, b);
+		pushDynArr(stack, a);
+	}
+	else
+		c = a / b;
+	pushDynArr(stack, c);
+}
+
+void multiply(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	TYPE a, b, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	b = topDynArr(stack);
+	popDynArr(stack);
+	c = a * b;
+	pushDynArr(stack, c);
+}
+
+void power(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	TYPE a, b, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	b = topDynArr(stack);
+	popDynArr(stack);
+	c = pow(a,b);
+	pushDynArr(stack, c);
+}
+
+void square(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	TYPE a, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	c = pow(a, 2);
+	pushDynArr(stack, c);
+}
+
+void cube(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	TYPE a, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	c = pow(a, 3);
+	pushDynArr(stack, c);
+}
+
+void absolute(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	TYPE a, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	c = fabs(a);
+	pushDynArr(stack, c);
+}
+
+void squareroot(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	TYPE a, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	if (a < 0)
+	{
+		printf("Squareroot Error: negative number. Automatically ignore sqrt operator. May cause wrong result. Please check your input.\n");
+		pushDynArr(stack, a);
+	}
+	else
+		c = sqrt(a);
+	pushDynArr(stack, c);
+}
+
+void exponential(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	TYPE a, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	c = pow(2.7182818, a);
+	pushDynArr(stack, c);
+}
+
+void naturalln(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	TYPE a, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	c = log(a);
+	pushDynArr(stack, c);
+}
+
+void base10log(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	TYPE a, c;
+	a = topDynArr(stack);
+	popDynArr(stack);
+	c = log10(a);
+	pushDynArr(stack, c);
+}
+
+void etonum(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	popDynArr(stack);
+	pushDynArr(stack, 2.7182818);
+}
+
+void pitonum(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	popDynArr(stack);
+	pushDynArr(stack, 3.14159265);
 }
 
 double calculate(int numInputTokens, char **inputString)
 {
 	int i;
-	double result = 0.0;
+	double result = 0.0, *num = 0;
 	char *s;
 	struct DynArr *stack;
 
@@ -85,44 +235,51 @@ double calculate(int numInputTokens, char **inputString)
 		//     (1b - I) If s is not a number, produce an error.
 		//     (1b - II) If s is a number, push it onto the stack
 
-		if(strcmp(s, "+") == 0)
+		if (strcmp(s, "+") == 0)
 			add(stack);
-		else if(strcmp(s,"-") == 0)
+		else if (strcmp(s, "-") == 0)
 			subtract(stack);
-		else if(strcmp(s, "/") == 0)
+		else if (strcmp(s, "/") == 0)
 			divide(stack);
-		else if(strcmp(s, "x") == 0)
+		else if (strcmp(s, "x") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Multiplying\n");
-		else if(strcmp(s, "^") == 0)
+			multiply(stack);
+		else if (strcmp(s, "^") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Power\n");
-		else if(strcmp(s, "^2") == 0)
+			power(stack);
+		else if (strcmp(s, "^2") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Squaring\n");
-		else if(strcmp(s, "^3") == 0)
+			square(stack);
+		else if (strcmp(s, "^3") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Cubing\n");
-		else if(strcmp(s, "abs") == 0)
+			cube(stack);
+		else if (strcmp(s, "abs") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Absolute value\n");
-		else if(strcmp(s, "sqrt") == 0)
+			absolute(stack);
+		else if (strcmp(s, "sqrt") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Square root\n");
-		else if(strcmp(s, "exp") == 0)
+			squareroot(stack);
+		else if (strcmp(s, "exp") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Exponential\n");
-		else if(strcmp(s, "ln") == 0)
+			exponential(stack);
+		else if (strcmp(s, "ln") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Natural Log\n");
-		else if(strcmp(s, "log") == 0)
+			naturalln(stack);
+		else if (strcmp(s, "log") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Log\n");
+			base10log(stack);
 		else 
 		{
 			// FIXME: You need to develop the code here (when s is not an operator)
 			// Remember to deal with special values ("pi" and "e")
-			
+			if (strcmp(s, "e") == 0)
+				etonum(stack);
+			else if (strcmp(s, "pi") == 0)
+				pitonum(stack);
+			else if (isNumber(s, num) == 1)
+				pushDynArr(stack, *num);
+			else
+				printf("Input error. Please check.\n");			
 		}
 	}	//end for 
 
@@ -130,7 +287,7 @@ double calculate(int numInputTokens, char **inputString)
 	 * (1) Check if everything looks OK and produce an error if needed.
 	 * (2) Store the final value in result and print it out.
 	 */
-	
+	result = topDynArr(stack);
 	return result;
 }
 
