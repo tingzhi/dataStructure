@@ -134,7 +134,7 @@ void addDynArr(DynArr *v, TYPE val)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
-	if (v->size >= v->capacity)
+	if (v->size == v->capacity)
 		_dynArrSetCapacity(v, 2 * v->capacity);
 	v->data[v->size] = val;
 	v->size++;
