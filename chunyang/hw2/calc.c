@@ -344,7 +344,7 @@ double calculate(int numInputTokens, char **inputString)
 		return 0;
 	}
 	result = topDynArr(stack);				/*Store the final result*/
-	printf("Final value = %f\n", result);
+	printf("Final value = %g\n", result);
 	free(num);								/*free malloc*/
 	return result;
 }
