@@ -137,10 +137,10 @@ void addDynArr(DynArr *v, TYPE val)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
-    v->size++;
-	if (v->size == v->capacity)
+	if (v->size >= v->capacity)
 		_dynArrSetCapacity(v, 2 * v->capacity);
-	v->data[v->size-1] = val;
+	v->data[v->size] = val;
+    v->size++;
 }
 
 /*	Get an element from the dynamic array from a specified position
@@ -264,11 +264,11 @@ void pushDynArr(DynArr *v, TYPE val)
 {
 	/* FIXME: You will write this function */
     assert(v != 0);
-    v->size++;
-    if (v->size == v->capacity) {
+    if (v->size >= v->capacity) {
         _dynArrSetCapacity(v, 2 * (v->capacity));
     }
-	v->data[v->size-1] = val;
+	v->data[v->size] = val;
+    v->size++;
 }
 
 /*	Returns the element at the top of the stack 
