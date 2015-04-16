@@ -1,9 +1,9 @@
-/* CS261- Assignment 2 - Part1
-Name: Li, Tingzhi & Zhang, Chunyang
-Date: 4/14/2015
-Development: Xcode & MSVC
-Solution description:
-*/
+/* CS261- Assignment 2 - Part1 */
+/* Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 4/14/2015
+ * Development environment: Xcode & MSVC
+ * Solution description: Implement basic dynamic array operations. And further implement stack interface and bag interface based on dynamic array operations.
+ */
 
 /* dynamicArray.c: Dynamic Array implementation. */
 
@@ -17,7 +17,6 @@ struct DynArr
 	int size;		/* Number of elements in the array */
 	int capacity;	/* capacity ofthe array */
 };
-
 
 /* ************************************************************************
 	Dynamic Array Functions
