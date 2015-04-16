@@ -2,3 +2,7 @@
 
 
 *.o
+
+chunyang/hw2/testDynArray.o
+
+chunyang/hw2/dynamicArray.o

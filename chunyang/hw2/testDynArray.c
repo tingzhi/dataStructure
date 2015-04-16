@@ -29,6 +29,7 @@ int main(int argc, char* argv[]){
 
 	DynArr *dyn;
 	dyn = createDynArr(3);
+    /*
     printf("\n\nCreating a dynamic array with the capacity of 3.\n");
     
     printf("\nTesting add to an empty array...\n");
@@ -44,7 +45,14 @@ int main(int argc, char* argv[]){
     printf("The size of the dynamic array now is %d.\n", sizeDynArr(dyn));
     assertTrue(EQ(getDynArr(dyn, 1), 9.5), "Test 2nd element == 9.5");
     
+    printf("\nTesting add 3 to the array...\n");
+    addDynArr(dyn, 3);
+    printf("The size of the dynamic array now is %d.\n", sizeDynArr(dyn));
+    assertTrue(EQ(getDynArr(dyn, 1), 9.5), "Test 3rd element == 3");
+    printf("Since it reached its capacity, the capacity should be doubled.\n");
+    //printf("The capacity now is %d.\n", );
     
+    */
     
 	printf("\n\nTesting addDynArr...\n");
 	addDynArr(dyn, 3);
