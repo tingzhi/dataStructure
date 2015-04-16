@@ -18,5 +18,5 @@ For 32 consecutive push operations, the cost is 8 + 10 + 12 + 14 + 16 + 18 + 20 
 
 Overall, the cost for N consecutive push operations would be ((N-8)/2+1)*(N+8)/2 = (N^2)/4 + N/2 - 24. Then as N (ie. the number of pushes) grows large, the big-oh complexity for push is O(N^2).
 
-3. 
+3. Assume the initial capacity of the array is N/2, dynamic array stack doubles its capacity when it is full, and shrinks (on Pop only) its capacity by half when the array is half full or less.
 

@@ -31,7 +31,7 @@ int isNumber(char *s, double *num)
 	else 
 	{
 		returnNum = strtod(s, &end);
-		/* If there's anythin in end, it's bad */
+		/* If there's anything in end, it's bad */
 		if((returnNum != 0.0) && (strcmp(end, "") == 0))
 		{
 			*num = returnNum;
@@ -328,7 +328,7 @@ double calculate(int numInputTokens, char **inputString)
 				pushDynArr(stack, *num);
 			else
 			{
-				printf("Input error. Please check.\n");  /*If the input is nothing above, break this program.*/
+				printf("Input error. Please check.\nIf the input contains '0', please type 0 instead of 0.0, 0.000, 0e0, etc.\n");  /*If the input is nothing above, break this program.*/
 				return 0;
 			}
 		}
