@@ -1,3 +1,8 @@
+/* CS261- Assignment 2 */
+/* Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 4/14/2015
+ */
+
 /* 	dynamicArray.h : Dynamic Array implementation. */
 #include<math.h>
 

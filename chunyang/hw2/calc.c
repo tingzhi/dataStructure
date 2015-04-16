@@ -1,7 +1,7 @@
 /* CS261- Assignment 2 - Part1
  * Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/14/2015
- * Development: Xcode & MSVC
+ * Development environment: Xcode & MSVC
  * Solution description:
    Application of the Stack ADT - Build an RPN Calculator
    In order to accomplish the needed calculating operators' goals.*/
@@ -31,7 +31,7 @@ int isNumber(char *s, double *num)
 	else 
 	{
 		returnNum = strtod(s, &end);
-		/* If there's anythin in end, it's bad */
+		/* If there's anything in end, it's bad */
 		if((returnNum != 0.0) && (strcmp(end, "") == 0))
 		{
 			*num = returnNum;
@@ -328,7 +328,10 @@ double calculate(int numInputTokens, char **inputString)
 				pushDynArr(stack, *num);
 			else
 			{
-				printf("Input error. Please check.\n");  /*If the input is nothing above, break this program.*/
+				/*If the input is nothing above, break this program.*/
+				printf("Input error. Please check.\n"); 
+				/*This function cannot check the zero value for 0.0, 0.000, 0e0, etc, so that we have to tell the user to use 0 straightly.*/
+				printf("If the input contains value '0', please type 0 straightly instead of 0.0, 0.000, 0e0, etc.\n");
 				return 0;
 			}
 		}
@@ -344,7 +347,7 @@ double calculate(int numInputTokens, char **inputString)
 		return 0;
 	}
 	result = topDynArr(stack);				/*Store the final result*/
-	printf("Final value = %f\n", result);
+	printf("Final value = %g\n", result);
 	free(num);								/*free malloc*/
 	return result;
 }
