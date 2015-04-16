@@ -198,6 +198,8 @@ int main(int argc, char* argv[]){
     
     bagInterfaceTest(dyn);
     
+    deleteDynArr(dyn);
+    
     printf("\nTest Finished!\n");
     
 	return 0;
