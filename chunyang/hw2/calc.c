@@ -328,7 +328,10 @@ double calculate(int numInputTokens, char **inputString)
 				pushDynArr(stack, *num);
 			else
 			{
-				printf("Input error. Please check.\nIf the input contains '0', please type 0 instead of 0.0, 0.000, 0e0, etc.\n");  /*If the input is nothing above, break this program.*/
+				/*If the input is nothing above, break this program.*/
+				printf("Input error. Please check.\n"); 
+				/*This function cannot check the zero value for 0.0, 0.000, 0e0, etc, so that we have to tell the user to use 0 straightly.*/
+				printf("If the input contains value '0', please type 0 straightly instead of 0.0, 0.000, 0e0, etc.\n");
 				return 0;
 			}
 		}
