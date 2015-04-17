@@ -195,11 +195,9 @@ int main(int argc, char* argv[]){
     removeAtDynArrTest(dyn);
     
     stackInterfaceTest(dyn);
-    
     bagInterfaceTest(dyn);
     
     deleteDynArr(dyn);
-    
     printf("\nTest Finished!\n");
     
 	return 0;
