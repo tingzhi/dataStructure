@@ -16,18 +16,12 @@ Under this strategy for resizing, for 16 consecutive push operations, the cost i
 
 For 32 consecutive push operations, the cost is 8 + 10 + 12 + 14 + 16 + 18 + 20 + 22 + 24 + 26 + 28 + 30 + 32 = 260.
 
-Overall, the cost for N consecutive push operations would be ((N-8)/2+1)*(N+8)/2 = (N^2)/4 + N/2 - 24. Then as N (ie. the number of pushes) grows large, the big-oh complexity for push is O(N^2).
+Overall, the cost for N consecutive push operations would be ((N-8)/2+1)*(N+8)/2 = (N^2)/4 + N/2 - 12. Then as N (ie. the number of pushes) grows large, the big-oh complexity for push is O(N^2).
 
 3. Assume an initial capacity of the array is N/2, and the dynamic array stack doubles its capacity when it is full, and shrinks (on Pop only) its capacity by half when the array is half full or less.
 
-<<<<<<< HEAD
 Assume the shrink policy is checking the size and capacity condition and doing the shrink after pop. Assume the initial array is empty.
 Then the sequence of N push() and pop() could be
-=======
-Assume the shrink is done after pop.
-Assume the initial capacity is N/2.
-Assume the initial array is empty. Then the sequence of N push() and pop() could be
->>>>>>> origin/master
 
 push()
 push()
