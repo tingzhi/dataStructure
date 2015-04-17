@@ -1,7 +1,7 @@
 /* CS261- Assignment 2 - Part1
  * Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/14/2015
- * Development: Xcode & MSVC
+ * Development environment: Xcode & MSVC
  * Solution description:
    Application of the Stack ADT - Build an RPN Calculator
    In order to accomplish the needed calculating operators' goals.*/
