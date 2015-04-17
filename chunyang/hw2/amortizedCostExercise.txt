@@ -20,8 +20,14 @@ Overall, the cost for N consecutive push operations would be ((N-8)/2+1)*(N+8)/2
 
 3. Assume an initial capacity of the array is N/2, and the dynamic array stack doubles its capacity when it is full, and shrinks (on Pop only) its capacity by half when the array is half full or less.
 
+<<<<<<< HEAD
 Assume the shrink policy is checking the size and capacity condition and doing the shrink after pop. Assume the initial array is empty.
 Then the sequence of N push() and pop() could be
+=======
+Assume the shrink is done after pop.
+Assume the initial capacity is N/2.
+Assume the initial array is empty. Then the sequence of N push() and pop() could be
+>>>>>>> origin/master
 
 push()
 push()
