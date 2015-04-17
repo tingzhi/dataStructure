@@ -389,8 +389,8 @@ double calculate(int numInputTokens, char **inputString)
 
 	/*free malloc*/
 	free(num);
-	free(stack);
-    //free(s);
+	//free(stack);
+    deleteDynArr(stack);
 	return result;
 }
 
@@ -401,6 +401,5 @@ int main(int argc , char** argv)
 	if (argc == 1)
 		return 0;
 	calculate(argc,argv);
-    free(argv);
 	return 0;
 }
