@@ -389,7 +389,6 @@ double calculate(int numInputTokens, char **inputString)
 
 	/*free malloc*/
 	free(num);
-	//free(stack);
     deleteDynArr(stack);
 	return result;
 }
