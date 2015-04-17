@@ -265,7 +265,8 @@ void pitonum(struct DynArr *stack)
 double calculate(int numInputTokens, char **inputString)
 {
 	int i, count = 0, db = 0; /*count will count the total number of values, db will count if there's + - / x or ^.*/
-	double result = 0.0, *num = malloc(sizeof(double));
+    double result = 0.0;
+    double *num = malloc(sizeof(double));
 	char *s;
 	struct DynArr *stack;
 
