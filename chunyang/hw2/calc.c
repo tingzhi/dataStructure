@@ -264,7 +264,7 @@ void pitonum(struct DynArr *stack)
 
 double calculate(int numInputTokens, char **inputString)
 {
-	int i;
+	int i, count = 0, db = 0; /*count will count the total number of values, db will count if there's + - / x or ^.*/
 	double result = 0.0, *num = malloc(sizeof(double));
 	char *s;
 	struct DynArr *stack;
@@ -285,17 +285,32 @@ double calculate(int numInputTokens, char **inputString)
 		//     (1b - II) If s is a number, push it onto the stack
 
 		if (strcmp(s, "+") == 0)
+		{
 			add(stack);
+			db++;                /*db count for operators which need 2 numbers to calculate. Same as - / x and ^.*/
+		}
 		else if (strcmp(s, "-") == 0)
+		{
 			subtract(stack);
+			db++;
+		}
 		else if (strcmp(s, "/") == 0)
+		{
 			divide(stack);
+			db++;
+		}
 		else if (strcmp(s, "x") == 0)
 			/* FIXME: replace printf with your own function */
+		{
 			multiply(stack);
+			db++;
+		}
 		else if (strcmp(s, "^") == 0)
 			/* FIXME: replace printf with your own function */
+		{
 			power(stack);
+			db++;
+		}
 		else if (strcmp(s, "^2") == 0)
 			/* FIXME: replace printf with your own function */
 			square(stack);
@@ -320,16 +335,27 @@ double calculate(int numInputTokens, char **inputString)
 		else {
 			// FIXME: You need to develop the code here (when s is not an operator)
 			// Remember to deal with special values ("pi" and "e")
-			if (strcmp(s, "e") == 0)
+			if (strcmp(s, "e") == 0)			/*transfer e to real value*/
+			{
 				etonum(stack);
-			else if (strcmp(s, "pi") == 0)
+				count++;
+			}
+			else if (strcmp(s, "pi") == 0)		/*transfer pi to real value*/
+			{
 				pitonum(stack);
-			else if (isNumber(s, num) == 1)  /*Check if the input is a number. If so, push it onto the stack*/
+				count++;
+			}
+			else if (isNumber(s, num) == 1)		/*Check if the input is a number. If so, push it onto the stack*/
+			{
 				pushDynArr(stack, *num);
+				count++;
+			}
 			else
 			{
 				/*If the input is nothing above, break this program.*/
 				printf("Input error. Please check.\n"); 
+				/*Make multiplication clear*/
+				printf("For multiplication, please type x insdead of *.\n");
 				/*This function cannot check the zero value for 0.0, 0.000, 0e0, etc, so that we have to tell the user to use 0 straightly.*/
 				printf("If the input contains value '0', please type 0 straightly instead of 0.0, 0.000, 0e0, etc.\n");
 				return 0;
@@ -341,14 +367,28 @@ double calculate(int numInputTokens, char **inputString)
 	 * (1) Check if everything looks OK and produce an error if needed.
 	 * (2) Store the final value in result and print it out.
 	 */
-	if (!stack)									/*Same use as assert*/
+	if (!stack)									/*Same as using assert*/
 	{
 		printf("Error: The stack is empty.\n");
 		return 0;
 	}
-	result = topDynArr(stack);				/*Store the final result*/
-	printf("Final value = %g\n", result);
-	free(num);								/*free malloc*/
+
+	/*If there's + - / x or ^ which needs 2 numbers, db will hold 1. Otherwise it's 0.*/
+	if (db > 0)
+		db = 1;
+
+	/*Check if there are too many numbers compared to operators.*/
+	if((i - 1 - count + db) < count)
+		printf("Input error: Too few operators.\n");
+	else
+	{
+		result = topDynArr(stack);				/*Store the final result*/
+		printf("Final value = %g\n", result);	/*print the final result out*/
+	}
+
+	/*free malloc*/
+	free(num);
+	free(stack);
 	return result;
 }
 
