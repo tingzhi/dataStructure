@@ -1,7 +1,7 @@
 /* CS261- Assignment 2 - Part2
  * Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/14/2015
- * Development: Xcode & MSVC
+ * Development Environment: Mac & Windows
  * Solution description:
  Answers to the questions in Part2 of Assignment 2
 */
