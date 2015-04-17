@@ -52,4 +52,4 @@ pop()		/* N/4 pushes and N/4 pops */
 
 the cost would be N/2 + ((N/2 + 1) + N/2)*N/4 = (N^2)/4 + 3N/4. Clearly, the big-oh complexity is O(N^2).
 
-To avoid this from happening, we can set the shrinking policy such that the shirink is done before pop, in which case the cost would be N + N/2 = 3N/2. Then, the big-oh complexity is O(N), which would be better than the previous case.
+To avoid this from happening, we can set the shrinking policy such that the shrink is done before pop, in which case the cost would be N + N/2 = 3N/2. Then, the big-oh complexity is O(N), which would be better than the previous case.
