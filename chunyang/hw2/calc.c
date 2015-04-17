@@ -390,6 +390,7 @@ double calculate(int numInputTokens, char **inputString)
 	/*free malloc*/
 	free(num);
 	free(stack);
+    free(s);
 	return result;
 }
 
