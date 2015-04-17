@@ -1,22 +1,50 @@
 /* CS261- Assignment 2 - Part2
  * Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/14/2015
- * Development: Xcode & MSVC
+ * Development Environment: Mac & Windows
  * Solution description:
- Answers to the questions in Part2 of Assignment 2
+ 
+   Answers to the questions in Part2 of Assignment 2
 */
 
 1. In the entire process of performing 16 consecutive push operations on an empty array which starts out at capacity 8, the first 8 consecutive push operations cost 8 units. In the 9th push operation, it would cost 9 units as 8 units from copying the elements and 1 unit for pushing the new elment. For the 10th to 16th operations, each operation costs 1 units, which is 7 units in total. On the whole, the 16 consecutive push operations would cost 8 + 9 + 7 = 24 units.
 
 For 32 consecutive push operations, the first 16 push operations cost 24 units, and the 17th operation cost 16 + 1 = 17 units. The last 15 operations cost 15 units. The total cost would be 24 + 17 + 15 = 56 units.
 
-Under this strategy for resizing, for 16 consecutive push operations, the cost is 16 + 8. For 32 consecutive push operations, the cost is 32 + 16 + 8. For N consecutive push operations, the cost is 8*(1-2^(N/8))/(1-2) = 8*(2^(N/8)-1). Therefore, as N (ie. the number of pushes) grows large, the big-oh complexity for push is O(2^N).
+Under this strategy for resizing, for 16 consecutive push operations, the cost is 16 + 8. For 32 consecutive push operations, the cost is 32 + 16 + 8. For N consecutive push operations, the cost is 8*(1-2^(log(N)-2))/(1-2) = 2N - 8. Therefore, as N (ie. the number of pushes) grows large, the big-oh complexity for push is O(N).
 
 2. In the entire process of performing 16 consecutive push operations on an empty array which starts out at capacity 8, assuming that the array will grow by a constant 2 spaces each time new item is added to an already full dynamic array, the cost is 8 + (8 + 1) + 1 + (10 + 1) + 1 + (12 + 1) + 1 + (14 + 1) + 1 = 60.
 
 For 32 consecutive push operations, the cost is 8 + 10 + 12 + 14 + 16 + 18 + 20 + 22 + 24 + 26 + 28 + 30 + 32 = 260.
 
-Overall, the cost for N consecutive push operations would be ((N-8)/2+1)*(N+8)/2 = (N^2)/4 + N/2 - 24. Then as N (ie. the number of pushes) grows large, the big-oh complexity for push is O(N^2).
+Overall, the cost for N consecutive push operations would be ((N-8)/2+1)*(N+8)/2 = (N^2)/4 + N/2 - 12. Then as N (ie. the number of pushes) grows large, the big-oh complexity for push is O(N^2).
 
-3. Assume the initial capacity of the array is N/2, dynamic array stack doubles its capacity when it is full, and shrinks (on Pop only) its capacity by half when the array is half full or less.
+3. Assume an initial capacity of the array is N/2, and the dynamic array stack doubles its capacity when it is full, and shrinks (on Pop only) its capacity by half when the array is half full or less.
 
+Assume the shrink policy is checking the size and capacity condition and doing the shrink after pop. Assume the initial array is empty.
+Then the sequence of N push() and pop() could be
+
+push()
+push()
+push()
+.
+.
+.
+push()		/* N/2 pushes */
+
+then, 
+
+push()
+pop()
+
+push()
+pop()
+.
+.
+.
+push()
+pop()		/* N/4 pushes and N/4 pops */
+
+the cost would be N/2 + ((N/2 + 1) + N/2)*N/4 = (N^2)/4 + 3N/4. Clearly, the big-oh complexity is O(N^2).
+
+To avoid this from happening, we can set the shrinking policy such that the shrink is checked and done before pop, in which case the pop would never cause shrink in this sequence, and the total cost would be N + N/2 = 3N/2. Then, the big-oh complexity is O(N), which would be better than the previous case.
