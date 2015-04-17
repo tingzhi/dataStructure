@@ -1,7 +1,7 @@
 /* CS261- Assignment 2 - Part2
  * Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/14/2015
- * Development: Xcode & MSVC
+ * Development Environment: Mac & Windows
  * Solution description:
  Answers to the questions in Part2 of Assignment 2
 */
@@ -19,6 +19,11 @@ For 32 consecutive push operations, the cost is 8 + 10 + 12 + 14 + 16 + 18 + 20 
 Overall, the cost for N consecutive push operations would be ((N-8)/2+1)*(N+8)/2 = (N^2)/4 + N/2 - 24. Then as N (ie. the number of pushes) grows large, the big-oh complexity for push is O(N^2).
 
 3. Assume an initial capacity of the array is N/2, and the dynamic array stack doubles its capacity when it is full, and shrinks (on Pop only) its capacity by half when the array is half full or less.
+<<<<<<< HEAD
+=======
+
+Assume the shrink is done after pop.
+>>>>>>> origin/master
 
 Assume the shrink is done after pop.
 Assume the initial capacity is N/2.
@@ -47,4 +52,4 @@ pop()		/* N/4 pushes and N/4 pops */
 
 the cost would be N/2 + ((N/2 + 1) + N/2)*N/4 = (N^2)/4 + 3N/4. Clearly, the big-oh complexity is O(N^2).
 
-To avoid this from happening, we can set the shrinking policy such that she shirink is done before pop, in which case the cost would be N + N/2 = 3N/2. Then, the big-oh complexity is O(N), which would be better than the previous case.
+To avoid this from happening, we can set the shrinking policy such that the shirink is done before pop, in which case the cost would be N + N/2 = 3N/2. Then, the big-oh complexity is O(N), which would be better than the previous case.
