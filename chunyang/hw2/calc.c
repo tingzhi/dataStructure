@@ -4,7 +4,7 @@
  * Development environment: Xcode & MSVC
  * Solution description:
    Application of the Stack ADT - Build an RPN Calculator
-   In order to accomplish the needed calculating operators' goals.*/
+   In order to accomplish the goals of needed calculating operators.*/
 
 #include <stdlib.h>
 #include <stdio.h>
