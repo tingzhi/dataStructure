@@ -383,7 +383,7 @@ double calculate(int numInputTokens, char **inputString)
 	else
 	{
 		result = topDynArr(stack);				/*Store the final result*/
-		printf("Final value = %g\n", result);	/*print the final result out*/
+		printf("Final value = %lf\n", result);	/*print the final result out*/
 	}
 
 	/*free malloc*/
