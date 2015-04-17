@@ -3,7 +3,8 @@
  * Date: 4/14/2015
  * Development Environment: Mac & Windows
  * Solution description:
- Answers to the questions in Part2 of Assignment 2
+ 
+   Answers to the questions in Part2 of Assignment 2
 */
 
 1. In the entire process of performing 16 consecutive push operations on an empty array which starts out at capacity 8, the first 8 consecutive push operations cost 8 units. In the 9th push operation, it would cost 9 units as 8 units from copying the elements and 1 unit for pushing the new elment. For the 10th to 16th operations, each operation costs 1 units, which is 7 units in total. On the whole, the 16 consecutive push operations would cost 8 + 9 + 7 = 24 units.
