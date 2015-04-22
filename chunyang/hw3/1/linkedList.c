@@ -144,14 +144,12 @@ void printList(struct linkedList* lst)
 {
 	/* FIXME: you must write this */
 	assert(!isEmptyList(lst));
-	struct DLink *temp = malloc(sizeof(struct DLink));
-	temp = lst->firstLink->next;
+	struct DLink *temp = lst->firstLink->next;
 	for (int i = 0; i < lst->size; i++)
 	{
 		printf("%d", temp->value);
 		temp = temp->next;
 	}
-	free(temp);
 }
 
 /* ************************************************************************
@@ -275,18 +273,13 @@ void addList(struct linkedList *lst, TYPE v)
 int containsList (struct linkedList *lst, TYPE e) {
 	/* FIXME: you must write this */
 	assert(!isEmptyList(lst));
-	struct DLink *temp = malloc(sizeof(struct DLink));
-	temp = lst->firstLink->next;
+	struct DLink *temp = lst->firstLink->next;
 	for (int i = 0; i < lst->size; i++)
 	{
 		if (temp->value == e)
-		{
-			free(temp);
 			return 1;
-		}
 		temp = temp->next;
 	}
-	free(temp);
 	/*temporary return value...you may need to change this */
 	return 0;
 }
@@ -308,5 +301,4 @@ void removeList (struct linkedList *lst, TYPE e) {
 	while (temp->value != e)
 		temp = temp->next;
 	_removeLink(lst, temp);
-	free(temp);
 }
