@@ -12,3 +12,4 @@ prog: dynamicArray.o dynamicArrayMain.o
 clean:
 	rm dynamicArray.o
 	rm dynamicArrayMain.o
+	rm prog

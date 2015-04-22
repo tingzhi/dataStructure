@@ -12,3 +12,4 @@ prog: cirListDeque.o testCirListDeque.o
 clean:
 	rm cirListDeque.o
 	rm testCirListDeque.o
+	rm prog
