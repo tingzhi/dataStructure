@@ -92,6 +92,7 @@ void _removeLink(struct linkedList *lst, struct DLink *l)
 	l->prev->next = l->next;
 	l->next->prev = l->prev;
 	free(temp);
+	lst->size--;
 }
 
 /*
