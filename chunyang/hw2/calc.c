@@ -50,8 +50,12 @@ void add (struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, b, c;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
+	if (isEmptyDynArr(stack))
+		return;
 	b = topDynArr(stack);
 	popDynArr(stack);
 	c = a + b;
@@ -67,8 +71,12 @@ void subtract(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, b, c;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
+	if (isEmptyDynArr(stack))
+		return;
 	b = topDynArr(stack);
 	popDynArr(stack);
 	c = b - a;
@@ -84,8 +92,12 @@ void divide(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, b, c = 0;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
+	if (isEmptyDynArr(stack))
+		return;
 	b = topDynArr(stack);
 	popDynArr(stack);
 	if (a == 0)
@@ -110,8 +122,12 @@ void multiply(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, b, c;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
+	if (isEmptyDynArr(stack))
+		return;
 	b = topDynArr(stack);
 	popDynArr(stack);
 	c = a * b;
@@ -127,8 +143,12 @@ void power(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, b, c;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
+	if (isEmptyDynArr(stack))
+		return;
 	b = topDynArr(stack);
 	popDynArr(stack);
 	c = pow(b,a);
@@ -144,6 +164,8 @@ void square(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, c;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
 	c = pow(a, 2);
@@ -159,6 +181,8 @@ void cube(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, c;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
 	c = pow(a, 3);
@@ -174,6 +198,8 @@ void absolute(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, c;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
 	c = fabs(a);
@@ -189,6 +215,8 @@ void squareroot(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, c = 0;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
 	if (a < 0)
@@ -212,6 +240,8 @@ void exponential(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, c;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
 	c = pow(2.7182818, a);
@@ -227,6 +257,8 @@ void naturalln(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, c;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
 	c = log(a);
@@ -242,6 +274,8 @@ void base10log(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
 	TYPE a, c;
+	if (isEmptyDynArr(stack))
+		return;
 	a = topDynArr(stack);
 	popDynArr(stack);
 	c = log10(a);
@@ -379,8 +413,10 @@ double calculate(int numInputTokens, char **inputString)
 		db = 1;
 
 	/*Check if there are too many numbers compared to operators.*/
-	if((i - 1 - count + db) < count)
+	if ((i - 1 - count + db) < count)
 		printf("Input error: Too few operators.\n");
+	else if ((i - 1 - count + db) > count)
+		printf("Input error: Too few numbers.\n");
 	else
 	{
 		result = topDynArr(stack);				/*Store the final result*/
