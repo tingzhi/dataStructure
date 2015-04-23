@@ -1,0 +1,874 @@
+desc: --peak-inaccuracy=0.0
+cmd: prog
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=192594
+mem_heap_B=23784
+mem_heap_extra_B=15856
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=6241458
+mem_heap_B=24072
+mem_heap_extra_B=16048
+mem_stacks_B=0
+heap_tree=detailed
+n2: 24072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 24000 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 24000 0x400AAC: addList (linkedList.c:260)
+   n0: 24000 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=3
+#-----------
+time=6501815
+mem_heap_B=47016
+mem_heap_extra_B=31344
+mem_stacks_B=0
+heap_tree=detailed
+n2: 47016 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 46944 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 46944 0x400AAC: addList (linkedList.c:260)
+   n0: 46944 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=4
+#-----------
+time=30590620
+mem_heap_B=48072
+mem_heap_extra_B=32048
+mem_stacks_B=0
+heap_tree=detailed
+n2: 48072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 48000 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 48000 0x400AAC: addList (linkedList.c:260)
+   n0: 48000 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=5
+#-----------
+time=31108527
+mem_heap_B=93216
+mem_heap_extra_B=62144
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=127286049
+mem_heap_B=96072
+mem_heap_extra_B=64048
+mem_stacks_B=0
+heap_tree=detailed
+n2: 96072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 96000 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 96000 0x400AAC: addList (linkedList.c:260)
+   n0: 96000 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=7
+#-----------
+time=128321894
+mem_heap_B=186408
+mem_heap_extra_B=124272
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=512673484
+mem_heap_B=192072
+mem_heap_extra_B=128048
+mem_stacks_B=0
+heap_tree=detailed
+n2: 192072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 192000 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 192000 0x400AAC: addList (linkedList.c:260)
+   n0: 192000 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=9
+#-----------
+time=513511277
+mem_heap_B=28440
+mem_heap_extra_B=18960
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=514744173
+mem_heap_B=372504
+mem_heap_extra_B=248336
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=2051445180
+mem_heap_B=384072
+mem_heap_extra_B=256048
+mem_stacks_B=0
+heap_tree=detailed
+n2: 384072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 384000 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 384000 0x400AAC: addList (linkedList.c:260)
+   n0: 384000 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=12
+#-----------
+time=2052478524
+mem_heap_B=114480
+mem_heap_extra_B=76320
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=2053329347
+mem_heap_B=115056
+mem_heap_extra_B=76704
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=2054690211
+mem_heap_B=494832
+mem_heap_extra_B=329888
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=2055625805
+mem_heap_B=755928
+mem_heap_extra_B=503952
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=8200984876
+mem_heap_B=768072
+mem_heap_extra_B=512048
+mem_stacks_B=0
+heap_tree=detailed
+n2: 768072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 768000 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 768000 0x400AAC: addList (linkedList.c:260)
+   n0: 768000 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=17
+#-----------
+time=8202005708
+mem_heap_B=501744
+mem_heap_extra_B=334496
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=8203366572
+mem_heap_B=146736
+mem_heap_extra_B=97824
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=8204047009
+mem_heap_B=33000
+mem_heap_extra_B=22000
+mem_stacks_B=0
+heap_tree=detailed
+n2: 33000 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 32928 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 32928 0x400AAC: addList (linkedList.c:260)
+   n0: 32928 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=20
+#-----------
+time=8205407873
+mem_heap_B=412776
+mem_heap_extra_B=275184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=8206768737
+mem_heap_B=792552
+mem_heap_extra_B=528368
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=8207449169
+mem_heap_B=982440
+mem_heap_extra_B=654960
+mem_stacks_B=0
+heap_tree=detailed
+n2: 982440 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 982368 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 982368 0x400AAC: addList (linkedList.c:260)
+   n0: 982368 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=23
+#-----------
+time=8208129601
+mem_heap_B=1172328
+mem_heap_extra_B=781552
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=8209320357
+mem_heap_B=1504632
+mem_heap_extra_B=1003088
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=32788060815
+mem_heap_B=1536072
+mem_heap_extra_B=1024048
+mem_stacks_B=0
+heap_tree=detailed
+n2: 1536072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1536000 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 1536000 0x400AAC: addList (linkedList.c:260)
+   n0: 1536000 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=26
+#-----------
+time=32788786327
+mem_heap_B=1346784
+mem_heap_extra_B=897856
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=32789556919
+mem_heap_B=1145760
+mem_heap_extra_B=763840
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=32790327511
+mem_heap_B=944736
+mem_heap_extra_B=629824
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=32791098103
+mem_heap_B=743712
+mem_heap_extra_B=495808
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=32791868695
+mem_heap_B=542688
+mem_heap_extra_B=361792
+mem_stacks_B=0
+heap_tree=detailed
+n2: 542688 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 542616 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 542616 0x400AAC: addList (linkedList.c:260)
+   n0: 542616 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=31
+#-----------
+time=32792639287
+mem_heap_B=341664
+mem_heap_extra_B=227776
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=32793409879
+mem_heap_B=140640
+mem_heap_extra_B=93760
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=32794373108
+mem_heap_B=118440
+mem_heap_extra_B=78960
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=32795143668
+mem_heap_B=333480
+mem_heap_extra_B=222320
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=32795914228
+mem_heap_B=548520
+mem_heap_extra_B=365680
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=32796684788
+mem_heap_B=763560
+mem_heap_extra_B=509040
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=32798033268
+mem_heap_B=1139880
+mem_heap_extra_B=759920
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=32798803828
+mem_heap_B=1354920
+mem_heap_extra_B=903280
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=32799574388
+mem_heap_B=1569960
+mem_heap_extra_B=1046640
+mem_stacks_B=0
+heap_tree=detailed
+n2: 1569960 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1569888 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 1569888 0x400AAC: addList (linkedList.c:260)
+   n0: 1569888 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=40
+#-----------
+time=32800344948
+mem_heap_B=1785000
+mem_heap_extra_B=1190000
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=32801115508
+mem_heap_B=2000040
+mem_heap_extra_B=1333360
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=32801886068
+mem_heap_B=2215080
+mem_heap_extra_B=1476720
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=32802656628
+mem_heap_B=2430120
+mem_heap_extra_B=1620080
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=32803427188
+mem_heap_B=2645160
+mem_heap_extra_B=1763440
+mem_stacks_B=0
+heap_tree=detailed
+n2: 2645160 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2645088 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 2645088 0x400AAC: addList (linkedList.c:260)
+   n0: 2645088 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=45
+#-----------
+time=32804775668
+mem_heap_B=3021480
+mem_heap_extra_B=2014320
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=131114208993
+mem_heap_B=3072072
+mem_heap_extra_B=2048048
+mem_stacks_B=0
+heap_tree=peak
+n2: 3072072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3072000 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 3072000 0x400AAC: addList (linkedList.c:260)
+   n0: 3072000 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=47
+#-----------
+time=131114979585
+mem_heap_B=2871024
+mem_heap_extra_B=1914016
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=131115750177
+mem_heap_B=2670000
+mem_heap_extra_B=1780000
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=131116906065
+mem_heap_B=2368464
+mem_heap_extra_B=1578976
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=131117098713
+mem_heap_B=2318208
+mem_heap_extra_B=1545472
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=131117291361
+mem_heap_B=2267952
+mem_heap_extra_B=1511968
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=131117484009
+mem_heap_B=2217696
+mem_heap_extra_B=1478464
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=131117676657
+mem_heap_B=2167440
+mem_heap_extra_B=1444960
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=131117869305
+mem_heap_B=2117184
+mem_heap_extra_B=1411456
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=131118061953
+mem_heap_B=2066928
+mem_heap_extra_B=1377952
+mem_stacks_B=0
+heap_tree=detailed
+n2: 2066928 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2066856 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 2066856 0x400AAC: addList (linkedList.c:260)
+   n0: 2066856 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=56
+#-----------
+time=131118254601
+mem_heap_B=2016672
+mem_heap_extra_B=1344448
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=131118447249
+mem_heap_B=1966416
+mem_heap_extra_B=1310944
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=131118639897
+mem_heap_B=1916160
+mem_heap_extra_B=1277440
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=131118832545
+mem_heap_B=1865904
+mem_heap_extra_B=1243936
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=131119025193
+mem_heap_B=1815648
+mem_heap_extra_B=1210432
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=131119217841
+mem_heap_B=1765392
+mem_heap_extra_B=1176928
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=131119410489
+mem_heap_B=1715136
+mem_heap_extra_B=1143424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=131119603137
+mem_heap_B=1664880
+mem_heap_extra_B=1109920
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=131119795785
+mem_heap_B=1614624
+mem_heap_extra_B=1076416
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=131119988433
+mem_heap_B=1564368
+mem_heap_extra_B=1042912
+mem_stacks_B=0
+heap_tree=detailed
+n2: 1564368 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1564296 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 1564296 0x400AAC: addList (linkedList.c:260)
+   n0: 1564296 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=66
+#-----------
+time=131120181081
+mem_heap_B=1514112
+mem_heap_extra_B=1009408
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=131120373729
+mem_heap_B=1463856
+mem_heap_extra_B=975904
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=131120566377
+mem_heap_B=1413600
+mem_heap_extra_B=942400
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=69
+#-----------
+time=131120759025
+mem_heap_B=1363344
+mem_heap_extra_B=908896
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=131120951673
+mem_heap_B=1313088
+mem_heap_extra_B=875392
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=131121144321
+mem_heap_B=1262832
+mem_heap_extra_B=841888
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=131121336969
+mem_heap_B=1212576
+mem_heap_extra_B=808384
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=131121529617
+mem_heap_B=1162320
+mem_heap_extra_B=774880
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=74
+#-----------
+time=131121722265
+mem_heap_B=1112064
+mem_heap_extra_B=741376
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=131121914913
+mem_heap_B=1061808
+mem_heap_extra_B=707872
+mem_stacks_B=0
+heap_tree=detailed
+n2: 1061808 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1061736 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 1061736 0x400AAC: addList (linkedList.c:260)
+   n0: 1061736 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=76
+#-----------
+time=131122107561
+mem_heap_B=1011552
+mem_heap_extra_B=674368
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=131122300209
+mem_heap_B=961296
+mem_heap_extra_B=640864
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=131122492857
+mem_heap_B=911040
+mem_heap_extra_B=607360
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=79
+#-----------
+time=131122685505
+mem_heap_B=860784
+mem_heap_extra_B=573856
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=80
+#-----------
+time=131122878153
+mem_heap_B=810528
+mem_heap_extra_B=540352
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=131123070801
+mem_heap_B=760272
+mem_heap_extra_B=506848
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=131123263449
+mem_heap_B=710016
+mem_heap_extra_B=473344
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=131123456097
+mem_heap_B=659760
+mem_heap_extra_B=439840
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=84
+#-----------
+time=131123648745
+mem_heap_B=609504
+mem_heap_extra_B=406336
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=85
+#-----------
+time=131123841393
+mem_heap_B=559248
+mem_heap_extra_B=372832
+mem_stacks_B=0
+heap_tree=detailed
+n2: 559248 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 559176 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 559176 0x400AAC: addList (linkedList.c:260)
+   n0: 559176 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=86
+#-----------
+time=131124034041
+mem_heap_B=508992
+mem_heap_extra_B=339328
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=87
+#-----------
+time=131124226689
+mem_heap_B=458736
+mem_heap_extra_B=305824
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=88
+#-----------
+time=131124419337
+mem_heap_B=408480
+mem_heap_extra_B=272320
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=89
+#-----------
+time=131124611985
+mem_heap_B=358224
+mem_heap_extra_B=238816
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=90
+#-----------
+time=131124804633
+mem_heap_B=307968
+mem_heap_extra_B=205312
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=91
+#-----------
+time=131124997281
+mem_heap_B=257712
+mem_heap_extra_B=171808
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=92
+#-----------
+time=131125189929
+mem_heap_B=207456
+mem_heap_extra_B=138304
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=93
+#-----------
+time=131125382577
+mem_heap_B=157200
+mem_heap_extra_B=104800
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=94
+#-----------
+time=131125575225
+mem_heap_B=106944
+mem_heap_extra_B=71296
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=95
+#-----------
+time=131125767873
+mem_heap_B=56688
+mem_heap_extra_B=37792
+mem_stacks_B=0
+heap_tree=detailed
+n2: 56688 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 56616 0x4006DD: _addLinkBefore (linkedList.c:69)
+  n1: 56616 0x400AAC: addList (linkedList.c:260)
+   n0: 56616 0x400C15: main (linkedListMain.c:22)
+ n0: 72 in 3 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=96
+#-----------
+time=131125960521
+mem_heap_B=6432
+mem_heap_extra_B=4288
+mem_stacks_B=0
+heap_tree=empty
