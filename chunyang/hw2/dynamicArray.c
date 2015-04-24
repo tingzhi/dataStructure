@@ -356,5 +356,7 @@ void removeDynArr(DynArr *v, TYPE val)
         }
         i++;
     }
-    removeAtDynArr(v, i-1); //In removeAtDynArr() size has already decreased.
+    if (flag == 1) {
+        removeAtDynArr(v, i-1); //In removeAtDynArr() size has already decreased.
+    }
 }

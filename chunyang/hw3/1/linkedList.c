@@ -1,3 +1,10 @@
+/* CS261- Assignment 3 - Part1
+ * Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 4/23/2015
+ * Development Environment: Xcode & MSVC
+ * Solution description:
+ */
+
 #include "linkedList.h"
 #include <assert.h>
 #include <stdlib.h>
@@ -28,8 +35,10 @@ struct linkedList{
 
 void _initList (struct linkedList *lst) {
   /* FIXME: you must write this */
+    assert(lst != 0);
+    
 	lst->firstLink = malloc(sizeof(struct DLink));
-	assert(lst->firstLink != 0);
+    assert(lst->firstLink != 0);
 	lst->lastLink = malloc(sizeof(struct DLink));
 	assert(lst->lastLink != 0);
 	lst->firstLink->next = lst->lastLink;
@@ -48,7 +57,7 @@ struct linkedList *createLinkedList()
 {
 	struct linkedList *newList = malloc(sizeof(struct linkedList));
 	_initList(newList);
-	return(newList);
+	return newList;
 }
 
 /*
@@ -66,6 +75,9 @@ struct linkedList *createLinkedList()
 void _addLinkBefore(struct linkedList *lst, struct DLink *l, TYPE v)
 {
 	/* FIXME: you must write this */
+    assert(lst != 0);
+    assert(l != 0);
+    
 	struct DLink *newlink = malloc(sizeof(struct DLink));
 	newlink->value = v;
 	newlink->next = l;
@@ -87,6 +99,8 @@ void _removeLink(struct linkedList *lst, struct DLink *l)
 {
 
 	/* FIXME: you must write this */
+    assert(lst != 0);
+    assert(l != 0);
 	assert(!isEmptyList(lst));
 	struct DLink *temp = l;
 	l->prev->next = l->next;
@@ -104,6 +118,7 @@ void _removeLink(struct linkedList *lst, struct DLink *l)
 int isEmptyList(struct linkedList *lst) {
  	/* FIXME: you must write this */
 	/*temporary return value...you may need to change this */
+    assert(lst != 0);
 	return (lst->size == 0);
 }
 
@@ -137,20 +152,23 @@ void deleteLinkedList(struct linkedList *lst)
 	free(lst);
 }
 
-
 /* Function to print list
  Pre: lst is not null
  */
 void printList(struct linkedList* lst)
 {
 	/* FIXME: you must write this */
-	assert(!isEmptyList(lst));
-	struct DLink *temp = lst->firstLink->next;
-	for (int i = 0; i < lst->size; i++)
-	{
-		printf("%d", temp->value);
-		temp = temp->next;
-	}
+    assert(lst != 0);
+    if (isEmptyList(lst)) {
+        printf("The linkList is empty!\n");
+    }
+    else {
+        struct DLink *temp = lst->firstLink->next;
+        for (int i = 0; i < lst->size; i++) {
+            printf("%d ", temp->value);
+            temp = temp->next;
+        }
+    }
 }
 
 /* ************************************************************************
@@ -168,6 +186,7 @@ void addFrontList(struct linkedList *lst, TYPE e)
 {
 	
 	/* FIXME: you must write this */
+    assert(lst != 0);
 	_addLinkBefore(lst, lst->firstLink->next, e);
 }
 
@@ -181,6 +200,7 @@ void addFrontList(struct linkedList *lst, TYPE e)
 void addBackList(struct linkedList *lst, TYPE e) {
   
 	/* FIXME: you must write this */
+    assert(lst != 0);
 	_addLinkBefore(lst, lst->lastLink, e);
 }
 
@@ -194,8 +214,9 @@ void addBackList(struct linkedList *lst, TYPE e) {
 TYPE frontList (struct linkedList *lst) {
 	/* FIXME: you must write this */
 	/*temporary return value...you may need to change this */
+    assert(lst != 0);
 	assert(!isEmptyList(lst));
-	return(lst->firstLink->next->value);
+	return lst->firstLink->next->value;
 }
 
 /*
@@ -209,11 +230,10 @@ TYPE backList(struct linkedList *lst)
 {
 	/* FIXME: you must write this */
 	/*temporary return value...you may need to change this */
+    assert(lst != 0);
 	assert(!isEmptyList(lst));
-	return(lst->lastLink->prev->value);
+	return lst->lastLink->prev->value;
 }
-
-
 
 /*
 	removeFrontList
@@ -224,6 +244,7 @@ TYPE backList(struct linkedList *lst)
 */
 void removeFrontList(struct linkedList *lst) {
    	/* FIXME: you must write this */
+    assert(lst != 0);
 	assert(!isEmptyList(lst));
 	_removeLink(lst, lst->firstLink->next);
 }
@@ -238,13 +259,14 @@ void removeFrontList(struct linkedList *lst) {
 void removeBackList(struct linkedList *lst)
 {	
 	/* FIXME: you must write this */
+    assert(lst != 0);
 	assert(!isEmptyList(lst));
 	_removeLink(lst, lst->lastLink->prev);
 }
 
 
 /* ************************************************************************
-	Stack Interface Functions
+	Bag Interface Functions
 ************************************************************************ */
 
 /* 
@@ -257,6 +279,7 @@ void removeBackList(struct linkedList *lst)
 void addList(struct linkedList *lst, TYPE v)
 {
 	/* FIXME: you must write this */
+    assert(lst != 0);
 	_addLinkBefore(lst, lst->firstLink->next, v);
 }
 
@@ -273,6 +296,7 @@ void addList(struct linkedList *lst, TYPE v)
 */
 int containsList (struct linkedList *lst, TYPE e) {
 	/* FIXME: you must write this */
+    assert(lst != 0);
 	assert(!isEmptyList(lst));
 	struct DLink *temp = lst->firstLink->next;
 	for (int i = 0; i < lst->size; i++)
@@ -297,9 +321,21 @@ int containsList (struct linkedList *lst, TYPE e) {
 */
 void removeList (struct linkedList *lst, TYPE e) {
 	/* FIXME: you must write this */
+    assert(lst != 0);
 	assert(!isEmptyList(lst));
+    int i = 0;
+    int flag = 0;
 	struct DLink *temp = lst->firstLink->next;
-	while (temp->value != e)
-		temp = temp->next;
-	_removeLink(lst, temp);
+    while (flag == 0 && i < lst->size) {
+        if (EQ(temp->value, e)) {
+            flag = 1;
+        }
+        temp = temp->next;
+        i++;
+    }
+    if (flag == 1) {
+        _removeLink(lst, temp->prev);
+    }
+    else
+        printf("%d is not in the bag. Please double check!\n", e);
 }

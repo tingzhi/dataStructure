@@ -1,4 +1,4 @@
-#ifndef __LISTDEQUE_H
+ #ifndef __LISTDEQUE_H
 #define __LISTDEQUE_H
 
 # ifndef TYPE
