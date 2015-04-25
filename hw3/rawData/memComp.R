@@ -1,5 +1,5 @@
 
-dat=read.csv("~/Documents/github/dataStructure/hw3/memoryComp.csv")
+dat=read.csv("~/Documents/github/dataStructure/hw3/rawData/memoryComp.csv")
 
 dat$Type <- as.numeric(dat$Type)
 ntype <- max(dat$Type)            # calculating the number of levels of the variable
