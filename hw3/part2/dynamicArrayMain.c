@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
 	t1 = getMilliseconds();/*Time before contains()*/
 	
 	for(i=0; i<n; i++) {
-		removeDynArr(b, i);		
+		containsDynArr(b, i);		
 	}	
 	
 	t2 = getMilliseconds();/*Time after contains()*/
