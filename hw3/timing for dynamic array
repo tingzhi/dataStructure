@@ -1,0 +1,8 @@
+Time for running contains() on 1000 elements: 0 ms
+Time for running contains() on 2000 elements: 0 ms
+Time for running contains() on 4000 elements: 30 ms
+Time for running contains() on 8000 elements: 100 ms
+Time for running contains() on 16000 elements: 390 ms
+Time for running contains() on 32000 elements: 1520 ms
+Time for running contains() on 64000 elements: 6100 ms
+Time for running contains() on 128000 elements: 24370 ms
