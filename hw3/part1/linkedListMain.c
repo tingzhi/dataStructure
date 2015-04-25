@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
         b = createLinkedList();
 
         for( i = 0 ; i < n; i++) {
-                addList(b, (TYPE)i); /*Add elements*/
+                removeList(b, (TYPE)i); /*Add elements*/
         }
 
         t1 = getMilliseconds();/*Time before contains()*/
