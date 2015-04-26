@@ -33,6 +33,7 @@ void addFrontListTest(struct linkedList *lst) {
     addFrontList(lst, 6);
     
     printf("The list content should be: [6->5->10->4->3]\n");
+    printf("Call printList function...\n");
     printList(lst);
 }
 
@@ -51,6 +52,7 @@ void addBackListTest(struct linkedList *lst) {
     addBackList(lst, 9);
     
     printf("The list content should be: [6->5->10->4->3->2->5->7->1->9]\n");
+    printf("Call printList function...\n");
     printList(lst);
 }
 
@@ -61,6 +63,7 @@ void frontListTest(struct linkedList *lst) {
     printf("\nCall RemoveFrontList Function\n");
     removeFrontList(lst);
     printf("The list content should be: [5->10->4->3->2->5->7->1->9]\n");
+    printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling frontList(lst)\n");
     assertTrue(EQ(frontList(lst), 5), "Testing the front link value == 5");
@@ -68,6 +71,7 @@ void frontListTest(struct linkedList *lst) {
     printf("\nCall RemoveFrontList Function\n");
     removeFrontList(lst);
     printf("The list content should be: [10->4->3->2->5->7->1->9]\n");
+    printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling frontList(lst)\n");
     assertTrue(EQ(frontList(lst), 10), "Testing the front link value == 10");
@@ -75,6 +79,7 @@ void frontListTest(struct linkedList *lst) {
     printf("\nCall RemoveFrontList Function\n");
     removeFrontList(lst);
     printf("The list content should be: [4->3->2->5->7->1->9]\n");
+    printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling frontList(lst)\n");
     assertTrue(EQ(frontList(lst), 4), "Testing the front link value == 4");
@@ -82,18 +87,20 @@ void frontListTest(struct linkedList *lst) {
     printf("\nCall RemoveFrontList Function\n");
     removeFrontList(lst);
     printf("The list content should be: [3->2->5->7->1->9]\n");
+    printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling frontList(lst)\n");
     assertTrue(EQ(frontList(lst), 3), "Testing the front link value == 3");
 }
 
 void backListTest(struct linkedList *lst) {
-    printf("\nTesting backList...\nCalling backList(lst)\n");
+    printf("\n\nTesting backList...\nCalling backList(lst)\n");
     assertTrue(EQ(backList(lst), 9), "Testing the last link value == 9");
     
     printf("\nCall RemoveBackList Function\n");
     removeBackList(lst);
     printf("The list content should be: [3->2->5->7->1]\n");
+    printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling backList(lst)\n");
     assertTrue(EQ(backList(lst), 1), "Testing the last link value == 1");
@@ -101,6 +108,7 @@ void backListTest(struct linkedList *lst) {
     printf("\nCall RemoveBackList Function\n");
     removeBackList(lst);
     printf("The list content should be: [3->2->5->7]\n");
+    printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling backList(lst)\n");
     assertTrue(EQ(backList(lst), 7), "Testing the last link value == 7");
@@ -108,6 +116,7 @@ void backListTest(struct linkedList *lst) {
     printf("\nCall RemoveBackList Function\n");
     removeBackList(lst);
     printf("The list content should be: [3->2->5]\n");
+    printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling backList(lst)\n");
     assertTrue(EQ(backList(lst), 5), "Testing the last link value == 5");
@@ -115,25 +124,28 @@ void backListTest(struct linkedList *lst) {
     printf("\nCall RemoveBackList Function\n");
     removeBackList(lst);
     printf("The list content should be: [3->2]\n");
+    printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling backList(lst)\n");
     assertTrue(EQ(backList(lst), 2), "Testing the last link value == 2");
 }
 
 void removeFrontListTest(struct linkedList *lst) {
-    printf("\nTesting removeFrontList...\nCalling removeFrontList(lst)\n");
+    printf("\n\nTesting removeFrontList...\nCalling removeFrontList(lst)\n");
     removeFrontList(lst);
     printf("The list content should be: [2]\n");
+    printf("Call printList function...\n");
     printList(lst);
     
     printf("\n\nCalling removeFrontList(lst)\n");
     removeFrontList(lst);
     printf("The list content should be empty.\n");
+    printf("Call printList function...\n");
     printList(lst);
 }
 
 void removeBackListTest(struct linkedList *lst) {
-    printf("\nTesting removeBackList...\n");
+    printf("\n\nTesting removeBackList...\n");
     /* Add 3, 4, 10*/
     printf("Add 3 to the front of the list...\n");
     addFrontList(lst, 3);
@@ -142,29 +154,42 @@ void removeBackListTest(struct linkedList *lst) {
     printf("Add 10 to the front of the list...\n");
     addFrontList(lst, 10);
     printf("The list content should be: [10->4->3]\n");
+    printf("Call printList function...\n");
     printList(lst);
     
     printf("\n\nCalling removeBackList(lst)\n");
     removeBackList(lst);
     printf("The list content should be: [10->4]\n");
+    printf("Call printList function...\n");
     printList(lst);
     
     printf("\n\nCalling removeBackList(lst)\n");
     removeBackList(lst);
     printf("The list content should be: [10]\n");
+    printf("Call printList function...\n");
     printList(lst);
     
     printf("\n\nCalling removeBackList(lst)\n");
     removeBackList(lst);
     printf("The list content should be empty!\n");
+    printf("Call printList function...\n");
     printList(lst);
 }
 
+void emptyTest(struct linkedList *lst) {
+    printf("\n\nTesting isEmptyList...\n");
+    assertTrue(isEmptyList(lst), "Testing the linked list is empty!");
+    printf("\nAdd 3 to the linked list...\n");
+    addBackList(lst, 3);
+    printf("The linked list content should be: [3]\n");
+    printf("Call printList function...\n");
+    printList(lst);
+    assertTrue(!isEmptyList(lst), "\nTesting the linked list is NOT empty!");
+}
+
 void bagInterfaceTest(struct linkedList *lst) {
-    printf("\nTesting bag interface...\n");
-    printf("Testing addList Function...\n");
-    printf("Add 3,6,5,9,1,7,3,6,5 to the back of the list...\n");
-    addList(lst, 3);
+    printf("\nTesting addList Function...\n");
+    printf("Add 6,5,9,1,7,3,6,5 to the bag...\n");
     addList(lst, 6);
     addList(lst, 5);
     addList(lst, 9);
@@ -174,10 +199,11 @@ void bagInterfaceTest(struct linkedList *lst) {
     addList(lst, 6);
     addList(lst, 5);
     
-    printf("The bag content should be: [5,6,3,7,1,9,5,6,3]\n");
+    printf("The bag content should be: [3,6,5,9,1,7,3,6,5]\n");
+    printf("Call printList function...\n");
     printList(lst);
     
-    printf("\nTesting containsList Function...\n");
+    printf("\n\nTesting containsList Function...\n");
     assertTrue(containsList(lst, 3), "Test containing 3");
     assertTrue(containsList(lst, 6), "Test containing 6");
     assertTrue(containsList(lst, 5), "Test containing 5");
@@ -190,18 +216,18 @@ void bagInterfaceTest(struct linkedList *lst) {
     assertTrue(!containsList(lst, 8), "Test not containing 8");
     
     removeList(lst, 3);
-    printf("Removing 3...\nThe bag content: [5,6,7,1,9,5,6,3]\n");
+    printf("\nRemoving 3...\nThe bag content: [6,5,9,1,7,3,6,5]\n");
     assertTrue(containsList(lst, 3), "Test still containing 3");
     
     removeList(lst, 3);
-    printf("Removing 3...\nThe bag content: [5,6,7,1,9,5,6]\n");
+    printf("\nRemoving 3...\nThe bag content: [6,5,9,1,7,6,5]\n");
     assertTrue(!containsList(lst, 3), "Test not containing 3");
     
     removeList(lst, 1);
-    printf("Removing 1...\nThe bag content: [5,6,7,9,5,6]\n");
+    printf("\nRemoving 1...\nThe bag content: [6,5,9,7,6,5]\n");
     assertTrue(!containsList(lst, 1), "Test not containing 1");
     
-    printf("Removing 2...\nIt should print an error!\n");
+    printf("\nRemoving 2...\nIt should print an error!\n");
     removeList(lst, 2);
 }
 
@@ -220,8 +246,9 @@ int main(int argc, char* argv[]) {
     backListTest(nlst);
     removeFrontListTest(nlst);
     removeBackListTest(nlst);
+    emptyTest(nlst);
     
-    printf("\nBag Interface Test Begin!\n");
+    printf("\n\nBag Interface Test Begin!\n");
     
     bagInterfaceTest(nlst);
     deleteLinkedList(nlst);

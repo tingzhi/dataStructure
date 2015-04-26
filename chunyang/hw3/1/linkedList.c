@@ -280,7 +280,7 @@ void addList(struct linkedList *lst, TYPE v)
 {
 	/* FIXME: you must write this */
     assert(lst != 0);
-	_addLinkBefore(lst, lst->firstLink->next, v);
+	addBackList(lst, v);
 }
 
 /*	Returns boolean (encoded as an int) demonstrating whether or not
