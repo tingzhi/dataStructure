@@ -1,0 +1,6 @@
+# Create memory raw data
+valgrind --peak-inaccuracy=0.0 --tool=massif prog
+ms_print massif.out.[number] > memDump
+
+# Check memory leak
+valgrind --leak-check=full -v ./program

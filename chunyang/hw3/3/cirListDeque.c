@@ -72,7 +72,7 @@ struct DLink * _createLink (TYPE val)
 {
 	/* FIXME: you must write this */
 	struct DLink *newlink = malloc(sizeof(struct DLink));
-	assert(newlink);
+	assert(newlink != 0);
 	newlink->value = val;	
 	/*temporary return value..you may need to change it*/
 	return newlink;	 
@@ -92,15 +92,15 @@ struct DLink * _createLink (TYPE val)
 void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 {
 	/* FIXME: you must write this */	 
-	assert(q);
-	assert(lnk);
+	assert(q != 0);
+	assert(lnk != 0);
 	struct DLink *temp = q->Sentinel->next;
 	for (int i = 0; i < q->size; i++);
 	{
 		if (temp == lnk)
 		{
 			struct DLink *newlink = _createLink(v);
-			assert(newlink);
+			//assert(newlink);
 			newlink->next = lnk->next;
 			newlink->prev = lnk;
 			lnk->next->prev = newlink;
@@ -111,7 +111,7 @@ void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 		else
 			temp = temp->next;
 	}
-	printf("Error! This link is not in the deque!\n");
+	printf("Error! The link user try to add after is not in the deque!\n");
 }
 
 /* Adds a link to the back of the deque
@@ -124,9 +124,9 @@ void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 void addBackCirListDeque (struct cirListDeque *q, TYPE val) 
 {
 	/* FIXME: you must write this */	 
-	assert(q);
+	assert(q != 0);
 	struct DLink *newlink = _createLink(val);
-	assert(newlink);
+	//assert(newlink);
 	newlink->next = q->Sentinel;
 	newlink->prev = q->Sentinel->prev;
 	q->Sentinel->prev->next = newlink;
@@ -144,9 +144,9 @@ void addBackCirListDeque (struct cirListDeque *q, TYPE val)
 void addFrontCirListDeque(struct cirListDeque *q, TYPE val)
 {
 	/* FIXME: you must write this */	 
-	assert(q);
+	assert(q != 0);
 	struct DLink *newlink = _createLink(val);
-	assert(newlink);
+	//assert(newlink);
 	newlink->next = q->Sentinel->next;
 	newlink->prev = q->Sentinel;
 	q->Sentinel->next->prev = newlink;
@@ -164,7 +164,7 @@ void addFrontCirListDeque(struct cirListDeque *q, TYPE val)
 TYPE frontCirListDeque(struct cirListDeque *q) 
 {
 	/* FIXME: you must write this */	 
-	assert(q);
+	assert(q != 0);
 	if (isEmptyCirListDeque(q) == 1)
 	{
 		printf("The deque is empty!\n");
@@ -184,7 +184,7 @@ TYPE frontCirListDeque(struct cirListDeque *q)
 TYPE backCirListDeque(struct cirListDeque *q)
 {
 	/* FIXME: you must write this */	 
-	assert(q);
+	assert(q != 0);
 	if (isEmptyCirListDeque(q) == 1)
 	{
 		printf("The deque is empty!\n");
@@ -204,7 +204,7 @@ TYPE backCirListDeque(struct cirListDeque *q)
 void _removeLink(struct cirListDeque *q, struct DLink *lnk)
 {
 	/* FIXME: you must write this */	 
-	assert(q);
+	assert(q != 0);
 	if (isEmptyCirListDeque(q) == 1)
 	{
 		printf("Remove Error: The deque is empty!\n");
@@ -225,7 +225,7 @@ void _removeLink(struct cirListDeque *q, struct DLink *lnk)
 */
 void removeFrontCirListDeque (struct cirListDeque *q) {
 	/* FIXME: you must write this */	 
-	assert(q);
+	assert(q != 0);
 	if (isEmptyCirListDeque(q) == 1)
 	{
 		printf("Remove Error: The deque is empty!\n");
@@ -244,7 +244,7 @@ void removeFrontCirListDeque (struct cirListDeque *q) {
 void removeBackCirListDeque(struct cirListDeque *q)
 {
   	/* FIXME: you must write this */	 
-	assert(q);
+	assert(q != 0);
 	if (isEmptyCirListDeque(q) == 1)
 	{
 		printf("Remove Error: The deque is empty!\n");
@@ -289,7 +289,7 @@ void deleteCirListDeque(struct cirListDeque *q) {
 */
 int isEmptyCirListDeque(struct cirListDeque *q) {
   	/* FIXME: you must write this */
-	assert(q);
+	assert(q != 0);
 	/*temporary return value..you may need to change it*/
 	return(q->size == 0);
 }
@@ -303,7 +303,7 @@ int isEmptyCirListDeque(struct cirListDeque *q) {
 void printCirListDeque(struct cirListDeque *q)
 {
 	/* FIXME: you must write this */	
-	assert(q);
+	assert(q != 0);
 	if (isEmptyCirListDeque(q) == 1)
 	{
 		printf("The deque is empty!\n");
@@ -328,7 +328,7 @@ void printCirListDeque(struct cirListDeque *q)
 void reverseCirListDeque(struct cirListDeque *q)
 {
 	/* FIXME: you must write this */	 
-	assert(q);
+	assert(q != 0);
 	if (isEmptyCirListDeque(q) == 1)
 	{
 		printf("The deque is empty!\n");
