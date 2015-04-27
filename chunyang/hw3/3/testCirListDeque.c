@@ -29,6 +29,7 @@ int main(int argc, char* argv[]) {
 	printf("\nAfter initializing, we first print this Deque:\n");
 	printCirListDeque(q);
 
+	/*Add four items into the Deque List*/
 	addFrontCirListDeque(q, 2);
 	addBackCirListDeque(q, 3);
 	addFrontCirListDeque(q, 1);
@@ -42,7 +43,7 @@ int main(int argc, char* argv[]) {
 	//printf("The back value is: %lf\n\n", backCirListDeque(q));
 	assertTrue(EQ(backCirListDeque(q), 4), "The back value should be 4");
 
-	
+	/*Reverse the Deque*/
 	reverseCirListDeque(q);
 	printf("\nBy reversing the Deque:\n");
 	printCirListDeque(q);
@@ -51,6 +52,7 @@ int main(int argc, char* argv[]) {
 	assertTrue(EQ(frontCirListDeque(q), 4), "The front value should be 4");
 	assertTrue(EQ(backCirListDeque(q), 1), "The back value should be 1");
 
+	/*remove front and back from the list*/
 	printf("\nBy removing the front:\n");
 	removeFrontCirListDeque(q);
 	printCirListDeque(q);
@@ -87,6 +89,14 @@ int main(int argc, char* argv[]) {
 
 	printf("\nNow we print this deque again, the result is...\n");
 	printCirListDeque(q);
+
+	printf("\nFinally, we add front 7:\n");
+	addFrontCirListDeque(q, 7);
+	printCirListDeque(q);
+	assertTrue(EQ(frontCirListDeque(q), 7), "The front value should be 7");
+	assertTrue(EQ(backCirListDeque(q), 7), "The back value should be 7");
+
+	printf("\nThe end of the test. Thank you very much!\n\n");
 
 	deleteCirListDeque(q);
 	return 0;
