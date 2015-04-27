@@ -2,7 +2,7 @@
  * Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/27/2015
  * Development Environment: Xcode & MSVC
- * Solution description:
+ * Solution description: Testing code for linked list and bag interface.
  */
 
 #include "linkedList.h"

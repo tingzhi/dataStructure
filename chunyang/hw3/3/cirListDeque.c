@@ -2,7 +2,8 @@
  * Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/27/2015
  * Development Environment: Xcode & MSVC
- * Solution description:
+ * Solution description:  
+ * Implementation of the Deque ADT Using a Circularly Linked List.
  */
 
 #include <stdio.h>

@@ -2,7 +2,7 @@
  * Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 4/23/2015
  * Development Environment: Xcode & MSVC
- * Solution description:
+ * Solution description: Deque and Bag Implementation Using Linked List.
  */
 
 #include "linkedList.h"
