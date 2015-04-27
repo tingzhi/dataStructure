@@ -32,7 +32,7 @@ void addFrontListTest(struct linkedList *lst) {
     printf("Add 6 to the front of the list...\n");
     addFrontList(lst, 6);
     
-    printf("The list content should be: [6->5->10->4->3]\n");
+    printf("The list content should be: [6<=>5<=>10<=>4<=>3]\n");
     printf("Call printList function...\n");
     printList(lst);
 }
@@ -51,7 +51,7 @@ void addBackListTest(struct linkedList *lst) {
     printf("Add 9 to the back of the list...\n");
     addBackList(lst, 9);
     
-    printf("The list content should be: [6->5->10->4->3->2->5->7->1->9]\n");
+    printf("The list content should be: [6<=>5<=>10<=>4<=>3<=>2<=>5<=>7<=>1<=>9]\n");
     printf("Call printList function...\n");
     printList(lst);
 }
@@ -62,7 +62,7 @@ void frontListTest(struct linkedList *lst) {
     
     printf("\nCall RemoveFrontList Function\n");
     removeFrontList(lst);
-    printf("The list content should be: [5->10->4->3->2->5->7->1->9]\n");
+    printf("The list content should be: [5<=>10<=>4<=>3<=>2<=>5<=>7<=>1<=>9]\n");
     printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling frontList(lst)\n");
@@ -70,7 +70,7 @@ void frontListTest(struct linkedList *lst) {
     
     printf("\nCall RemoveFrontList Function\n");
     removeFrontList(lst);
-    printf("The list content should be: [10->4->3->2->5->7->1->9]\n");
+    printf("The list content should be: [10<=>4<=>3<=>2<=>5<=>7<=>1<=>9]\n");
     printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling frontList(lst)\n");
@@ -78,7 +78,7 @@ void frontListTest(struct linkedList *lst) {
 
     printf("\nCall RemoveFrontList Function\n");
     removeFrontList(lst);
-    printf("The list content should be: [4->3->2->5->7->1->9]\n");
+    printf("The list content should be: [4<=>3<=>2<=>5<=>7<=>1<=>9]\n");
     printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling frontList(lst)\n");
@@ -86,7 +86,7 @@ void frontListTest(struct linkedList *lst) {
 
     printf("\nCall RemoveFrontList Function\n");
     removeFrontList(lst);
-    printf("The list content should be: [3->2->5->7->1->9]\n");
+    printf("The list content should be: [3<=>2<=>5<=>7<=>1<=>9]\n");
     printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling frontList(lst)\n");
@@ -99,7 +99,7 @@ void backListTest(struct linkedList *lst) {
     
     printf("\nCall RemoveBackList Function\n");
     removeBackList(lst);
-    printf("The list content should be: [3->2->5->7->1]\n");
+    printf("The list content should be: [3<=>2<=>5<=>7<=>1]\n");
     printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling backList(lst)\n");
@@ -107,7 +107,7 @@ void backListTest(struct linkedList *lst) {
 
     printf("\nCall RemoveBackList Function\n");
     removeBackList(lst);
-    printf("The list content should be: [3->2->5->7]\n");
+    printf("The list content should be: [3<=>2<=>5<=>7]\n");
     printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling backList(lst)\n");
@@ -115,7 +115,7 @@ void backListTest(struct linkedList *lst) {
 
     printf("\nCall RemoveBackList Function\n");
     removeBackList(lst);
-    printf("The list content should be: [3->2->5]\n");
+    printf("The list content should be: [3<=>2<=>5]\n");
     printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling backList(lst)\n");
@@ -123,7 +123,7 @@ void backListTest(struct linkedList *lst) {
 
     printf("\nCall RemoveBackList Function\n");
     removeBackList(lst);
-    printf("The list content should be: [3->2]\n");
+    printf("The list content should be: [3<=>2]\n");
     printf("Call printList function...\n");
     printList(lst);
     printf("\nCalling backList(lst)\n");
@@ -153,13 +153,13 @@ void removeBackListTest(struct linkedList *lst) {
     addFrontList(lst, 4);
     printf("Add 10 to the front of the list...\n");
     addFrontList(lst, 10);
-    printf("The list content should be: [10->4->3]\n");
+    printf("The list content should be: [10<=>4<=>3]\n");
     printf("Call printList function...\n");
     printList(lst);
     
     printf("\n\nCalling removeBackList(lst)\n");
     removeBackList(lst);
-    printf("The list content should be: [10->4]\n");
+    printf("The list content should be: [10<=>4]\n");
     printf("Call printList function...\n");
     printList(lst);
     
