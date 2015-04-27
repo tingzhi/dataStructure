@@ -95,12 +95,12 @@ void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 	assert(q != 0);
 	assert(lnk != 0);
 	struct DLink *temp = q->Sentinel;
-	for (int i = -1; i < q->size; i++)
+	for (int i = 0; i <= q->size; i++)
 	{
 		if (temp == lnk)
 		{
 			struct DLink *newlink = _createLink(v);
-			assert(newlink);
+			//assert(newlink);
 			newlink->next = lnk->next;
 			newlink->prev = lnk;
 			lnk->next->prev = newlink;
