@@ -94,7 +94,7 @@ void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 	/* FIXME: you must write this */	 
 	assert(q != 0);
 	assert(lnk != 0);
-	struct DLink *temp = q->Sentinel->next;
+	struct DLink *temp = q->Sentinel;
 	for (int i = -1; i < q->size; i++)
 	{
 		if (temp == lnk)
