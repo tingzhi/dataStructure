@@ -7,13 +7,18 @@ int main(int argc, char* argv[]) {
 
 	/* Test your linked list in here! */
 	struct cirListDeque *q = createCirListDeque();
+
+	printf("After initializing, we first print this Deque,\n");
+	printCirListDeque(q);
+
 	addFrontCirListDeque(q, 2);
 	addBackCirListDeque(q, 3);
 	addFrontCirListDeque(q, 1);
 	addBackCirListDeque(q, 4);
-
-	printf("After initializing, we test add front 2, add back 3, add front 1 and add back 4, we get\n");
+	
+	printf("\nNow we test add front 2, add back 3, add front 1 and add back 4, we get\n");
 	printCirListDeque(q);
+
 	printf("The front value is: %lf\n", frontCirListDeque(q));
 	printf("The back value is: %lf\n\n", backCirListDeque(q));
 
