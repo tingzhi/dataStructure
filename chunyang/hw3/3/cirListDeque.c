@@ -1,3 +1,10 @@
+/* CS261- Assignment 3 - Part3
+ * Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 4/27/2015
+ * Development Environment: Xcode & MSVC
+ * Solution description:
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -100,7 +107,6 @@ void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 		if (temp == lnk)
 		{
 			struct DLink *newlink = _createLink(v);
-			assert(newlink);
 			newlink->next = lnk->next;
 			newlink->prev = lnk;
 			lnk->next->prev = newlink;

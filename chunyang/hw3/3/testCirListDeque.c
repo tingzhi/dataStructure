@@ -1,3 +1,10 @@
+/* CS261- Assignment 3 - Part3
+ * Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 4/27/2015
+ * Development Environment: Xcode & MSVC
+ * Solution description:
+ */
+
 #include "cirListDeque.h"
 #include <stdio.h>
 #include <stdlib.h>
