@@ -95,12 +95,12 @@ void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 	assert(q != 0);
 	assert(lnk != 0);
 	struct DLink *temp = q->Sentinel->next;
-	for (int i = 0; i < q->size; i++)
+	for (int i = -1; i < q->size; i++)
 	{
 		if (temp == lnk)
 		{
 			struct DLink *newlink = _createLink(v);
-			//assert(newlink);
+			assert(newlink);
 			newlink->next = lnk->next;
 			newlink->prev = lnk;
 			lnk->next->prev = newlink;
@@ -125,13 +125,7 @@ void addBackCirListDeque (struct cirListDeque *q, TYPE val)
 {
 	/* FIXME: you must write this */	 
 	assert(q != 0);
-	struct DLink *newlink = _createLink(val);
-	//assert(newlink);
-	newlink->next = q->Sentinel;
-	newlink->prev = q->Sentinel->prev;
-	q->Sentinel->prev->next = newlink;
-	q->Sentinel->prev = newlink;
-	q->size++;
+	_addLinkAfter(q, q->Sentinel->prev, val);
 }
 
 /* Adds a link to the front of the deque
@@ -145,13 +139,7 @@ void addFrontCirListDeque(struct cirListDeque *q, TYPE val)
 {
 	/* FIXME: you must write this */	 
 	assert(q != 0);
-	struct DLink *newlink = _createLink(val);
-	//assert(newlink);
-	newlink->next = q->Sentinel->next;
-	newlink->prev = q->Sentinel;
-	q->Sentinel->next->prev = newlink;
-	q->Sentinel->next = newlink;
-	q->size++;
+	_addLinkAfter(q, q->Sentinel, val);
 }
 
 /* Get the value of the front of the deque
