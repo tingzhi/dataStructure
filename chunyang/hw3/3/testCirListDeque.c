@@ -26,6 +26,9 @@ int main(int argc, char* argv[]) {
 	reverseCirListDeque(q);
 	printf("By reversing the Deque:\n");
 	printCirListDeque(q);
+	printf("The front value is: %lf\n", frontCirListDeque(q));
+	printf("The back value is: %lf\n\n", backCirListDeque(q));
+
 
 	printf("By removing the front:\n");
 	removeFrontCirListDeque(q);
