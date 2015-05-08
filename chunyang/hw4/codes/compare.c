@@ -26,15 +26,21 @@
 int compare(TYPE left, TYPE right)
 {
     /*FIXME: write this*/
-	return 0;
-
+	struct data  *l = left, *r = right;
+	if (l == r)
+		return 0;
+	else if (l > r)
+		return 1;
+	else return -1;
 }
 
 /*Define this function, type casting the value of void * to the desired type*/
 void print_type(TYPE curval)
 {
     /*FIXME: write this*/
-
+	struct data *val = curval;
+	printf("%d\n", val);
+	printf("%s\n", val);
 }
 
 

@@ -52,7 +52,7 @@ void initBSTree(struct BSTree *tree)
 struct BSTree*  newBSTree()
 {
 	/* Write This */
-	struct BStree *newBSTree = malloc(sizeof(struct BSTree));
+	struct BSTree *newBSTree = malloc(sizeof(struct BSTree));
 	assert(newBSTree);
 	initBSTree(newBSTree);
 	return newBSTree;  /* temporary return*/	
@@ -245,11 +245,12 @@ TYPE _leftMost(struct Node *cur)
 {
 	/*write this*/
 	assert(cur != NULL);
-	while (cur->left != NULL)
+	struct Node *temp = cur;
+	while (temp->left != NULL)
 	{
-		cur = cur->left;
+		temp = temp->left;
 	}
-	return cur->val;
+	return temp->val;
 }
 
 
@@ -270,10 +271,16 @@ struct Node *_removeLeftMost(struct Node *cur)
 	/*write this*/
 	assert(cur != NULL);
 	if (cur->left != NULL)
+	{
+		cur->left = _removeLeftMost(cur->left);
 		return cur;
-	TYPE val = _leftmost(cur);
-
-	return NULL;
+	}
+	else
+	{
+		struct Node *temp = cur->right;
+		free(cur);
+		return temp;
+	}
 }
 
 
@@ -290,11 +297,28 @@ struct Node *_removeLeftMost(struct Node *cur)
 struct Node *_removeNode(struct Node *cur, TYPE val)
 {
 	/*write this*/
-	assert(cur != NULL);
 	assert(val != NULL);
-	
-	return NULL;
-
+	if (cur != NULL)
+	{
+		if (compare(cur->val, val) == 0)
+		{
+			cur->val = _leftMost(cur);
+			cur = _removeLeftMost(cur);
+		}
+		else if (compare(cur->val, val) == 1)
+		{
+			cur->left = _removeNode(cur->left, val);
+		}
+		else if (compare(cur->val, val) == -1)
+		{
+			cur->right = _removeNode(cur->right, val);
+		}
+		else
+			printf("Compare Function Error!\n");
+	}
+	else
+		printf("The Value is not in this BSTree!\n");
+	return cur;
 }
 
 
@@ -314,10 +338,8 @@ void removeBSTree(struct BSTree *tree, TYPE val)
 	/* Write This */
 	assert(tree != NULL);
 	assert(val != NULL);
-	if (containsBSTree(tree, val) == 1)
-	{
-
-	}
+	tree->root = _removeNode(tree->root, val);
+	tree->cnt--;
 }
 
 
@@ -585,19 +607,19 @@ int main(int argc, char *argv[]){
 	
    //After implementing your code, please uncommnet the following calls to the test functions and test your code 
 
-   // testAddNode();
+    testAddNode();
 	
 	printf("\n");
-   //	testContainsBSTree();
+    testContainsBSTree();
 	
 	printf("\n");
-    //testLeftMost();
+    testLeftMost();
 	
 	printf("\n");
-    //testRemoveLeftMost();
+    testRemoveLeftMost();
 	
 	printf("\n");
-    //testRemoveNode();
+    testRemoveNode();
     
 	
 	return 0;
