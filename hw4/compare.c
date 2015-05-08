@@ -26,6 +26,7 @@
 int compare(TYPE left, TYPE right)
 {
     /*FIXME: write this*/
+    
 	return 0;
 
 }
