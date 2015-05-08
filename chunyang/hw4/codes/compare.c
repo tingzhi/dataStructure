@@ -26,15 +26,12 @@
 int compare(TYPE left, TYPE right)
 {
     /*FIXME: write this*/
-	int l;
-	l = (int)left;
-	struct data *r;
-	r = (struct data *)right;
+	struct data *l = (struct data *)left;
+	struct data *r = (struct data *)right;
 
-	//int compare
-	if (l == r->number)
+	if (l->number == r->number)
 		return 0;
-	else if (l > r->number)
+	else if (l->number > r->number)
 		return 1;
 	else return -1;
 
