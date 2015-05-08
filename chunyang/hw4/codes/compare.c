@@ -26,15 +26,13 @@
 int compare(TYPE left, TYPE right)
 {
     /*FIXME: write this*/
-	int l;
-	l = (int)left;
-	struct data *r;
-	r = (struct data *)right;
+	struct data *l = (struct data *)left;
+	struct data	*r = (struct data *)right;
 
 	//int compare
-	if (l == r->number)
+	if (l->number == r->number)
 		return 0;
-	else if (l > r->number)
+	else if (l->number > r->number)
 		return 1;
 	else return -1;
 
@@ -52,8 +50,9 @@ int compare(TYPE left, TYPE right)
 void print_type(TYPE curval)
 {
     /*FIXME: write this*/
-	int val = (int)curval;
+	struct data *val = (struct data *)curval;
 	//print int
-	printf("%d", val);
+	printf("%d", val->number);
 	//print char
+	//printf("%s", val->name);
 }

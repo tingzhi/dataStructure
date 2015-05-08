@@ -120,7 +120,7 @@ void deleteBSTree(struct BSTree *tree)
 
 	/* Write This */
 	assert(tree != NULL);
-	_freeBST(tree->root);
+	clearBSTree(tree->root);
 	free(tree);
 }
 
