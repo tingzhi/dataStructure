@@ -171,11 +171,11 @@ struct Node *_addNode(struct Node *cur, TYPE val)
 		newNode->left = newNode->right = NULL;
 		return newNode;
 	}
-	if (compare(val, cur->val) == -1)
+	if (compare(cur->val, val) == 1)
 		cur->left = _addNode(cur->left, val);
-	else if (compare(val, cur->val) == 1)
+	else if (compare(cur->val, val) == -1)
 		cur->right = _addNode(cur->right, val);
-	else if (compare(val, cur->val) == 0)
+	else if (compare(cur->val, val) == 0)
 		cur->left = _addNode(cur->left, val);
 	else
 		printf("Compare Function Error!\n");
