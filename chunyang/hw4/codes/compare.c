@@ -27,14 +27,9 @@ int compare(TYPE left, TYPE right)
 {
     /*FIXME: write this*/
 	struct data *l = (struct data *)left;
-<<<<<<< HEAD
 	struct data	*r = (struct data *)right;
 
 	//int compare
-=======
-	struct data *r = (struct data *)right;
-
->>>>>>> origin/master
 	if (l->number == r->number)
 		return 0;
 	else if (l->number > r->number)
