@@ -24,7 +24,7 @@ struct BSTree {
 /*----------------------------------------------------------------------------*/
 /*
  function to initialize the binary search tree.
- param tree
+ param: tree
  pre: tree is not null
  post:		tree cnt is 0
 		tree root is null
@@ -32,8 +32,10 @@ struct BSTree {
 
 void initBSTree(struct BSTree *tree)
 {
-
 	/* Write This */
+    assert(tree != 0);
+    tree->root = 0;
+    tree->cnt = 0;
 }
 
 /*
@@ -49,6 +51,7 @@ void initBSTree(struct BSTree *tree)
 struct BSTree*  newBSTree()
 {
 	/* Write This */
+    
 	return 0;  /* temporary return*/	
 }
 

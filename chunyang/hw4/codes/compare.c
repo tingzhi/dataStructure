@@ -26,6 +26,7 @@
 int compare(TYPE left, TYPE right)
 {
     /*FIXME: write this*/
+        
 	struct data  *l = left, *r = right;
 	if (l == r)
 		return 0;
