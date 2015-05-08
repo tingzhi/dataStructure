@@ -34,6 +34,9 @@ void initBSTree(struct BSTree *tree)
 {
 
 	/* Write This */
+	assert(tree);
+	tree->root = NULL;
+	tree->cnt = 0;
 }
 
 /*
@@ -49,7 +52,10 @@ void initBSTree(struct BSTree *tree)
 struct BSTree*  newBSTree()
 {
 	/* Write This */
-	return 0;  /* temporary return*/	
+	struct BStree *newBSTree = malloc(sizeof(struct BSTree));
+	assert(newBSTree);
+	initBSTree(newBSTree);
+	return newBSTree;  /* temporary return*/	
 }
 
 /*----------------------------------------------------------------------------*/
@@ -62,8 +68,27 @@ param: node  the root node of the tree to be freed
 
 void _freeBST(struct Node *node)
 {
-
+	
 	/* Write This */
+	if (node->left == NULL)
+	{
+		if (node->right == NULL)
+		{
+			free(node);
+			return;
+		}
+		else
+		{
+			_freeBST(node->right);
+			node->right = NULL;
+		}
+	}
+	else
+	{
+		_freeBST(node->left);
+		node->left = NULL;
+	}
+	_freeBST(node);
 }
 
 /*
@@ -78,6 +103,10 @@ void clearBSTree(struct BSTree *tree)
 {
 
 	/* Write This */
+	assert(tree != NULL);
+	_freeBST(tree->root);
+	tree->root = 0;
+	tree->cnt = 0;
 }
 
 /*
@@ -90,6 +119,9 @@ void deleteBSTree(struct BSTree *tree)
 {
 
 	/* Write This */
+	assert(tree != NULL);
+	_freeBST(tree->root);
+	free(tree);
 }
 
 /*----------------------------------------------------------------------------*/
@@ -101,7 +133,8 @@ void deleteBSTree(struct BSTree *tree)
  */
 int isEmptyBSTree(struct BSTree *tree) { 
 	/* Write This */
-	return 0; /* temporary return val */
+	assert(tree != NULL);
+	return (!tree->cnt); /* temporary return val */
 }
 
 
@@ -113,7 +146,8 @@ pre:  tree is not null
 */
 int sizeBSTree(struct BSTree *tree) { 
 	/* Write This */
-	return -1;    /* Temporary return valu */
+	assert(tree != NULL);
+	return (tree->cnt);    /* Temporary return valu */
 }
 
 
@@ -129,7 +163,23 @@ int sizeBSTree(struct BSTree *tree) {
 struct Node *_addNode(struct Node *cur, TYPE val)
 {
 	/*write this*/
-	return NULL;
+	assert(val != NULL);
+	if (cur == NULL)
+	{
+		struct Node *newNode = malloc(sizeof(struct Node));
+		newNode->val = val;
+		newNode->left = newNode->right = NULL;
+		return newNode;
+	}
+	if (compare(val, cur->val) == -1)
+		cur->left = _addNode(cur->left, val);
+	else if (compare(val, cur->val) == 1)
+		cur->right = _addNode(cur->right, val);
+	else if (compare(val, cur->val) == 0)
+		cur->left = _addNode(cur->left, val);
+	else
+		printf("Compare Function Error!\n");
+	return cur;
 }
 
 /*
@@ -164,6 +214,21 @@ void addBSTree(struct BSTree *tree, TYPE val)
 int containsBSTree(struct BSTree *tree, TYPE val)
 {
 	/*write this*/
+	assert(tree != NULL);
+	assert(val != NULL);
+	struct Node *temp = tree->root;
+	while (temp != NULL)
+	{
+		if (compare(temp->val, val) == 0)
+			return 1;
+		else if (compare(temp->val, val) == -1)
+			temp = temp->right;
+		else if (compare(temp->val, val) == 1)
+			temp = temp->left;
+		else
+			printf("Compare Function Error!\n");
+	}
+	printf("No such value contained in this Tree!\n");
 	return 0;
 }
 
@@ -179,7 +244,12 @@ int containsBSTree(struct BSTree *tree, TYPE val)
 TYPE _leftMost(struct Node *cur)
 {
 	/*write this*/
-	return NULL;
+	assert(cur != NULL);
+	while (cur->left != NULL)
+	{
+		cur = cur->left;
+	}
+	return cur->val;
 }
 
 
@@ -198,6 +268,11 @@ Note:  If you do this iteratively, the above hint does not apply.
 struct Node *_removeLeftMost(struct Node *cur)
 {
 	/*write this*/
+	assert(cur != NULL);
+	if (cur->left != NULL)
+		return cur;
+	TYPE val = _leftmost(cur);
+
 	return NULL;
 }
 
@@ -215,6 +290,9 @@ struct Node *_removeLeftMost(struct Node *cur)
 struct Node *_removeNode(struct Node *cur, TYPE val)
 {
 	/*write this*/
+	assert(cur != NULL);
+	assert(val != NULL);
+	
 	return NULL;
 
 }
@@ -234,6 +312,12 @@ void removeBSTree(struct BSTree *tree, TYPE val)
 {
 
 	/* Write This */
+	assert(tree != NULL);
+	assert(val != NULL);
+	if (containsBSTree(tree, val) == 1)
+	{
+
+	}
 }
 
 
