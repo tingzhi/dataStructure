@@ -36,23 +36,12 @@ int compare(TYPE left, TYPE right)
 		return 1;
 	else return -1;
 
-	//char compare
-	/*
-	if (l->name == r->name)
-		return 0;
-	else if (l->name > r->name)
-		return 1;
-	else return -1;
-	*/
 }
 
 /*Define this function, type casting the value of void * to the desired type*/
 void print_type(TYPE curval)
 {
     /*FIXME: write this*/
-	struct data *val = (struct data *)curval;
-	//print int
+	struct data *val = (struct data *)curval;	
 	printf("%d", val->number);
-	//print char
-	//printf("%s", val->name);
 }

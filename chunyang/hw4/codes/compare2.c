@@ -29,16 +29,7 @@ int compare(TYPE left, TYPE right)
 	struct data *l = (struct data *)left;
 	struct data	*r = (struct data *)right;
 
-	//int compare
-	/*
-	if (l->number == r->number)
-		return 0;
-	else if (l->number > r->number)
-		return 1;
-	else return -1;
-	*/
-	//char compare
-	
+    //char compare
 	if (l->name == r->name)
 		return 0;
 	else if (l->name > r->name)
@@ -52,8 +43,5 @@ void print_type(TYPE curval)
 {
     /*FIXME: write this*/
 	struct data *val = (struct data *)curval;
-	//print int
-	//printf("%d", val->number);
-	//print char
-	printf("%s", val->name);
+    printf("%s", val->name);
 }

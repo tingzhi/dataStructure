@@ -2,7 +2,7 @@
  File: bst.c
  Implementation of the binary search tree data structure.
  
- */
+*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
@@ -477,7 +477,7 @@ void testAddNode() {
     
     
 	myData4.number = 10;
-	myData4.name = "righty of lefty";
+	myData4.name = "lefty of lefty";
 	addBSTree(tree, &myData4);
     
 	//check the position of the fourth element that is added to the BST tree
@@ -567,7 +567,7 @@ void testRemoveLeftMost() {
 void testRemoveNode() {
     struct BSTree *tree = buildBSTTree();
     struct Node *cur;
-     struct data myData1,  myData2,  myData3,  myData4;
+    struct data myData1,  myData2,  myData3,  myData4;
 		
 	myData1.number = 50;
 	myData1.name = "rooty";
