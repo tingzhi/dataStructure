@@ -50,7 +50,5 @@ void print_type(TYPE curval)
 {
     /*FIXME: write this*/
 	int val = (int)curval;
-	//print int
 	printf("%d", val);
-	//print char
 }

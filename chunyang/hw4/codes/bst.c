@@ -120,7 +120,7 @@ void deleteBSTree(struct BSTree *tree)
 
 	/* Write This */
 	assert(tree != NULL);
-	_freeBST(tree->root);
+    clearBSTree(tree);
 	free(tree);
 }
 
@@ -171,15 +171,11 @@ struct Node *_addNode(struct Node *cur, TYPE val)
 		newNode->left = newNode->right = NULL;
 		return newNode;
 	}
-	if (compare(cur->val, val) == 1)
+	if (compare(cur->val, val) == 1 || compare(cur->val, val) == 0)
 		cur->left = _addNode(cur->left, val);
-	else if (compare(cur->val, val) == -1)
+	else    //(compare(cur->val, val) == -1)
 		cur->right = _addNode(cur->right, val);
-	else if (compare(cur->val, val) == 0)
-		cur->left = _addNode(cur->left, val);
-	else
-		printf("Compare Function Error!\n");
-	return cur;
+    return cur;
 }
 
 /*
@@ -195,10 +191,11 @@ pose:  tree size increased by 1
  */
 void addBSTree(struct BSTree *tree, TYPE val)
 {
+    assert(tree != 0);
+    assert(val != 0);
 	tree->root = _addNode(tree->root, val);
 	tree->cnt++;
 }
-
 
 /*
  function to determine if the binary search tree contains a particular element
@@ -223,12 +220,10 @@ int containsBSTree(struct BSTree *tree, TYPE val)
 			return 1;
 		else if (compare(temp->val, val) == -1)
 			temp = temp->right;
-		else if (compare(temp->val, val) == 1)
+		else    // (compare(temp->val, val) == 1)
 			temp = temp->left;
-		else
-			printf("Compare Function Error!\n");
 	}
-	printf("No such value contained in this Tree!\n");
+	//printf("No such value contained in this Tree!\n");
 	return 0;
 }
 
@@ -298,26 +293,26 @@ struct Node *_removeNode(struct Node *cur, TYPE val)
 {
 	/*write this*/
 	assert(val != NULL);
-	if (cur != NULL)
-	{
-		if (compare(cur->val, val) == 0)
-		{
-			cur->val = _leftMost(cur);
-			cur = _removeLeftMost(cur);
-		}
-		else if (compare(cur->val, val) == 1)
-		{
-			cur->left = _removeNode(cur->left, val);
-		}
-		else if (compare(cur->val, val) == -1)
-		{
-			cur->right = _removeNode(cur->right, val);
-		}
-		else
-			printf("Compare Function Error!\n");
-	}
-	else
-		printf("The Value is not in this BSTree!\n");
+    assert(cur != NULL);
+    
+	//if (cur != NULL)
+	//{
+    if (compare(cur->val, val) == 0)
+    {
+        cur->val = _leftMost(cur);
+        cur = _removeLeftMost(cur);
+    }
+    else if (compare(cur->val, val) == 1)
+    {
+        cur->left = _removeNode(cur->left, val);
+    }
+    else    // (compare(cur->val, val) == -1)
+    {
+        cur->right = _removeNode(cur->right, val);
+    }
+    //}
+	//else
+		//printf("The Value is not in this BSTree!\n");
 	return cur;
 }
 
