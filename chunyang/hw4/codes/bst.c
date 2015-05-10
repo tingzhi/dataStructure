@@ -191,8 +191,8 @@ pose:  tree size increased by 1
  */
 void addBSTree(struct BSTree *tree, TYPE val)
 {
-    assert(tree != 0);
-    assert(val != 0);
+    assert(tree != NULL);
+    assert(val != NULL);
 	tree->root = _addNode(tree->root, val);
 	tree->cnt++;
 }
@@ -293,10 +293,10 @@ struct Node *_removeNode(struct Node *cur, TYPE val)
 {
 	/*write this*/
 	assert(val != NULL);
-    assert(cur != NULL);
+    //assert(cur != NULL);
     
-	//if (cur != NULL)
-	//{
+	if (cur != NULL)
+	{
     if (compare(cur->val, val) == 0)
     {
         cur->val = _leftMost(cur);
@@ -310,9 +310,9 @@ struct Node *_removeNode(struct Node *cur, TYPE val)
     {
         cur->right = _removeNode(cur->right, val);
     }
-    //}
-	//else
-		//printf("The Value is not in this BSTree!\n");
+    }
+	else
+		printf("The Value is not in this BSTree!\n");
 	return cur;
 }
 
