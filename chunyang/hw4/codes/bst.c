@@ -490,6 +490,8 @@ void testAddNode() {
         return;
     }
     else printf("addNode() test: PASS when adding 10 as left of left of root\n");
+    
+    deleteBSTree(tree);
 }
 
 /*
@@ -523,6 +525,7 @@ void testContainsBSTree() {
      //check containsBSTree fucntion when the tree does not contain a node    
     printTestResult(!containsBSTree(tree, &myData5), "containsBSTree", "when test containing 111, which is not in the tree");
     
+    deleteBSTree(tree);
 }
 
 /*
@@ -546,7 +549,8 @@ void testLeftMost() {
 	printTestResult(compare(_leftMost(tree->root->left->left), &myData4) == 0, "_leftMost", "left most of left of left of root");
     
 	printTestResult(compare(_leftMost(tree->root->right), &myData3) == 0, "_leftMost", "left most of right of root");
-
+    
+    deleteBSTree(tree);
 }
 
 void testRemoveLeftMost() {
@@ -562,6 +566,8 @@ void testRemoveLeftMost() {
    
  	cur = _removeLeftMost(tree->root);
     printTestResult(cur == tree->root, "_removeLeftMost", "removing leftmost of root 2st try");
+    
+    deleteBSTree(tree);
 }
 
 void testRemoveNode() {
@@ -588,7 +594,9 @@ void testRemoveNode() {
 	printTestResult(compare(tree->root->val, &myData1) == 0 && tree->root->left == 0, "_removeNode", "remove right of root 3st try");
         
     cur = _removeNode(tree->root, &myData1);
-    printTestResult(cur == NULL, "_removeNode", "remove right of root 4st try");       
+    printTestResult(cur == NULL, "_removeNode", "remove right of root 4st try");
+    
+    deleteBSTree(tree);
 }
 
 /*
