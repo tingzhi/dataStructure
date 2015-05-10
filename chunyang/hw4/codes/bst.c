@@ -401,7 +401,7 @@ struct BSTree *buildBSTTree() {
 	addBSTree(tree, myData2);
 	addBSTree(tree, myData3);
 	addBSTree(tree, myData4);
-   
+    
     return tree;
 }
 
@@ -567,7 +567,8 @@ void testRemoveLeftMost() {
  	cur = _removeLeftMost(tree->root);
     printTestResult(cur == tree->root, "_removeLeftMost", "removing leftmost of root 2st try");
     
-    deleteBSTree(tree);
+    //deleteBSTree(tree);
+    free(tree);
 }
 
 void testRemoveNode() {
@@ -596,7 +597,7 @@ void testRemoveNode() {
     cur = _removeNode(tree->root, &myData1);
     printTestResult(cur == NULL, "_removeNode", "remove right of root 4st try");
     
-    deleteBSTree(tree);
+    free(tree);
 }
 
 /*
