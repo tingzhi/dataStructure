@@ -1,8 +1,10 @@
-/*
- File: bst.c
- Implementation of the binary search tree data structure.
- 
-*/
+/* CS261- Assignment 4 - Part1
+ * Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 5/11/2015
+ * Development Environment: Xcode & MSVC
+ * Solution description: Implement a binary search tree that can store any arbitrary struct in its nodes.
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>

@@ -1,15 +1,16 @@
-/*
- File: bst.c
- Implementation of the binary search tree data structure.
- 
-*/
+/* CS261- Assignment 4 - Extra Credit 1
+ * Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 5/11/2015
+ * Development Environment: Xcode & MSVC
+ * Solution description: ??Implementation of "Guessing the animal" game using binary search tree data structure.
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
 #include "bst.h"
 #include "structs.h"
 #include "string.h"
-
 
 struct Node {
 	TYPE         val;
@@ -412,7 +413,7 @@ struct BSTree *buildBSTTree() {
 
 struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
 {
-	printf("Would you like to help us improve the game by adding your animal to this game?\n");
+	printf("Would you like to help us improve the game by adding your animal to this game?(yes, no, or exit)\n");
 	char *val = malloc(20 * sizeof(char));
 	scanf("%s", val);
 	if (strcmp(val, "yes") == 0)
@@ -460,7 +461,7 @@ void printNode(struct Node *cur) {
 
 struct Node *playagain(struct BSTree *tree, struct Node *cur)
 {
-	printf("Would you like to play again?\n");
+	printf("Would you like to play again?(yes, no, or exit)\n");
 	char *val = malloc(4 * sizeof(char));
 	scanf("%s", val);
 	if (strcmp(val, "yes") == 0)
@@ -496,6 +497,10 @@ struct Node *scanNode(struct BSTree *tree, struct Node *cur)
 	}
 	if (cur == NULL)
 	{
+        if (strcmp(val, "exit") == 0) {
+            printf("See you next time!\n");
+            return cur;
+        }
 		if (strcmp(val, "yes") == 0)
 			printf("Excellent! I knew it!\n");
 		else if (strcmp(val, "no") == 0)
@@ -503,10 +508,8 @@ struct Node *scanNode(struct BSTree *tree, struct Node *cur)
 			printf("Sorry! I don't know what animal you are thinking...\n");
 			tree = scanAdd(tree, temp);
 		}
-		else if (strcmp(val, "exit") == 0)
-			printf("See you next time!\n");
 		else
-			printf("Wrong input. Please answer again.\n");
+            printf("Wrong input. Please answer again.\n");
 		cur = playagain(tree, cur); 
 		while (cur != NULL)
 		{
