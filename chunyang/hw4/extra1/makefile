@@ -1,25 +1,15 @@
 all: prog
 
-
-prog: animal.o compare.o
-
-	gcc -g -Wall -std=c99 -o prog animal.o compare.o
-
+prog: bst.o compare.o
+	gcc -g -Wall -std=c99 -o prog bst.o compare.o
 
 compare.o: compare.c
-
 	gcc -g -Wall -std=c99 -c compare.c
+		
+bst.o: bst.c bst.h
+	gcc -g -Wall -std=c99 -c bst.c
 
-
-animal.o: animal.c bst.h
-
-	gcc -g -Wall -std=c99 -c animal.c
-
-
-clean:
-	
-rm animal.o
-
+clean:	
+	rm bst.o
 	rm compare.o
-
 	rm prog

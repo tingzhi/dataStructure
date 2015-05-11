@@ -2,12 +2,13 @@
  File: bst.c
  Implementation of the binary search tree data structure.
  
- */
+*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
 #include "bst.h"
 #include "structs.h"
+#include "string.h"
 
 
 struct Node {
@@ -171,15 +172,11 @@ struct Node *_addNode(struct Node *cur, TYPE val)
 		newNode->left = newNode->right = NULL;
 		return newNode;
 	}
-	if (compare(cur->val, val) == 1)
+	if (compare(cur->val, val) == 1 || compare(cur->val, val) == 0)
 		cur->left = _addNode(cur->left, val);
-	else if (compare(cur->val, val) == -1)
+	else    //(compare(cur->val, val) == -1)
 		cur->right = _addNode(cur->right, val);
-	else if (compare(cur->val, val) == 0)
-		cur->left = _addNode(cur->left, val);
-	else
-		printf("Compare Function Error!\n");
-	return cur;
+    return cur;
 }
 
 /*
@@ -195,10 +192,11 @@ pose:  tree size increased by 1
  */
 void addBSTree(struct BSTree *tree, TYPE val)
 {
+    assert(tree != NULL);
+    assert(val != NULL);
 	tree->root = _addNode(tree->root, val);
 	tree->cnt++;
 }
-
 
 /*
  function to determine if the binary search tree contains a particular element
@@ -223,12 +221,10 @@ int containsBSTree(struct BSTree *tree, TYPE val)
 			return 1;
 		else if (compare(temp->val, val) == -1)
 			temp = temp->right;
-		else if (compare(temp->val, val) == 1)
+		else    // (compare(temp->val, val) == 1)
 			temp = temp->left;
-		else
-			printf("Compare Function Error!\n");
 	}
-	printf("No such value contained in this Tree!\n");
+	//printf("No such value contained in this Tree!\n");
 	return 0;
 }
 
@@ -298,24 +294,24 @@ struct Node *_removeNode(struct Node *cur, TYPE val)
 {
 	/*write this*/
 	assert(val != NULL);
+    //assert(cur != NULL);
+    
 	if (cur != NULL)
 	{
-		if (compare(cur->val, val) == 0)
-		{
-			cur->val = _leftMost(cur);
-			cur = _removeLeftMost(cur);
-		}
-		else if (compare(cur->val, val) == 1)
-		{
-			cur->left = _removeNode(cur->left, val);
-		}
-		else if (compare(cur->val, val) == -1)
-		{
-			cur->right = _removeNode(cur->right, val);
-		}
-		else
-			printf("Compare Function Error!\n");
-	}
+    if (compare(cur->val, val) == 0)
+    {
+        cur->val = _leftMost(cur);
+        cur = _removeLeftMost(cur);
+    }
+    else if (compare(cur->val, val) == 1)
+    {
+        cur->left = _removeNode(cur->left, val);
+    }
+    else    // (compare(cur->val, val) == -1)
+    {
+        cur->right = _removeNode(cur->right, val);
+    }
+    }
 	else
 		printf("The Value is not in this BSTree!\n");
 	return cur;
@@ -342,20 +338,156 @@ void removeBSTree(struct BSTree *tree, TYPE val)
 	tree->cnt--;
 }
 
-/*
-function to print the result of a test function
-param: predicate:  the result of the test 
-       nameTestFunction : the name of the function that has been tested
-	   message
-*/
-void printTestResult(int predicate, char *nameTestFunction, char *message){
-	if (predicate)
-	   printf("%s(): PASS %s\n",nameTestFunction, message);
-    else
-	   printf("%s(): FAIL %s\n",nameTestFunction, message);        
+struct BSTree *buildBSTTree() {
+    struct BSTree *tree	= newBSTree();		
+		
+	/*Create value of the type of data that you want to store*/
+	struct data *myData0 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData1 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData2 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData3 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData4 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData5 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData6 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData7 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData8 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData9 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData10 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData11 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData12 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData13 = (struct data *) malloc(sizeof(struct data));
+	struct data *myData14 = (struct data *) malloc(sizeof(struct data));
+		
+
+	myData0->number = 80;
+	myData0->name = "Can it fly";
+	myData1->number = 40;
+	myData1->name = "Does it have feather";
+	myData2->number = 120;
+	myData2->name = "Does it live in the sea";
+	myData3->number = 20;
+	myData3->name = "Is it blue";
+	myData4->number = 60;
+	myData4->name = "Does it make noise";
+	myData5->number = 100;
+	myData5->name = "Is it vertebrate";
+	myData6->number = 140;
+	myData6->name = "Is it herbivore";
+	myData7->number = 10;
+	myData7->name = "Is it bluejay";
+	myData8->number = 30;
+	myData8->name = "Is it eagle";
+	myData9->number = 50;
+	myData9->name = "Is it bee";
+	myData10->number = 70;
+	myData10->name = "Is it butterfly";
+	myData11->number = 90;
+	myData11->name = "Is it beaver";
+	myData12->number = 110;
+	myData12->name = "Is it jellyfish";
+	myData13->number = 130;
+	myData13->name = "Is it duck";
+	myData14->number = 150;
+	myData14->name = "Is it lion";
+	
+	/*add the values to BST*/
+	addBSTree(tree, myData0);
+	addBSTree(tree, myData1);
+	addBSTree(tree, myData2);
+	addBSTree(tree, myData3);
+	addBSTree(tree, myData4);
+	addBSTree(tree, myData5);
+	addBSTree(tree, myData6);
+	addBSTree(tree, myData7);
+	addBSTree(tree, myData8);
+	addBSTree(tree, myData9);
+	addBSTree(tree, myData10);
+	addBSTree(tree, myData11);
+	addBSTree(tree, myData12);
+	addBSTree(tree, myData13);
+	addBSTree(tree, myData14);
+    
+    return tree;
 }
 
-int main(int argc, char *argv[]){	
+void printNode(struct Node *cur) {
+	if (cur == 0) return;
+	printf("> ");
+	print_type(cur->val);
+	printf("?\n");
+}
 
+struct Node *scanNode(struct BSTree *tree, struct Node *cur)
+{
+	char *val = malloc(4 * sizeof(char));
+	scanf("%s", val);
+	if (cur != NULL)
+	{
+		if (strcmp(val, "yes") == 0)
+			cur = cur->left;
+		else if (strcmp(val, "no") == 0)
+			cur = cur->right;
+		else if (strcmp(val, "exit") == 0)
+			cur = NULL;
+		else
+			printf("Wrong input. Please answer again.\n");
+	}
+	if (cur == NULL)
+	{
+		if (strcmp(val, "yes") == 0)
+			printf("Excellent! I knew it!\nThank you for playing!\n");
+		else if (strcmp(val, "no") == 0)
+		{
+			printf("Sorry! I don't know what animal you are thinking...\nThank you for playing!\n");
+			//tree = scanadd(tree);
+		}
+		else if (strcmp(val, "exit") == 0)
+			printf("Thanks for playing! See you next time!\n");
+		else
+			printf("Wrong input. Please answer again.\n");
+	}
+	free(val);
+	return cur;
+}
+
+/*
+struct BSTree *scanadd(struct BSTree *tree)
+{
+	printf("Do you want to help us improve the game?\n");
+	char *val = malloc(20 * sizeof(char));
+	scanf("%s", val);
+	if (strcmp(val, "yes") == 0)
+	{
+		printf("Please think of a question about the animal you are thinking : ");
+		//scanf("%s", val);
+
+	}
+	else if (strcmp(val, "no") == 0)
+		return tree;
+	else if (strcmp(val, "exit") == 0)
+		return tree;
+	else
+	{
+		printf("Wrong input. Please answer again.\n");
+		tree = scanadd(tree);
+	}
+}
+*/
+
+int main(int argc, char *argv[])
+{	
+	struct BSTree *animal = buildBSTTree();
+	struct Node *cur = animal->root;
+	printf("Welcome to Animal Game!\n\nInstructions:\n\t1st, please think of an animal.\n");
+	printf("\t2nd, please answer 'yes' or 'no' for the questions.\n");
+	printf("\nYou can type 'exit' anytime if you don't want to play any more =_=\n");
+	printf("Have fun!\n\nNow, Game Start......\n");
+	while (cur != NULL)
+	{
+		printNode(cur);	
+		cur = scanNode(animal, cur);
+	}
+
+	deleteBSTree(animal);
 	return 0;
 }

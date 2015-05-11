@@ -30,22 +30,22 @@ int compare(TYPE left, TYPE right)
 	struct data	*r = (struct data *)right;
 
 	//int compare
-	/*
+	
 	if (l->number == r->number)
 		return 0;
 	else if (l->number > r->number)
 		return 1;
 	else return -1;
-	*/
+	
 
 	//char compare
-	
+	/*
 	if (l->name == r->name)
 		return 0;
 	else if (l->name > r->name)
 		return 1;
 	else return -1;
-	
+	*/
 }
 
 /*Define this function, type casting the value of void * to the desired type*/
