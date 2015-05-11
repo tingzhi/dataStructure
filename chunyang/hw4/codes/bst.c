@@ -271,14 +271,14 @@ struct Node *_removeLeftMost(struct Node *cur)
 	if (cur->left != NULL)
 	{
 		cur->left = _removeLeftMost(cur->left);
-		return cur;
 	}
 	else
 	{
-		struct Node *temp = cur->right;
-		free(cur);
-		return temp;
+		struct Node *temp = cur;
+		cur = cur->right;
+		free(temp);
 	}
+	return cur;
 }
 
 
@@ -559,9 +559,8 @@ void testLeftMost() {
 void testRemoveLeftMost() {
     struct BSTree *tree = buildBSTTree();
     struct Node *cur;
-    
-    cur = _removeLeftMost(tree->root);
 
+    cur = _removeLeftMost(tree->root);
 	printTestResult(cur == tree->root, "_removeLeftMost", "removing leftmost of root 1st try");
     
     cur = _removeLeftMost(tree->root->right);
