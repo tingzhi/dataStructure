@@ -89,6 +89,7 @@ void _freeBST(struct Node *node)
 		node->left = NULL;
 	}
 	_freeBST(node);
+   
 }
 
 /*
@@ -567,8 +568,6 @@ void testRemoveLeftMost() {
  	cur = _removeLeftMost(tree->root);
     printTestResult(cur == tree->root, "_removeLeftMost", "removing leftmost of root 2st try");
     
-    //deleteBSTree(tree);
-    free(tree);
 }
 
 void testRemoveNode() {
@@ -597,7 +596,6 @@ void testRemoveNode() {
     cur = _removeNode(tree->root, &myData1);
     printTestResult(cur == NULL, "_removeNode", "remove right of root 4st try");
     
-    free(tree);
 }
 
 /*
