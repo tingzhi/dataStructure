@@ -419,8 +419,9 @@ struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
 	{
 		printf("Please think of a question about the animal you are thinking:\n(testing function --- please type with no space): ");
 		struct data *myData = (struct data *) malloc(sizeof(struct data));
-		myData->name = malloc(20 * sizeof(char)); 
-		scanf("%s", myData->name);
+		myData->name = malloc(50 * sizeof(char));
+		setbuf(stdin, NULL);
+		scanf("%[^\n]", myData->name);
 		myData->number = ((struct data *)temp->val)->number + 2;
 
 		printf("Please type the animal's name: ");
