@@ -274,9 +274,20 @@ struct Node *_removeLeftMost(struct Node *cur)
 	}
 	else
 	{
+<<<<<<< HEAD
 		struct Node *temp = cur;
 		cur = cur->right;
 		free(temp);
+=======
+		struct Node *temp = cur->right;
+		free(cur);
+		return temp;
+        /*
+        struct Node *temp = cur;
+        cur = cur->right;
+        free(temp);
+        return cur;*/
+>>>>>>> origin/master
 	}
 	return cur;
 }
@@ -296,7 +307,6 @@ struct Node *_removeNode(struct Node *cur, TYPE val)
 {
 	/*write this*/
 	assert(val != NULL);
-    //assert(cur != NULL);
     
 	if (cur != NULL)
 	{
@@ -377,7 +387,7 @@ function to built a Binary Search Tree (BST) by adding numbers in this specific 
 the graph is empty to start: 50, 13, 110 , 10
 
 */
-struct BSTree *buildBSTTree() {
+struct BSTree *buildBSTTree_1() {
     /*     50
          13  110
         10 
@@ -423,10 +433,77 @@ void printTestResult(int predicate, char *nameTestFunction, char *message){
 }
 
 /*
+ Function to test _addNode() function
+*/
+
+void test_addNode_1() {
+    struct BSTree *tree	= newBSTree();
+    struct data myData1,  myData2,  myData3,   myData4;
+    
+    myData1.number = 50;
+    myData1.name = "rooty";
+    tree->root = _addNode(tree->root, &myData1);
+    //check the root node
+    if (compare(tree->root->val,&myData1) != 0) {
+        printf("_addNode() test: FAIL to insert 50 as root\n");
+        return;
+    }
+    else printf("_addNode() test: PASS when adding 50 as root\n");
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");
+    
+    myData2.number = 13;
+    myData2.name = "lefty";
+    tree->root = _addNode(tree->root, &myData2);
+    
+    //check the position of the second element that is added to the BST tree
+    if (compare(tree->root->left->val,  &myData2) != 0) {
+        printf("_addNode() test: FAIL to insert 13 as left child of root\n");
+        return;
+    }
+    else printf("_addNode() test: PASS when adding 13 as left of root\n");
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");
+    
+    myData3.number = 110;
+    myData3.name = "righty";
+    tree->root = _addNode(tree->root, &myData3);
+    
+    //check the position of the third element that is added to the BST tree
+    if (compare(tree->root->right->val,  &myData3) != 0) {
+        printf("_addNode() test: FAIL to insert 110 as right child of root\n");
+        return;
+    }
+    else printf("_addNode() test: PASS when adding 110 as right of root\n");
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");
+    
+    myData4.number = 10;
+    myData4.name = "lefty of lefty";
+    tree->root = _addNode(tree->root, &myData4);
+    
+    //check the position of the fourth element that is added to the BST tree
+    if (compare(tree->root->left->left->val,  &myData4) != 0) {
+        printf("_addNode() test: FAIL to insert 10 as left child of left of root\n");
+        return;
+    }
+    else printf("_addNode() test: PASS when adding 10 as left of left of root\n");
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");
+    
+    deleteBSTree(tree);
+
+}
+
+/*
 fucntion to test each node of the BST and their children
 
 */
-void testAddNode() {
+void testAddNode_1() {
     struct BSTree *tree	= newBSTree();
     
     struct data myData1,  myData2,  myData3,   myData4;
@@ -436,16 +513,19 @@ void testAddNode() {
     addBSTree(tree, &myData1);
     //check the root node
     if (compare(tree->root->val,&myData1) != 0) {
-        printf("addNode() test: FAIL to insert 50 as root\n");
+        printf("addBSTree() test: FAIL to insert 50 as root\n");
         return;
     }
 	//check the tree->cnt value after adding a node to the tree
     else if (tree->cnt != 1) {
-        printf("addNode() test: FAIL to increase count when inserting 50 as root\n");
+        printf("addBSTree() test: FAIL to increase count when inserting 50 as root\n");
         return;
     }
-    else printf("addNode() test: PASS when adding 50 as root\n");
-    
+    else printf("addBSTree() test: PASS when adding 50 as root\n");
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");
+
     
 	myData2.number = 13;
 	myData2.name = "lefty";
@@ -453,15 +533,18 @@ void testAddNode() {
     
     //check the position of the second element that is added to the BST tree
     if (compare(tree->root->left->val,  &myData2) != 0) {
-        printf("addNode() test: FAIL to insert 13 as left child of root\n");
+        printf("addBSTree() test: FAIL to insert 13 as left child of root\n");
         return;
     }
     else if (tree->cnt != 2) {
-        printf("addNode() test: FAIL to increase count when inserting 13 as left of root\n");
+        printf("addBSTree() test: FAIL to increase count when inserting 13 as left of root\n");
         return;
     }
-    else printf("addNode() test: PASS when adding 13 as left of root\n");
-    
+    else printf("addBSTree() test: PASS when adding 13 as left of root\n");
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");
+
     
 	myData3.number = 110;
 	myData3.name = "righty";
@@ -469,15 +552,18 @@ void testAddNode() {
         
     //check the position of the third element that is added to the BST tree    
     if (compare(tree->root->right->val,  &myData3) != 0) {
-        printf("addNode() test: FAIL to insert 110 as right child of root\n");
+        printf("addBSTree() test: FAIL to insert 110 as right child of root\n");
         return;
     }
     else if (tree->cnt != 3) {
-        printf("addNode() test: FAIL to increase count when inserting 110 as right of root\n");
+        printf("addBSTree() test: FAIL to increase count when inserting 110 as right of root\n");
         return;
     }
-    else printf("addNode() test: PASS when adding 110 as right of root\n");
-    
+    else printf("addBSTree() test: PASS when adding 110 as right of root\n");
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");
+
     
 	myData4.number = 10;
 	myData4.name = "lefty of lefty";
@@ -485,15 +571,18 @@ void testAddNode() {
     
 	//check the position of the fourth element that is added to the BST tree
     if (compare(tree->root->left->left->val,  &myData4) != 0) {
-        printf("addNode() test: FAIL to insert 10 as left child of left of root\n");
+        printf("addBSTree() test: FAIL to insert 10 as left child of left of root\n");
         return;
     }
     else if (tree->cnt != 4) {
-        printf("addNode() test: FAIL to increase count when inserting 10 as left of left of root\n");
+        printf("addBSTree() test: FAIL to increase count when inserting 10 as left of left of root\n");
         return;
     }
-    else printf("addNode() test: PASS when adding 10 as left of left of root\n");
-    
+    else printf("addBSTree() test: PASS when adding 10 as left of left of root\n");
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");
+
     deleteBSTree(tree);
 }
 
@@ -501,8 +590,8 @@ void testAddNode() {
 fucntion to test that the BST contains the elements that we added to it
 
 */
-void testContainsBSTree() {
-    struct BSTree *tree = buildBSTTree();
+void testContainsBSTree_1() {
+    struct BSTree *tree = buildBSTTree_1();
     
     struct data myData1,  myData2,  myData3,  myData4, myData5;
 	
@@ -535,8 +624,8 @@ void testContainsBSTree() {
 fucntion to test the left_Most_element 
 
 */
-void testLeftMost() {
-    struct BSTree *tree = buildBSTTree();
+void testLeftMost_1() {
+    struct BSTree *tree = buildBSTTree_1();
     
 	struct data myData3, myData4;
 
@@ -556,23 +645,38 @@ void testLeftMost() {
     deleteBSTree(tree);
 }
 
-void testRemoveLeftMost() {
-    struct BSTree *tree = buildBSTTree();
+void testRemoveLeftMost_1() {
+    struct BSTree *tree = buildBSTTree_1();
     struct Node *cur;
+<<<<<<< HEAD
+=======
+        
+    cur = _removeLeftMost(tree->root);
+>>>>>>> origin/master
 
     cur = _removeLeftMost(tree->root);
 	printTestResult(cur == tree->root, "_removeLeftMost", "removing leftmost of root 1st try");
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");
     
     cur = _removeLeftMost(tree->root->right);
     printTestResult(cur == NULL, "_removeLeftMost", "removing leftmost of right of root 1st try");
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");
    
  	cur = _removeLeftMost(tree->root);
     printTestResult(cur == tree->root, "_removeLeftMost", "removing leftmost of root 2st try");
+    /*
+    printf("Calling printTree function...\n");
+    printTree(tree);
+    printf("\n");*/
     
 }
 
-void testRemoveNode() {
-    struct BSTree *tree = buildBSTTree();
+void testRemoveNode_1() {
+    struct BSTree *tree = buildBSTTree_1();
     struct Node *cur;
     struct data myData1,  myData2,  myData3,  myData4;
 		
@@ -599,6 +703,36 @@ void testRemoveNode() {
     
 }
 
+void testFirstDataStructure() {
+    printf("\n");
+    printf("Testing first data structure begin...\n");
+    
+    test_addNode_1();
+    printf("\n");
+    
+    testAddNode_1();
+    
+    printf("\n");
+    testContainsBSTree_1();
+    
+    printf("\n");
+    testLeftMost_1();
+    
+    printf("\n");
+    testRemoveLeftMost_1();
+    
+    printf("\n");
+    testRemoveNode_1();
+
+}
+
+/*
+void testSecondDataStructure() {
+    
+}
+ 
+*/
+
 /*
 
 Main function for testing different fucntions of the Assignment#4.
@@ -610,20 +744,10 @@ int main(int argc, char *argv[]){
 	
    //After implementing your code, please uncommnet the following calls to the test functions and test your code 
 
-    testAddNode();
-	
-	printf("\n");
-    testContainsBSTree();
-	
-	printf("\n");
-    testLeftMost();
-	
-	printf("\n");
-    testRemoveLeftMost();
-	
-	printf("\n");
-    testRemoveNode();
     
+    testFirstDataStructure();
+    
+    //testSecondDataStructure();
 	
 	return 0;
 

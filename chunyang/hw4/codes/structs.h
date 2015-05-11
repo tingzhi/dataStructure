@@ -8,8 +8,7 @@ struct data {
 
 /*
 struct data {
-	int number;
-	char *name;
-	double grade;
-};
-*/
+    double cost;
+    int numToppings;
+    char *name;
+}*/
