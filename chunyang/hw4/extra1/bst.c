@@ -418,7 +418,7 @@ struct BSTree *buildBSTTree() {
 struct data *newData()
 {
 	struct data *newData = (struct data *) malloc(sizeof(struct data));
-	newData->name = malloc(50 * sizeof(char));
+	newData->name = malloc(30 * sizeof(char));
 	return newData;
 }
 
@@ -427,13 +427,15 @@ struct BSTree *buildBSTTree() {
 	struct data *temp = newData();
 	FILE *question = fopen("question.txt","r");
 	FILE *number = fopen("number.txt", "r");
-	while (fscanf(question, "%[^\n]", temp->name) != EOF)
+	while (fscanf(number, "%d", &temp->number) != EOF)
 	{
+		fscanf(question, "%[^\n]", temp->name);
 		fgetc(question);
-		fscanf(number, "%d", &temp->number);
 		addBSTree(tree, temp);
 		temp = newData();
 	}
+	fclose(question);
+	fclose(number);
 	free(temp);
 	return tree;
 }
@@ -450,10 +452,15 @@ struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
 	{
 		printf("Please think of a question about the animal you are thinking: ");
 		struct data *myData = (struct data *) malloc(sizeof(struct data));
-		myData->name = malloc(50 * sizeof(char));
+		myData->name = malloc(30 * sizeof(char));
 		setbuf(stdin, NULL);
 		scanf("%[^\n]", myData->name);
 		myData->number = ((struct data *)temp->val)->number + 2;
+
+		FILE *number = fopen("number.txt", "a");
+		FILE *question = fopen("question.txt", "a");
+		fprintf(number, "%d\n", myData->number);
+		fprintf(question, "%s\n", myData->name);
 
 		printf("Please type the animal's name: ");
 		struct data *myData1 = (struct data *) malloc(sizeof(struct data));
@@ -462,6 +469,11 @@ struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
 		scanf("%[^\n]", myData1->name);
 		myData1->number = ((struct data *)temp->val)->number + 1;
 
+		fprintf(number, "%d\n", myData1->number);
+		fprintf(question, "%s\n", myData1->name);
+
+		fclose(number);
+		fclose(question);
 		addBSTree(tree, myData);
 		addBSTree(tree, myData1);
 		printf("......\nCongratulations! Data saved!\n");
