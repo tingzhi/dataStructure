@@ -340,10 +340,11 @@ void removeBSTree(struct BSTree *tree, TYPE val)
 	tree->cnt--;
 }
 
+/*
 struct BSTree *buildBSTTree() {
     struct BSTree *tree	= newBSTree();		
 		
-	/*Create value of the type of data that you want to store*/
+	//Create value of the type of data that you want to store
 	struct data *myData0 = (struct data *) malloc(sizeof(struct data));
 	struct data *myData1 = (struct data *) malloc(sizeof(struct data));
 	struct data *myData2 = (struct data *) malloc(sizeof(struct data));
@@ -392,7 +393,7 @@ struct BSTree *buildBSTTree() {
 	myData14->number = 1500;
 	myData14->name = "Is it lion";
 	
-	/*add the values to BST*/
+	//add the values to BST
 	addBSTree(tree, myData0);
 	addBSTree(tree, myData1);
 	addBSTree(tree, myData2);
@@ -411,6 +412,32 @@ struct BSTree *buildBSTTree() {
     
     return tree;
 }
+*/
+
+struct data *newData()
+{
+	struct data *newData = (struct data *) malloc(sizeof(struct data));
+	newData->name = malloc(50 * sizeof(char));
+	return newData;
+}
+
+struct BSTree *buildBSTTree() {
+	struct BSTree *tree = newBSTree();
+	struct data *temp = newData();
+	FILE *question = fopen("question.txt","r");
+	FILE *number = fopen("number.txt", "r");
+	while (fscanf(question, "%[^\n]", temp->name) != EOF)
+	{
+		fgetc(question);
+		fscanf(number, "%d", &temp->number);
+		addBSTree(tree, temp);
+		temp = newData();
+	}
+	free(temp);
+	return tree;
+}
+
+
 
 //Function for users to add the question and name of the animal
 struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
@@ -531,10 +558,10 @@ int main(int argc, char *argv[])
 	struct Node *cur = animal->root;
 	printf("Welcome to Animal Game!\n\nInstructions:\n\t1. Please think of an animal before you play this game.\n");
 	printf("\t2. Please answer 'yes' or 'no' for the questions.\n");
-	printf("\t3. If the animal you are thinking is not included,\n\t   you can add your own question and name of the animal to this game.\n");
+	printf("\t3. You can type 'exit' anytime if you don't want to play any more.\n");
+	printf("\t4. If the animal you are thinking is not included,\n\t   you can add your own question and name of the animal to this game.\n");
 	printf("\t   If you play it again, you can find your own answers in the end.\n");
-	printf("\t4. Note that your adding is not permanent.\n\t   Once you exit this game, the data you saved would be gone.\n");
-	printf("\t5. You can type 'exit' anytime if you don't want to play any more.\n");
+	//printf("\t5. Note that your adding is not permanent.\n\t   Once you exit this game, the data you saved would be gone.\n");
 	printf("Have fun!\n\nNow, Game Start......\n");
 	while (cur != NULL)
 	{
