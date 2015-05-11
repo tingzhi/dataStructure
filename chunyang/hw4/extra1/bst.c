@@ -12,6 +12,8 @@
 #include "structs.h"
 #include "string.h"
 
+//BSTree basic stucture
+
 struct Node {
 	TYPE         val;
 	struct Node *left;
@@ -339,10 +341,11 @@ void removeBSTree(struct BSTree *tree, TYPE val)
 	tree->cnt--;
 }
 
+/*
 struct BSTree *buildBSTTree() {
     struct BSTree *tree	= newBSTree();		
 		
-	/*Create value of the type of data that you want to store*/
+	//Create value of the type of data that you want to store
 	struct data *myData0 = (struct data *) malloc(sizeof(struct data));
 	struct data *myData1 = (struct data *) malloc(sizeof(struct data));
 	struct data *myData2 = (struct data *) malloc(sizeof(struct data));
@@ -360,38 +363,38 @@ struct BSTree *buildBSTTree() {
 	struct data *myData14 = (struct data *) malloc(sizeof(struct data));
 		
 
-	myData0->number = 80;
+	myData0->number = 800;
 	myData0->name = "Can it fly";
-	myData1->number = 40;
+	myData1->number = 400;
 	myData1->name = "Does it have feather";
-	myData2->number = 120;
+	myData2->number = 1200;
 	myData2->name = "Does it live in the sea";
-	myData3->number = 20;
+	myData3->number = 200;
 	myData3->name = "Is it blue";
-	myData4->number = 60;
+	myData4->number = 600;
 	myData4->name = "Does it make noise";
-	myData5->number = 100;
+	myData5->number = 1000;
 	myData5->name = "Is it vertebrate";
-	myData6->number = 140;
+	myData6->number = 1400;
 	myData6->name = "Is it herbivore";
-	myData7->number = 10;
+	myData7->number = 100;
 	myData7->name = "Is it bluejay";
-	myData8->number = 30;
+	myData8->number = 300;
 	myData8->name = "Is it eagle";
-	myData9->number = 50;
+	myData9->number = 500;
 	myData9->name = "Is it bee";
-	myData10->number = 70;
+	myData10->number = 700;
 	myData10->name = "Is it butterfly";
-	myData11->number = 90;
+	myData11->number = 900;
 	myData11->name = "Is it beaver";
-	myData12->number = 110;
+	myData12->number = 1100;
 	myData12->name = "Is it jellyfish";
-	myData13->number = 130;
+	myData13->number = 1300;
 	myData13->name = "Is it duck";
-	myData14->number = 150;
+	myData14->number = 1500;
 	myData14->name = "Is it lion";
 	
-	/*add the values to BST*/
+	//add the values to BST
 	addBSTree(tree, myData0);
 	addBSTree(tree, myData1);
 	addBSTree(tree, myData2);
@@ -410,7 +413,34 @@ struct BSTree *buildBSTTree() {
     
     return tree;
 }
+*/
 
+struct data *newData()
+{
+	struct data *newData = (struct data *) malloc(sizeof(struct data));
+	newData->name = malloc(50 * sizeof(char));
+	return newData;
+}
+
+struct BSTree *buildBSTTree() {
+	struct BSTree *tree = newBSTree();
+	struct data *temp = newData();
+	FILE *question = fopen("question.txt","r");
+	FILE *number = fopen("number.txt", "r");
+	while (fscanf(question, "%[^\n]", temp->name) != EOF)
+	{
+		fgetc(question);
+		fscanf(number, "%d", &temp->number);
+		addBSTree(tree, temp);
+		temp = newData();
+	}
+	free(temp);
+	return tree;
+}
+
+
+
+//Function for users to add the question and name of the animal
 struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
 {
 	printf("Would you like to help us improve the game by adding your animal to this game?(yes, no, or exit)\n");
@@ -418,7 +448,7 @@ struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
 	scanf("%s", val);
 	if (strcmp(val, "yes") == 0)
 	{
-		printf("Please think of a question about the animal you are thinking:\n(testing function --- please type with no space): ");
+		printf("Please think of a question about the animal you are thinking: ");
 		struct data *myData = (struct data *) malloc(sizeof(struct data));
 		myData->name = malloc(50 * sizeof(char));
 		setbuf(stdin, NULL);
@@ -428,7 +458,8 @@ struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
 		printf("Please type the animal's name: ");
 		struct data *myData1 = (struct data *) malloc(sizeof(struct data));
 		myData1->name = malloc(20 * sizeof(char));
-		scanf("%s", myData1->name);
+		setbuf(stdin, NULL);
+		scanf("%[^\n]", myData1->name);
 		myData1->number = ((struct data *)temp->val)->number + 1;
 
 		addBSTree(tree, myData);
@@ -452,6 +483,7 @@ struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
 	return tree;
 }
 
+//Function to print questions
 void printNode(struct Node *cur) {
 	if (cur == 0) return;
 	printf("> ");
@@ -459,6 +491,7 @@ void printNode(struct Node *cur) {
 	printf("?\n");
 }
 
+//ask if users want to play again
 struct Node *playagain(struct BSTree *tree, struct Node *cur)
 {
 	printf("Would you like to play again?(yes, no, or exit)\n");
@@ -479,6 +512,7 @@ struct Node *playagain(struct BSTree *tree, struct Node *cur)
 	return cur;
 }
 
+//scan the input of users. 3 options: yes, no, exit
 struct Node *scanNode(struct BSTree *tree, struct Node *cur)
 {
 	struct Node *temp = cur;
@@ -521,15 +555,16 @@ struct Node *scanNode(struct BSTree *tree, struct Node *cur)
 	return cur;
 }
 
-
-
 int main(int argc, char *argv[])
 {	
 	struct BSTree *animal = buildBSTTree();
 	struct Node *cur = animal->root;
-	printf("Welcome to Animal Game!\n\nInstructions:\n\t1st, please think of an animal.\n");
-	printf("\t2nd, please answer 'yes' or 'no' for the questions.\n");
-	printf("\nYou can type 'exit' anytime if you don't want to play any more =_=\n");
+	printf("Welcome to Animal Game!\n\nInstructions:\n\t1. Please think of an animal before you play this game.\n");
+	printf("\t2. Please answer 'yes' or 'no' for the questions.\n");
+	printf("\t3. You can type 'exit' anytime if you don't want to play any more.\n");
+	printf("\t4. If the animal you are thinking is not included,\n\t   you can add your own question and name of the animal to this game.\n");
+	printf("\t   If you play it again, you can find your own answers in the end.\n");
+	//printf("\t5. Note that your adding is not permanent.\n\t   Once you exit this game, the data you saved would be gone.\n");
 	printf("Have fun!\n\nNow, Game Start......\n");
 	while (cur != NULL)
 	{
