@@ -2,7 +2,7 @@
  * Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 5/11/2015
  * Development Environment: Xcode & MSVC
- * Solution description: ??Implementation of "Guessing the animal" game using binary search tree data structure.
+ * Solution description: Implementation of "Guessing the animal" game using binary search tree data structure.
  */
 
 #include <stdlib.h>
