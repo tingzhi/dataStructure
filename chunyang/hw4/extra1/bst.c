@@ -410,6 +410,46 @@ struct BSTree *buildBSTTree() {
     return tree;
 }
 
+struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
+{
+	printf("Would you like to help us improve the game by adding your animal to this game?\n");
+	char *val = malloc(20 * sizeof(char));
+	scanf("%s", val);
+	if (strcmp(val, "yes") == 0)
+	{
+		printf("Please think of a question about the animal you are thinking:\n(testing function --- please type with no space): ");
+		struct data *myData = (struct data *) malloc(sizeof(struct data));
+		myData->name = malloc(20 * sizeof(char)); 
+		scanf("%s", myData->name);
+		myData->number = ((struct data *)temp->val)->number + 2;
+
+		printf("Please type the animal's name: ");
+		struct data *myData1 = (struct data *) malloc(sizeof(struct data));
+		myData1->name = malloc(20 * sizeof(char));
+		scanf("%s", myData1->name);
+		myData1->number = ((struct data *)temp->val)->number + 1;
+
+		addBSTree(tree, myData);
+		addBSTree(tree, myData1);
+		printf("......\nCongratulations! Data saved!\n");
+	}
+	else if (strcmp(val, "no") == 0)
+	{
+		//no codes needed here
+	}
+	else if (strcmp(val, "exit") == 0)
+	{
+		//no codes needed here
+	}
+	else
+	{
+		printf("Wrong input. Please type again.\n");
+		tree = scanAdd(tree, temp);
+	}
+	free(val);
+	return tree;
+}
+
 void printNode(struct Node *cur) {
 	if (cur == 0) return;
 	printf("> ");
@@ -417,8 +457,29 @@ void printNode(struct Node *cur) {
 	printf("?\n");
 }
 
+struct Node *playagain(struct BSTree *tree, struct Node *cur)
+{
+	printf("Would you like to play again?\n");
+	char *val = malloc(4 * sizeof(char));
+	scanf("%s", val);
+	if (strcmp(val, "yes") == 0)
+		cur = tree->root;
+	else if (strcmp(val, "no") == 0)
+		cur = NULL;
+	else if (strcmp(val, "exit") == 0)
+		cur = NULL;
+	else
+	{
+		printf("Wrong input. Please type again.\n");
+		cur = playagain(tree, cur);
+	}
+	free(val);
+	return cur;
+}
+
 struct Node *scanNode(struct BSTree *tree, struct Node *cur)
 {
+	struct Node *temp = cur;
 	char *val = malloc(4 * sizeof(char));
 	scanf("%s", val);
 	if (cur != NULL)
@@ -435,44 +496,28 @@ struct Node *scanNode(struct BSTree *tree, struct Node *cur)
 	if (cur == NULL)
 	{
 		if (strcmp(val, "yes") == 0)
-			printf("Excellent! I knew it!\nThank you for playing!\n");
+			printf("Excellent! I knew it!\n");
 		else if (strcmp(val, "no") == 0)
 		{
-			printf("Sorry! I don't know what animal you are thinking...\nThank you for playing!\n");
-			//tree = scanadd(tree);
+			printf("Sorry! I don't know what animal you are thinking...\n");
+			tree = scanAdd(tree, temp);
 		}
 		else if (strcmp(val, "exit") == 0)
-			printf("Thanks for playing! See you next time!\n");
+			printf("See you next time!\n");
 		else
 			printf("Wrong input. Please answer again.\n");
+		cur = playagain(tree, cur); 
+		while (cur != NULL)
+		{
+			printNode(cur);
+			cur = scanNode(tree, cur);
+		}
 	}
 	free(val);
 	return cur;
 }
 
-/*
-struct BSTree *scanadd(struct BSTree *tree)
-{
-	printf("Do you want to help us improve the game?\n");
-	char *val = malloc(20 * sizeof(char));
-	scanf("%s", val);
-	if (strcmp(val, "yes") == 0)
-	{
-		printf("Please think of a question about the animal you are thinking : ");
-		//scanf("%s", val);
 
-	}
-	else if (strcmp(val, "no") == 0)
-		return tree;
-	else if (strcmp(val, "exit") == 0)
-		return tree;
-	else
-	{
-		printf("Wrong input. Please answer again.\n");
-		tree = scanadd(tree);
-	}
-}
-*/
 
 int main(int argc, char *argv[])
 {	
@@ -487,7 +532,7 @@ int main(int argc, char *argv[])
 		printNode(cur);	
 		cur = scanNode(animal, cur);
 	}
-
+	printf("Game Finshed. Thank you for playing!\n");
 	deleteBSTree(animal);
 	return 0;
 }
