@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
-#include <math.h>
 #include "bst.h"
 #include "structs.h"
-
-#define EQ(A, B) (fabs(A - B) < 10e-7)
 
 /*----------------------------------------------------------------------------
  very similar to the compareTo method in java or the strcmp function in c. it
@@ -30,22 +27,26 @@ int compare(TYPE left, TYPE right)
 {
     /*FIXME: write this*/
     
-	struct pizza *l = (struct pizza *)left;
-	struct pizza *r = (struct pizza *)right;
+	struct data *l = (struct data *)left;
+	struct data	*r = (struct data *)right;
 
-	if (EQ(l->cost, r->cost) == 1)
+	//int compare
+    
+	if (l->number == r->number)
 		return 0;
-	else if (l->cost > r->cost)
+	else if (l->number > r->number)
 		return 1;
 	else return -1;
-	
+
+
 }
 
 /*Define this function, type casting the value of void * to the desired type*/
 void print_type(TYPE curval)
 {
     /*FIXME: write this*/
-	struct pizza *val = (struct pizza *)curval;
+	struct data *val = (struct data *)curval;
 	
-    printf("%g", val->cost);
+    //print int
+	printf("%d", val->number);
 }
