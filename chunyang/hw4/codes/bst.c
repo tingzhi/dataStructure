@@ -274,11 +274,11 @@ struct Node *_removeLeftMost(struct Node *cur)
 	}
 	else
 	{
-        struct Node *temp = cur;
-        cur = cur->right;
-        free(temp);
+		struct Node *temp = cur;
+		cur = cur->right;
+		free(temp);
 	}
-    return cur;
+	return cur;
 }
 
 
@@ -643,9 +643,8 @@ void testLeftMost_1() {
 void testRemoveLeftMost_1() {
     struct BSTree *tree = buildBSTTree_1();
     struct Node *cur;
-        
-    cur = _removeLeftMost(tree->root);
 
+    cur = _removeLeftMost(tree->root);
 	printTestResult(cur == tree->root, "_removeLeftMost", "removing leftmost of root 1st try");
     printf("Calling printTree function...\n");
     printTree(tree);
