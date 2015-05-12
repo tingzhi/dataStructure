@@ -76,6 +76,7 @@ void _freeBST(struct Node *node)
 	{
 		if (node->right == NULL)
 		{
+			free(node->val);
 			free(node);
 			return;
 		}
@@ -277,6 +278,7 @@ struct Node *_removeLeftMost(struct Node *cur)
 	{
 		struct Node *temp = cur;
 		cur = cur->right;
+		free(temp->val);
 		free(temp);
 	}
 	return cur;
@@ -300,20 +302,20 @@ struct Node *_removeNode(struct Node *cur, TYPE val)
     
 	if (cur != NULL)
 	{
-    if (compare(cur->val, val) == 0)
-    {
-        cur->val = _leftMost(cur);
-        cur = _removeLeftMost(cur);
-    }
-    else if (compare(cur->val, val) == 1)
-    {
-        cur->left = _removeNode(cur->left, val);
-    }
-    else    // (compare(cur->val, val) == -1)
-    {
-        cur->right = _removeNode(cur->right, val);
-    }
-    }
+		if (compare(cur->val, val) == 0)
+		{
+			cur->val = _leftMost(cur);
+			cur = _removeLeftMost(cur);
+		}
+		else if (compare(cur->val, val) == 1)
+		{
+			cur->left = _removeNode(cur->left, val);
+		}
+		else    // (compare(cur->val, val) == -1)
+		{
+			cur->right = _removeNode(cur->right, val);
+		}
+	}
 	else
 		printf("The Value is not in this BSTree!\n");
 	return cur;
