@@ -78,6 +78,7 @@ void _freeBST(struct Node *node)
 	{
 		if (node->right == NULL)
 		{
+			free(((struct data *)node->val)->name);
 			free(node->val);
 			free(node);
 			return;
@@ -279,6 +280,7 @@ struct Node *_removeLeftMost(struct Node *cur)
 	{
 		struct Node *temp = cur;
 		cur = cur->right;
+		free(((struct data *)temp->val)->name);
 		free(temp->val);
 		free(temp);
 		return temp;
@@ -360,6 +362,10 @@ struct BSTree *buildBSTTree() {
 	struct data *temp = newData();
 	FILE *question = fopen("question.txt","r");
 	FILE *number = fopen("number.txt", "r");
+	if (question == NULL)
+		printf("Cannot open question.txt!\n");
+	if (number == NULL)
+		printf("Cannot open number.txt!\n");
 	while (fscanf(number, "%d", &temp->number) != EOF)
 	{
 		fscanf(question, "%[^\n]", temp->name);
@@ -390,6 +396,10 @@ struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
 
 		FILE *number = fopen("number.txt", "a");
 		FILE *question = fopen("question.txt", "a");
+		if (question == NULL)
+			printf("Cannot open question.txt!\n");
+		if (number == NULL)
+			printf("Cannot open number.txt!\n");
 		fprintf(number, "%d\n", myData->number);
 		fprintf(question, "%s\n", myData->name);
 
