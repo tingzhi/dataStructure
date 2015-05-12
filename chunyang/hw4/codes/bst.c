@@ -274,20 +274,10 @@ struct Node *_removeLeftMost(struct Node *cur)
 	}
 	else
 	{
-<<<<<<< HEAD
 		struct Node *temp = cur;
 		cur = cur->right;
 		free(temp);
-=======
-		struct Node *temp = cur->right;
-		free(cur);
-		return temp;
-        /*
-        struct Node *temp = cur;
-        cur = cur->right;
-        free(temp);
-        return cur;*/
->>>>>>> origin/master
+
 	}
 	return cur;
 }
