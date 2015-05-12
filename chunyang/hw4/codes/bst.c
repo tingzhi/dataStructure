@@ -171,7 +171,8 @@ struct Node *_addNode(struct Node *cur, TYPE val)
 	{
 		struct Node *newNode = malloc(sizeof(struct Node));
 		newNode->val = val;
-		newNode->left = newNode->right = NULL;
+		newNode->left = NULL;
+		newNode->right = NULL;
 		return newNode;
 	}
 	if (compare(cur->val, val) == 1 || compare(cur->val, val) == 0)
@@ -277,7 +278,6 @@ struct Node *_removeLeftMost(struct Node *cur)
 		struct Node *temp = cur;
 		cur = cur->right;
 		free(temp);
-
 	}
 	return cur;
 }
@@ -404,7 +404,7 @@ struct BSTree *buildBSTTree_1() {
 	addBSTree(tree, myData2);
 	addBSTree(tree, myData3);
 	addBSTree(tree, myData4);
-    
+	printTree(tree);
     return tree;
 }
 
@@ -632,17 +632,13 @@ void testLeftMost_1() {
     
 	printTestResult(compare(_leftMost(tree->root->right), &myData3) == 0, "_leftMost", "left most of right of root");
     
+
     deleteBSTree(tree);
 }
 
 void testRemoveLeftMost_1() {
     struct BSTree *tree = buildBSTTree_1();
     struct Node *cur;
-<<<<<<< HEAD
-=======
-        
-    cur = _removeLeftMost(tree->root);
->>>>>>> origin/master
 
     cur = _removeLeftMost(tree->root);
 	printTestResult(cur == tree->root, "_removeLeftMost", "removing leftmost of root 1st try");
