@@ -485,7 +485,7 @@ void test_addNode_1() {
     printTree(tree);
     printf("\n");
     
-    deleteBSTree(tree);
+    //deleteBSTree(tree);
 
 }
 
@@ -572,8 +572,14 @@ void testAddNode_1() {
     printf("Calling printTree function...\n");
     printTree(tree);
     printf("\n");
-
-    deleteBSTree(tree);
+    /*
+    printNode(tree->root);
+    printNode(tree->root->left);
+    printNode(tree->root->right);
+    printNode(tree->root->right);
+    printNode(tree->root->right->left);
+    */
+    //deleteBSTree(tree);
 }
 
 /*
@@ -632,8 +638,8 @@ void testLeftMost_1() {
     
 	printTestResult(compare(_leftMost(tree->root->right), &myData3) == 0, "_leftMost", "left most of right of root");
     
+    //deleteBSTree(tree);
 
-    deleteBSTree(tree);
 }
 
 void testRemoveLeftMost_1() {
@@ -654,10 +660,10 @@ void testRemoveLeftMost_1() {
    
  	cur = _removeLeftMost(tree->root);
     printTestResult(cur == tree->root, "_removeLeftMost", "removing leftmost of root 2st try");
-    /*
+    
     printf("Calling printTree function...\n");
     printTree(tree);
-    printf("\n");*/
+    printf("\n");
     
 }
 
@@ -709,15 +715,37 @@ void testFirstDataStructure() {
     
     printf("\n");
     testRemoveNode_1();
+    
+    printf("\n");
+    //testRemoveBSTree_1();
 
 }
 
 /*
 void testSecondDataStructure() {
-    
-}
- 
-*/
+    printf("\n");
+    printf("Testing second data structure begin...\n");
+
+    test_addNode_2();
+    printf("\n");
+
+    testAddNode_2();
+
+    printf("\n");
+    testContainsBSTree_2();
+
+    printf("\n");
+    testLeftMost_2();
+
+    printf("\n");
+    testRemoveLeftMost_2();
+
+    printf("\n");
+    testRemoveNode_2();
+
+    printf("\n");
+    testRemoveBSTree_2();
+}*/
 
 /*
 
