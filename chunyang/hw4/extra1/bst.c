@@ -78,6 +78,7 @@ void _freeBST(struct Node *node)
 	{
 		if (node->right == NULL)
 		{
+			free(node->val);
 			free(node);
 			return;
 		}
@@ -109,7 +110,7 @@ void clearBSTree(struct BSTree *tree)
 	/* Write This */
 	assert(tree != NULL);
 	_freeBST(tree->root);
-	tree->root = 0;
+	tree->root = NULL;
 	tree->cnt = 0;
 }
 
@@ -276,8 +277,10 @@ struct Node *_removeLeftMost(struct Node *cur)
 	}
 	else
 	{
-		struct Node *temp = cur->right;
-		free(cur);
+		struct Node *temp = cur;
+		cur = cur->right;
+		free(temp->val);
+		free(temp);
 		return temp;
 	}
 }
@@ -301,20 +304,20 @@ struct Node *_removeNode(struct Node *cur, TYPE val)
     
 	if (cur != NULL)
 	{
-    if (compare(cur->val, val) == 0)
-    {
-        cur->val = _leftMost(cur);
-        cur = _removeLeftMost(cur);
-    }
-    else if (compare(cur->val, val) == 1)
-    {
-        cur->left = _removeNode(cur->left, val);
-    }
-    else    // (compare(cur->val, val) == -1)
-    {
-        cur->right = _removeNode(cur->right, val);
-    }
-    }
+		if (compare(cur->val, val) == 0)
+		{
+			cur->val = _leftMost(cur);
+			cur = _removeLeftMost(cur);
+		}
+		else if (compare(cur->val, val) == 1)
+		{
+			cur->left = _removeNode(cur->left, val);
+		}
+		else    // (compare(cur->val, val) == -1)
+		{
+			cur->right = _removeNode(cur->right, val);
+		}
+	}
 	else
 		printf("The Value is not in this BSTree!\n");
 	return cur;
@@ -341,80 +344,9 @@ void removeBSTree(struct BSTree *tree, TYPE val)
 	tree->cnt--;
 }
 
-/*
-struct BSTree *buildBSTTree() {
-    struct BSTree *tree	= newBSTree();		
-		
-	//Create value of the type of data that you want to store
-	struct data *myData0 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData1 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData2 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData3 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData4 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData5 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData6 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData7 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData8 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData9 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData10 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData11 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData12 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData13 = (struct data *) malloc(sizeof(struct data));
-	struct data *myData14 = (struct data *) malloc(sizeof(struct data));
-		
 
-	myData0->number = 800;
-	myData0->name = "Can it fly";
-	myData1->number = 400;
-	myData1->name = "Does it have feather";
-	myData2->number = 1200;
-	myData2->name = "Does it live in the sea";
-	myData3->number = 200;
-	myData3->name = "Is it blue";
-	myData4->number = 600;
-	myData4->name = "Does it make noise";
-	myData5->number = 1000;
-	myData5->name = "Is it vertebrate";
-	myData6->number = 1400;
-	myData6->name = "Is it herbivore";
-	myData7->number = 100;
-	myData7->name = "Is it bluejay";
-	myData8->number = 300;
-	myData8->name = "Is it eagle";
-	myData9->number = 500;
-	myData9->name = "Is it bee";
-	myData10->number = 700;
-	myData10->name = "Is it butterfly";
-	myData11->number = 900;
-	myData11->name = "Is it beaver";
-	myData12->number = 1100;
-	myData12->name = "Is it jellyfish";
-	myData13->number = 1300;
-	myData13->name = "Is it duck";
-	myData14->number = 1500;
-	myData14->name = "Is it lion";
-	
-	//add the values to BST
-	addBSTree(tree, myData0);
-	addBSTree(tree, myData1);
-	addBSTree(tree, myData2);
-	addBSTree(tree, myData3);
-	addBSTree(tree, myData4);
-	addBSTree(tree, myData5);
-	addBSTree(tree, myData6);
-	addBSTree(tree, myData7);
-	addBSTree(tree, myData8);
-	addBSTree(tree, myData9);
-	addBSTree(tree, myData10);
-	addBSTree(tree, myData11);
-	addBSTree(tree, myData12);
-	addBSTree(tree, myData13);
-	addBSTree(tree, myData14);
-    
-    return tree;
-}
-*/
-
+/*animal implement built*/
+/*malloc new data to store the questions and numbers*/
 struct data *newData()
 {
 	struct data *newData = (struct data *) malloc(sizeof(struct data));
@@ -422,6 +354,7 @@ struct data *newData()
 	return newData;
 }
 
+/*build a new tree by adding the data from the txt file*/
 struct BSTree *buildBSTTree() {
 	struct BSTree *tree = newBSTree();
 	struct data *temp = newData();
@@ -439,8 +372,6 @@ struct BSTree *buildBSTTree() {
 	free(temp);
 	return tree;
 }
-
-
 
 //Function for users to add the question and name of the animal
 struct BSTree *scanAdd(struct BSTree *tree, struct Node *temp)
