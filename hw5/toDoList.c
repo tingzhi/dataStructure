@@ -65,8 +65,8 @@ void print_type(TYPE val)
 TaskP createTask (int priority, char *desc)
 {
   /*FIXME: Write this */
-    TaskP * newTask = malloc(sizeof(TaskP));
-    strcpy(newTask->description, *desc);
+    TaskP newTask = malloc(sizeof(TaskP));
+    strcpy(newTask->description, desc);
     newTask->priority = priority;
     return newTask;
 }

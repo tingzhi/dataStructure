@@ -9,8 +9,8 @@ int main (int argc, const char * argv[])
 {
   char cmd = ' ';
   DynArr* mainList = createDynArr(10);
-    FILE *toDoFile;
     char desc[TASK_DESC_SIZE];
+    int prio;
 
   printf("\n\n** TO-DO LIST APPLICATION **\n\n");
 
@@ -25,53 +25,99 @@ int main (int argc, const char * argv[])
              "'p' to print the list\n"
              "'e' to exit the program\n"
              );
-      /* get input command (from the keyboard) */6
+      /* get input command (from the keyboard) */
       cmd = getchar();
-      /* clear the trailing newline character */  //??
+      /* clear the trailing newline character */
       while (getchar() != '\n');
 
       /* Fixme:  Your logic goes here! */
         if (cmd == 'l') {
-            toDoFile = fopen("todo.txt", "r");
+            char fileName[30];
+            FILE *toDoFile;
+            printf("Please enter the filename: ");
+            fgets (fileName, 30, stdin);
+            char *nlptr;
+            /* remove trailing newline character */
+            nlptr = strchr(fileName, '\n');
+            if (nlptr)
+                *nlptr = '\0';
+
+            toDoFile = fopen(fileName, "r");
             if (toDoFile != NULL)
                 loadList(mainList, toDoFile);
             fclose(toDoFile);
+            printf("The list has been loaded from file successfully.\n\n");
         }
         else if (cmd == 's') {
-            toDoFile = fopen("todo.txt", "w");
-            if (toDoFile != NULL)
-                saveList(mainList, toDoFile);
-            fclose(toDoFile);
+            if (isEmptyDynArr(mainList)) {
+                printf("You have nothing in the to-do list. So there is nothing to be saved.\n\n");
+            }
+            else {
+                char fileName[30];
+                FILE *toDoFile;
+                printf("Please enter the file name: ");
+                fgets (fileName, 30, stdin);
+                char *nlptr;
+                /* remove trailing newline character */
+                nlptr = strchr(fileName, '\n');
+                if (nlptr)
+                    *nlptr = '\0';
+
+                toDoFile = fopen(fileName, "w");
+                if (toDoFile != NULL)
+                    saveList(mainList, toDoFile);
+                fclose(toDoFile);
+                printf("The list has been saved into the file successfully.\n\n");
+            }
         }
-        else if (cmd == 'a') {  //??
+        else if (cmd == 'a') {
             printf("Please enter the task description: ");
-            scanf();
+            fgets (desc, TASK_DESC_SIZE, stdin);
+            char *nlptr;
+            /* remove trailing newline character */
+            nlptr = strchr(desc, '\n');
+            if (nlptr)
+                *nlptr = '\0';
             printf("Please enter the task priority (0-999): ");
-            scanf();
-            createTask(prio, desc);
-            printf("The task '%s' has been added to your to-do list.", desc);
+            setbuf(stdin, NULL);
+            scanf("%d", &prio);
+            setbuf(stdin, NULL);
+            addHeap(mainList, createTask(prio, desc),compare);
+            printf("The task '%s' has been added to your to-do list.\n\n", desc);
         }
         else if (cmd == 'g') {
             if (isEmptyDynArr(mainList)) {
-                printf("Your to-do list is empty.");
+                printf("Your to-do list is empty.\n\n");
             }
             else {
-                TaskP *temp = (TaskP *)getMinHeap(mainList);
-                printf("Your first task is '%s'.", );
+                TaskP temp = (TaskP)getMinHeap(mainList);
+                printf("Your first task is '%s'.\n\n", temp->description);
             }
         }
         else if (cmd == 'r') {
-              printf("Your first task '%s' has been removed from the list.", );
-            
+            if (isEmptyDynArr(mainList)) {
+                printf("Your to-do list is empty!\n\n");
+            }
+            else {
+                TaskP temp = (TaskP)getMinHeap(mainList);
+                printf("Your first task '%s' has been removed from the list.\n\n", temp->description);
+                removeMinHeap(mainList, compare);
+            }
         }
         else if (cmd == 'p') {
-            printList(mainList);
+            if (isEmptyDynArr(mainList)) {
+                printf("Your to-do list is empty! There is nothing to print!\n\n");
+            }
+            else
+                printList(mainList);
         }
-
+        else if (cmd != 'e')
+            printf("Wrong command, please choose again!\n\n");
       /* Note: We have provided functions called printList(), saveList() and loadList() for you
          to use.  They can be found in toDoList.c */
     }
   while(cmd != 'e');
+    printf("Bye!\n\n");
   /* delete the list */
   deleteDynArr(mainList);
 
