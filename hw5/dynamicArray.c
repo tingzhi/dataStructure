@@ -525,7 +525,7 @@ int _smallerIndexHeap(DynArr *heap, int i, int j, comparator compare)
     assert (i < sizeDynArr(heap) && j < sizeDynArr(heap));
     if (*compare(getDynArr(heap, i), getDynArr(heap, j)) == -1)   // i < j
         return i;
-    retrn j;    // i >= j
+    return j;    // i >= j
 }
 
 /*	Get the first node, which has the min priority, from the heap
@@ -558,7 +558,7 @@ void addHeap(DynArr *heap, TYPE val, comparator  compare)
     addDynArr(heap, val);
     while (pos != 0) {
         parent = (pos - 1) / 2;
-        if (*compare(getDynArr(heap, pos), getDynArr(heap, parent) == -1) {
+        if (*compare(getDynArr(heap, pos), getDynArr(heap, parent) == -1)) {
             swapDynArr(heap, parent, pos);
             pos = parent;
         }

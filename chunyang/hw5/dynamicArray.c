@@ -522,6 +522,10 @@ void _adjustHeap(DynArr *heap, int max, int pos, comparator compare);
 int _smallerIndexHeap(DynArr *heap, int i, int j, comparator compare)
 {
   /* FIXME Write this */
+	assert(i < sizeDynArr(heap) && j < sizeDynArr(heap));
+	if (*compare(getDynArr(heap, i), getDynArr(heap, j)) == -1)   // i < j
+		return i;
+	return j;    // i >= j
 }
 
 /*	Get the first node, which has the min priority, from the heap
@@ -534,6 +538,8 @@ TYPE getMinHeap(DynArr *heap)
 {
 
   /* FIXME: Write This */
+	assert(sizeDynArr(heap) > 0);
+	return getDynArr(heap, 0);
 }
 
 /*	Add a node to the heap
@@ -546,6 +552,21 @@ TYPE getMinHeap(DynArr *heap)
 void addHeap(DynArr *heap, TYPE val, comparator  compare)
 {
   /* FIXME: Write This */
+	assert(heap != NULL);
+	int pos = sizeDynArr(heap);
+	int parent;
+	addDynArr(heap, val);
+	while (pos != 0)
+	{
+		parent = (pos - 1) / 2;
+		if (*compare(getDynArr(heap, pos), getDynArr(heap, parent) == -1)) 
+		{
+			swapDynArr(heap, parent, pos);
+			pos = parent;
+		}
+		else
+			return;
+	}
 }
 
 /*	Adjust heap to maintain heap property
@@ -560,6 +581,26 @@ void addHeap(DynArr *heap, TYPE val, comparator  compare)
 void _adjustHeap(DynArr *heap, int max, int pos, comparator compare)
 {
   /* FIXME: Write this */
+	int leftChild = 2 * pos + 1;
+	int rightChild = 2 * pos + 2;
+
+	if (rightChild < max)
+	{
+		int smallChild = _smallerIndexHeap(heap, leftChild, rightChild, compare);
+		if (*compare(getDynArr(heap, pos), getDynArr(heap, smallChild)) == 1)
+		{
+			swapDynArr(heap, pos, smallChild);
+			_adjustHeap(heap, max, smallChild, compare);
+		}
+	}
+	else if (leftChild < max)
+	{
+		if (*compare(getDynArr(heap, pos), getDynArr(heap, leftChild)) == 1) 
+		{
+			swapDynArr(heap, pos, leftChild);
+			_adjustHeap(heap, max, leftChild, compare);
+		}
+	}
 }
 
 /*	Remove the first node, which has the min priority, from the heap
@@ -571,6 +612,11 @@ void _adjustHeap(DynArr *heap, int max, int pos, comparator compare)
 void removeMinHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write this */
+	int last = sizeDynArr(heap) - 1;
+	assert(last != 0);
+	putDynArr(heap, 0, getDynArr(heap, last));
+	removeAtDynArr(heap, last);
+	_adjustHeap(heap, last, 0, compare);
 }
 
 /* builds a heap from an arbitrary dynArray
@@ -583,6 +629,11 @@ void removeMinHeap(DynArr *heap, comparator compare)
 void _buildHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write This */
+	assert(sizeDynArr(heap));
+	int max = sizeDynArr(heap);	
+	for (int i = (max - 1 - 1) / 2; i >= 0; i--)
+		_adjustHeap(heap, max, i, compare);
+
 }
 /*
     In-place sort of the heap
@@ -595,6 +646,13 @@ void _buildHeap(DynArr *heap, comparator compare)
 void sortHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write this */
+	assert(sizeDynArr(heap));
+	_buildHeap(heap, compare);
+	for (int i = sizeDynArr(heap) - 1; i > 0; i--)
+	{
+		swapDynArr(heap, 0, i);
+		_adjustHeap(heap, i, 0, compare);
+	}
 }
 
 
