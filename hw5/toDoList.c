@@ -29,8 +29,14 @@
 int compare(TYPE left, TYPE right)
 {
     /*FIXME: write this*/
-
-
+    TaskP leftOne = (TaskP) left;
+    TaskP rightOne = (TaskP) right;
+    if (leftOne->priority < rightOne->priority)
+        return -1;
+    else if (leftOne->priority > rightOne->priority)
+        return 1;
+    else
+        return 0;
 }
 
 /***************************************************************
@@ -59,6 +65,10 @@ void print_type(TYPE val)
 TaskP createTask (int priority, char *desc)
 {
   /*FIXME: Write this */
+    TaskP * newTask = malloc(sizeof(TaskP));
+    strcpy(newTask->description, *desc);
+    newTask->priority = priority;
+    return newTask;
 }
 
 /*  Save the list to a file
@@ -77,7 +87,7 @@ TaskP createTask (int priority, char *desc)
 */
 void saveList(DynArr *heap, FILE *filePtr)
 {
-  int i;
+    int i;
 	TaskP task;
 	assert(sizeDynArr(heap) > 0);
 	for(i = 0; i < sizeDynArr(heap); i++)
