@@ -665,16 +665,12 @@ void removeMinHeap(DynArr *heap, comparator compare)
 void _buildHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write This */
-    assert (sizeDynArr(heap) > 0);
-    //??
-    DynArr *temp = heap;
-    DynArr *newHeap = createDynArr(sizeDynArr(heap));
-    //We should try use iterator to do this.
-    for (int i = 0; i < sizeDynArr(heap); i++) {
-        addHeap(newHeap, getDynArr(heap, i), compare);
+    assert (sizeDynArr(heap) > 0);\
+    int pos = sizeDynArr(heap)/2 - 1;
+    while (pos > -1) {
+        _adjustHeap(heap, sizeDynArr(heap), pos, compare);
+        pos--;
     }
-    heap = newHeap;
-    deleteDynArr(heap);
 }
             
 /*
@@ -688,7 +684,14 @@ void _buildHeap(DynArr *heap, comparator compare)
 void sortHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write this */
-    
+    assert (sizeDynArr(heap) > 0);
+    _buildHeap(heap, compare);
+    last = sizeDynArr(heap) - 1;
+    while (last > -1) {
+        swapDynArr(heap, 0, last);
+        _adjustHeap(heap, last, 0, compare);
+        last--;
+    }
 }
 
 
