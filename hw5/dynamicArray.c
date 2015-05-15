@@ -522,6 +522,10 @@ void _adjustHeap(DynArr *heap, int max, int pos, comparator compare);
 int _smallerIndexHeap(DynArr *heap, int i, int j, comparator compare)
 {
   /* FIXME Write this */
+    assert (i < sizeDynArr(heap) && j < sizeDynArr(heap));
+    if (*compare(getDynArr(heap, i), getDynArr(heap, j)) == -1)   // i < j
+        return i;
+    retrn j;    // i >= j
 }
 
 /*	Get the first node, which has the min priority, from the heap
@@ -534,6 +538,8 @@ TYPE getMinHeap(DynArr *heap)
 {
 
   /* FIXME: Write This */
+    assert (sizeDynArr(heap) > 0);
+    return getDynArr(heap, 0);
 }
 
 /*	Add a node to the heap
@@ -546,6 +552,19 @@ TYPE getMinHeap(DynArr *heap)
 void addHeap(DynArr *heap, TYPE val, comparator  compare)
 {
   /* FIXME: Write This */
+    assert (heap != NULL);
+    int pos = sizeDynArr(heap);
+    int parent;
+    addDynArr(heap, val);
+    while (pos != 0) {
+        parent = (pos - 1) / 2;
+        if (*compare(getDynArr(heap, pos), getDynArr(heap, parent) == -1) {
+            swapDynArr(heap, parent, pos);
+            pos = parent;
+        }
+        else
+            return;
+    }
 }
 
 /*	Adjust heap to maintain heap property
@@ -560,6 +579,64 @@ void addHeap(DynArr *heap, TYPE val, comparator  compare)
 void _adjustHeap(DynArr *heap, int max, int pos, comparator compare)
 {
   /* FIXME: Write this */
+    assert (max <= sizeDynArr(heap));
+    /* Non-recursive solution */
+    /*
+    int parent = pos;
+    int smallChild;
+    int leftChild = 2 * parent + 1;
+    int rightChild = 2 * parent + 2;
+    
+    while (leftChild < max) {
+        if (rightChild < max) {
+            smallChild = _smallerIndexHeap(heap, leftChild, rightChild, compare);
+            if (*compare(getDynArr(heap, parent), getDynArr(heap, smallChild)) == 1) {
+                swapDynArr(heap, parent, smallChild);
+                parent = smallChild;
+                leftChild = 2 * parent + 1;
+                rightChild = 2 * parent + 2;
+            }
+            else
+                return;
+        }
+        else
+            if (*compare(getDynArr(heap, parent), getDynArr(heap, leftChild)) == 1) {
+                swapDynArr(parent, leftChild);
+                parent = leftChild;
+                leftChild = 2 * parent + 1;
+                /* No need to update right child 
+                   because in this case the left 
+                   child will assure us to jump out of the loop.
+            }
+            else
+                return;
+    }
+    */
+    int leftChild = 2 * pos + 1;
+    int rightChild = 2 * pos + 2;
+    int smallChild;
+    
+    if (rightChild < max) {
+        smallChild = _smallerIndexHeap(heap, leftChild, rightChild, compare);
+        if (*compare(getDynArr(heap, pos), getDynArr(heap, smallChild)) == 1) {
+            swapDynArr(heap, pos, smallChild);
+            pos = smallChild;
+            _adjustHeap(heap, max, pos, compare);
+        }
+        else
+            return;
+    }
+    else if (leftChild < max) {
+        if (*compare(getDynArr(heap, pos), getDynArr(heap, leftChild)) == 1) {
+            swapDynArr(heap, pos, leftChild);
+            pos = leftChild;
+            _adjustHeap(heap, max, pos, compare);
+        }
+        else
+            return;
+    }
+    else
+        return;
 }
 
 /*	Remove the first node, which has the min priority, from the heap
@@ -571,6 +648,11 @@ void _adjustHeap(DynArr *heap, int max, int pos, comparator compare)
 void removeMinHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write this */
+    assert (sizeDynArr(heap) > 0);
+    swapDynArr(heap, 0, sizeDynArr(heap) - 1);
+    removeAtDynArr(heap, sizeDynArr(heap) - 1);
+    _adjustHeap(heap, sizeDynArr(heap), 0, compare);
+    
 }
 
 /* builds a heap from an arbitrary dynArray
@@ -583,7 +665,18 @@ void removeMinHeap(DynArr *heap, comparator compare)
 void _buildHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write This */
+    assert (sizeDynArr(heap) > 0);
+    //??
+    DynArr *temp = heap;
+    DynArr *newHeap = createDynArr(sizeDynArr(heap));
+    //We should try use iterator to do this.
+    for (int i = 0; i < sizeDynArr(heap); i++) {
+        addHeap(newHeap, getDynArr(heap, i), compare);
+    }
+    heap = newHeap;
+    deleteDynArr(heap);
 }
+            
 /*
     In-place sort of the heap
 
@@ -595,6 +688,7 @@ void _buildHeap(DynArr *heap, comparator compare)
 void sortHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write this */
+    
 }
 
 
