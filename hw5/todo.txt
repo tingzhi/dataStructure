@@ -1,4 +1,0 @@
-0	take a nap
-1	study heap-basedreview trees fortake a nap
-101	review trees fortake a nap
-3	do assignment 5
