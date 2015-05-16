@@ -648,11 +648,13 @@ void _adjustHeap(DynArr *heap, int max, int pos, comparator compare)
 void removeMinHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write this */
-    assert (sizeDynArr(heap) > 0);
-    swapDynArr(heap, 0, sizeDynArr(heap) - 1);
-    removeAtDynArr(heap, sizeDynArr(heap) - 1);
-    _adjustHeap(heap, sizeDynArr(heap), 0, compare);
-    
+	if (!isEmptyDynArr(heap)){
+		swapDynArr(heap, 0, sizeDynArr(heap) - 1);
+		removeAtDynArr(heap, sizeDynArr(heap) - 1);
+		_adjustHeap(heap, sizeDynArr(heap), 0, compare);
+	}
+	else
+		printf("The list is empty!\n");
 }
 
 /* builds a heap from an arbitrary dynArray
