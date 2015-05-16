@@ -9,13 +9,11 @@ int main(int argc, const char * argv[])
 {
 	char cmd = ' ';
 	DynArr* mainList = createDynArr(10);
-	char desc[TASK_DESC_SIZE];
-	int prio;
+    FILE *inputFile;
+    FILE *outputFile;
 
 	printf("\n\n** TO-DO LIST APPLICATION **\n\n");
-
-	do
-	{
+	do{
 		printf("Press:\n"
 			"'l' to load to-do list from a file\n"
 			"'s' to save to-do list to a file\n"
@@ -33,7 +31,6 @@ int main(int argc, const char * argv[])
 		/* Fixme:  Your logic goes here! */
 		if (cmd == 'l') {
 			char load[30];
-			FILE *inputFile;
 			printf("Please enter the filename: ");
 			fgets(load, 30, stdin);
 			char *nlptr;
@@ -56,7 +53,7 @@ int main(int argc, const char * argv[])
 			}
 			else {
 				char save[30];
-				FILE *outputFile;
+				//FILE *outputFile;
 				printf("Please enter the file name: ");
 				fgets(save, 30, stdin);
 				char *nlptr;
@@ -76,6 +73,9 @@ int main(int argc, const char * argv[])
 			}
 		}
 		else if (cmd == 'a') {
+            char desc[TASK_DESC_SIZE];
+            int prio;
+            
 			printf("Please enter the task description: ");
 			fgets(desc, TASK_DESC_SIZE, stdin);
 			char *nlptr;
@@ -126,3 +126,4 @@ int main(int argc, const char * argv[])
 	deleteDynArr(mainList);
 
 	return 0;
+}
