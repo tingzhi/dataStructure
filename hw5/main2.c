@@ -138,7 +138,10 @@ void testHeap() {
         task = getDynArr(mainList, i);
         free(task);
     }
-
+    free(thing1);
+    free(thing2);
+    free(thing3);
+    
     deleteDynArr(mainList);
 }
 
