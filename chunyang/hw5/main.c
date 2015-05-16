@@ -9,6 +9,9 @@ int main (int argc, const char * argv[])
 {
   char cmd = ' ';
   DynArr* mainList = createDynArr(10);
+  /*two pointers that most of the options could be using*/
+  TaskP temp = malloc(sizeof(struct Task));
+  FILE *toDoFile;
 
   printf("\n\n** TO-DO LIST APPLICATION **\n\n");
 
@@ -29,14 +32,17 @@ int main (int argc, const char * argv[])
       while (getchar() != '\n');
 
       /* Fixme:  Your logic goes here! */
+	  /* Note: We have provided functions called printList(), saveList() and loadList() for you
+	  to use.  They can be found in toDoList.c */
+
+	  TaskP newTask = temp;
+
 	  if (cmd == 'l')
 	  {
-		  FILE *toDoFile;
-		  char fileName[TASK_DESC_SIZE];
 		  printf("Please enter the filename: ");
 		  setbuf(stdin, NULL);
-		  scanf("%s", fileName);
-		  toDoFile = fopen(fileName,'r');
+		  scanf("%s", newTask->description);
+		  toDoFile = fopen(newTask->description, 'r');
 		  if (toDoFile == NULL)
 			  printf("Can't open the file! Please double check!\n\n");
 		  else
@@ -52,12 +58,10 @@ int main (int argc, const char * argv[])
 			  printf("You have nothing in the to-do list. So there is nothing to be saved.\n\n");
 		  else
 		  {
-			  FILE *toDoFile;
-			  char fileName[TASK_DESC_SIZE];
 			  printf("Please enter the filename: ");
 			  setbuf(stdin, NULL);
-			  scanf("%s", fileName);
-			  toDoFile = fopen(fileName, 'w');
+			  scanf("%s", newTask->description);
+			  toDoFile = fopen(newTask->description, 'w');
 			  saveList(mainList, toDoFile);
 			  fclose(toDoFile);
 			  printf("The list has been saved into the file successfully.\n\n");
@@ -66,20 +70,51 @@ int main (int argc, const char * argv[])
 	  else if (cmd == 'a')
 	  {
 		  printf("Please enter the task description: ");
-		  scanf("%s", fileName);
-		  TaskP a = malloc(sizeof(struct Task));
-
-
 		  setbuf(stdin, NULL);
-		  scanf("%s", a->);
+		  scanf("%s", newTask->description);
+		  printf("Please enter the task priority (0-999): ");
+		  setbuf(stdin, NULL);
+		  scanf("%d", newTask->priority);
+		  addHeap(mainList, newTask, compare);
+		  printf("The task '%s' has been added to your to-do list.\n\n", newTask->description);
 	  }
-
-      /* Note: We have provided functions called printList(), saveList() and loadList() for you
-         to use.  They can be found in toDoList.c */
-    }
-  while(cmd != 'e');
+	  else if (cmd == 'g')
+	  {
+		  if (isEmptyDynArr(mainList)) 
+			  printf("Your to-do list is empty.\n\n");
+		  else
+		  {
+			  newTask = (TaskP)getMinHeap(mainList);
+			  printf("Your first task is '%s'.\n\n", newTask->description);
+		  }
+	  }
+	  else if (cmd == 'r')
+	  {
+		  if (isEmptyDynArr(mainList))
+			  printf("Your to-do list is empty.\n\n");
+		  else
+		  {
+			  newTask = (TaskP)getMinHeap(mainList);
+			  printf("Your first task '%s' has been removed from the list.\n\n", newTask->description);
+			  removeMinHeap(mainList, compare);
+		  }
+	  }
+	  else if (cmd == 'p')
+	  {
+		  if (isEmptyDynArr(mainList))
+			  printf("Your to-do list is empty! There is nothing to print!\n\n");
+		  else
+			  printList(mainList);
+	  }
+	  else if (cmd == 'e')
+		  break;
+	  else 
+		  printf("Wrong command, please choose again!\n\n");
+  } while (cmd != 'e');
+	printf("Bye!\n\n");
   /* delete the list */
-  deleteDynArr(mainList);
+	deleteDynArr(mainList);
+	free(temp);
 
-  return 0;
+	return 0;
 }

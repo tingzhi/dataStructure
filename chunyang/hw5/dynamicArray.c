@@ -523,7 +523,7 @@ int _smallerIndexHeap(DynArr *heap, int i, int j, comparator compare)
 {
   /* FIXME Write this */
 	assert(i < sizeDynArr(heap) && j < sizeDynArr(heap));
-	if (*compare(getDynArr(heap, i), getDynArr(heap, j)) == -1)   // i < j
+	if ((*compare)(getDynArr(heap, i), getDynArr(heap, j)) == -1)   // i < j
 		return i;
 	return j;    // i >= j
 }
@@ -559,7 +559,7 @@ void addHeap(DynArr *heap, TYPE val, comparator  compare)
 	while (pos != 0)
 	{
 		parent = (pos - 1) / 2;
-		if (*compare(getDynArr(heap, pos), getDynArr(heap, parent) == -1)) 
+		if ((*compare)(getDynArr(heap, pos), getDynArr(heap, parent) == -1))
 		{
 			swapDynArr(heap, parent, pos);
 			pos = parent;
@@ -587,7 +587,7 @@ void _adjustHeap(DynArr *heap, int max, int pos, comparator compare)
 	if (rightChild < max)
 	{
 		int smallChild = _smallerIndexHeap(heap, leftChild, rightChild, compare);
-		if (*compare(getDynArr(heap, pos), getDynArr(heap, smallChild)) == 1)
+		if ((*compare)(getDynArr(heap, pos), getDynArr(heap, smallChild)) == 1)
 		{
 			swapDynArr(heap, pos, smallChild);
 			_adjustHeap(heap, max, smallChild, compare);
@@ -595,7 +595,7 @@ void _adjustHeap(DynArr *heap, int max, int pos, comparator compare)
 	}
 	else if (leftChild < max)
 	{
-		if (*compare(getDynArr(heap, pos), getDynArr(heap, leftChild)) == 1) 
+		if ((*compare)(getDynArr(heap, pos), getDynArr(heap, leftChild)) == 1)
 		{
 			swapDynArr(heap, pos, leftChild);
 			_adjustHeap(heap, max, leftChild, compare);
