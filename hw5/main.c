@@ -32,48 +32,47 @@ int main (int argc, const char * argv[])
 
       /* Fixme:  Your logic goes here! */
         if (cmd == 'l') {
-            char fileName[30];
-            FILE *toDoFile;
+            char load[30];
+            FILE *inputFile;
             printf("Please enter the filename: ");
-            fgets (fileName, 30, stdin);
+            fgets (load, 30, stdin);
             char *nlptr;
             /* remove trailing newline character */
-            nlptr = strchr(fileName, '\n');
+            nlptr = strchr(load, '\n');
             if (nlptr)
                 *nlptr = '\0';
-
-            toDoFile = fopen(fileName, "r");
-            if (toDoFile == NULL)
+            inputFile = fopen(load, "r");
+            if (inputFile == NULL)
                 printf("Can't open the file! Please double check!\n\n");
-            else {
-                loadList(mainList, toDoFile);
-                fclose(toDoFile);
+            if (inputFile != NULL) {
+                loadList(mainList, inputFile);
                 printf("The list has been loaded from file successfully.\n\n");
             }
+             fclose(inputFile);
         }
         else if (cmd == 's') {
             if (isEmptyDynArr(mainList)) {
                 printf("You have nothing in the to-do list. So there is nothing to be saved.\n\n");
             }
             else {
-                char fileName[30];
-                FILE *toDoFile;
+                char save[30];
+                FILE *outputFile;
                 printf("Please enter the file name: ");
-                fgets (fileName, 30, stdin);
+                fgets (save, 30, stdin);
                 char *nlptr;
                 /* remove trailing newline character */
-                nlptr = strchr(fileName, '\n');
+                nlptr = strchr(save, '\n');
                 if (nlptr)
                     *nlptr = '\0';
 
-                toDoFile = fopen(fileName, "w");
-                //if (toDoFile == NULL)
-                    //printf("This file could not be saved!\n\n");
-               // else {
-                    saveList(mainList, toDoFile);
-                    fclose(toDoFile);
+                outputFile = fopen(save, "w");
+                if (outputFile != NULL){
+                    saveList(mainList, outputFile);
                     printf("The list has been saved into the file successfully.\n\n");
-                //}
+                }
+                if (outputFile == NULL)
+                    printf("This file could not be saved!\n\n");
+                fclose(outputFile);
             }
         }
         else if (cmd == 'a') {
