@@ -43,9 +43,9 @@ int main(int argc, const char * argv[])
 				printf("Can't open the file! Please double check!\n\n");
 			if (inputFile != NULL) {
 				loadList(mainList, inputFile);
+                fclose(inputFile);
 				printf("The list has been loaded from file successfully.\n\n");
 			}
-			fclose(inputFile);
 		}
 		else if (cmd == 's') {
 			if (isEmptyDynArr(mainList)) {
@@ -65,11 +65,11 @@ int main(int argc, const char * argv[])
 				outputFile = fopen(save, "w");
 				if (outputFile != NULL){
 					saveList(mainList, outputFile);
+                    fclose(outputFile);
 					printf("The list has been saved into the file successfully.\n\n");
 				}
 				if (outputFile == NULL)
 					printf("This file could not be saved!\n\n");
-				fclose(outputFile);
 			}
 		}
 		else if (cmd == 'a') {
