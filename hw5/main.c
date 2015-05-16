@@ -72,7 +72,7 @@ int main(int argc, const char * argv[])
 					printf("This file could not be saved!\n\n");
 			}
 		}
-		else if (cmd == 'a') {
+		else if (cmd == 'a') { //The bug is probably here!
             char desc[TASK_DESC_SIZE];
             int prio;
             
