@@ -65,7 +65,7 @@ void print_type(TYPE val)
 TaskP createTask (int priority, char *desc)
 {
   /*FIXME: Write this */
-    TaskP newTask = malloc(sizeof(TaskP));
+    TaskP newTask = malloc(sizeof(struct Task));  //This is tricky! You need to malloc sizeof(struct Task) not TaskP, which is only a pointer.
     strcpy(newTask->description, desc);
     newTask->priority = priority;
     return newTask;
@@ -152,8 +152,7 @@ void printList(DynArr *heap)
       task = getDynArr(temp,0);
 
       /* print the task */
-      //printf("%d:  %s\n\n", task->priority, task->description);
-        printf("%s\n\n", task->description);
+      printf("%d:  %s\n\n", task->priority, task->description);
       /* remove the task , but let's not free up the memory it's pointing to since old Arr is using it!*/
       /* BINHEAP FIXME */
       /*removeMinHeap(temp); */
