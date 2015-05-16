@@ -2,7 +2,7 @@
  * Name: Li, Tingzhi & Zhang, Chunyang
  * Date: 5/16/2015
  * Development Environment: Xcode & MSVC
- * Solution description: Implement of heap ADT using dynamic array interface.  */
+ * Solution description: Implement of priority queue ADT using heap data structure.  */
 
 #include <assert.h>
 #include <stdlib.h>

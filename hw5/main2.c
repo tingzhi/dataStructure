@@ -80,6 +80,61 @@ TaskP createThing (int priority, char *desc)
     return new;
 }
 
+//printTestResult(containsBSTree(tree, &myData1), "containsBSTree", "when test containing 50 as root");
+
+
+void testHeap() {
+    TYPE thing1;
+    TYPE thing2;
+    TYPE thing3;
+    
+    DynArr *mainList;
+    mainList = createDynArr(3);
+
+    thing1 = createThing(9, "task 1");
+    thing2 = createThing(3, "task 2");
+    thing3 = createThing(2, "task 3");
+    
+    addHeap(mainList,thing1, compare);
+    printf("Call addHeap()... \nadding 'task1' with priority 9\n");
+    printf("Print out the heap...\n");
+    printDynArr(mainList, print_type);
+    
+    addHeap(mainList,thing2, compare);
+    printf("Call addHeap()... \nadding 'task2' with priority 3\n");
+    printf("Print out the heap...\n");
+    printDynArr(mainList, print_type);
+    printf("Call getMinHeap()...\n\n");
+    print_type(getMinHeap(mainList));
+    printf("\n");
+
+    addHeap(mainList,thing3, compare);
+    printf("Call addHeap()... \nadding 'task3' with priority 2\n");
+    printf("Print out the heap...\n");
+    printDynArr(mainList, print_type);
+    printf("Call getMinHeap()...\n\n");
+    print_type(getMinHeap(mainList));
+    printf("\n");
+
+    printf("Call removeMinHeap()...\n");
+    removeMinHeap(mainList, compare);
+    printf("Print out the heap...\n");
+    printDynArr(mainList, print_type);
+    
+    printf("Call removeMinHeap()...\n");
+    removeMinHeap(mainList, compare);
+    printf("Print out the heap...\n");
+    printDynArr(mainList, print_type);
+    
+    printf("Call removeMinHeap()...\n");
+    removeMinHeap(mainList, compare);
+    printf("Print out the heap...\n");
+    printDynArr(mainList, print_type);
+    
+    printf("\n\nTest finished.\n\n");
+    
+    deleteDynArr(mainList);
+}
 
 int main(int argc, const char * argv[])
 {
@@ -122,7 +177,7 @@ int main(int argc, const char * argv[])
 	addDynArr(mainList, thing9);
 	addDynArr(mainList, thing10);
 
-
+    printf("\n\nTesting heap sort algorithm...\n\n");
 	printf("Before Sort Called \n");
         printDynArr(mainList, print_type);
 
@@ -133,6 +188,11 @@ int main(int argc, const char * argv[])
 
 	/* print sorted tasks from the dynamic array */
         printDynArr(mainList, print_type);
-
+    
+    deleteDynArr(mainList);
+    
+    printf("\nStart new heap-based priority queue interface test...\n\n");
+    testHeap();
+    
 	return 0;
 }
