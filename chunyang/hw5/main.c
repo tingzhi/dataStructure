@@ -27,6 +27,7 @@ int main (int argc, const char * argv[])
              "'e' to exit the program\n"
              );
       /* get input command (from the keyboard) */
+	  setbuf(stdin, NULL);
       cmd = getchar();
       /* clear the trailing newline character */
       while (getchar() != '\n');
@@ -42,7 +43,7 @@ int main (int argc, const char * argv[])
 		  printf("Please enter the filename: ");
 		  setbuf(stdin, NULL);
 		  scanf("%s", newTask->description);
-		  toDoFile = fopen(newTask->description, 'r');
+		  toDoFile = fopen(newTask->description, "r");
 		  if (toDoFile == NULL)
 			  printf("Can't open the file! Please double check!\n\n");
 		  else
@@ -61,7 +62,7 @@ int main (int argc, const char * argv[])
 			  printf("Please enter the filename: ");
 			  setbuf(stdin, NULL);
 			  scanf("%s", newTask->description);
-			  toDoFile = fopen(newTask->description, 'w');
+			  toDoFile = fopen(newTask->description, "w");
 			  saveList(mainList, toDoFile);
 			  fclose(toDoFile);
 			  printf("The list has been saved into the file successfully.\n\n");
@@ -74,7 +75,7 @@ int main (int argc, const char * argv[])
 		  scanf("%s", newTask->description);
 		  printf("Please enter the task priority (0-999): ");
 		  setbuf(stdin, NULL);
-		  scanf("%d", newTask->priority);
+		  scanf("%d", &newTask->priority);
 		  addHeap(mainList, newTask, compare);
 		  printf("The task '%s' has been added to your to-do list.\n\n", newTask->description);
 	  }
@@ -106,9 +107,7 @@ int main (int argc, const char * argv[])
 		  else
 			  printList(mainList);
 	  }
-	  else if (cmd == 'e')
-		  break;
-	  else 
+	  else if (cmd != 'e')
 		  printf("Wrong command, please choose again!\n\n");
   } while (cmd != 'e');
 	printf("Bye!\n\n");

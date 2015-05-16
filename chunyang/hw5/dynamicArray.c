@@ -559,7 +559,7 @@ void addHeap(DynArr *heap, TYPE val, comparator  compare)
 	while (pos != 0)
 	{
 		parent = (pos - 1) / 2;
-		if ((*compare)(getDynArr(heap, pos), getDynArr(heap, parent) == -1))
+		if ((*compare)(getDynArr(heap, pos), getDynArr(heap, parent)) == -1)
 		{
 			swapDynArr(heap, parent, pos);
 			pos = parent;
