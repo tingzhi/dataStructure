@@ -84,9 +84,9 @@ TaskP createThing (int priority, char *desc)
 
 
 void testHeap() {
-    TYPE thing1;
-    TYPE thing2;
-    TYPE thing3;
+    TaskP thing1;
+    TaskP thing2;
+    TaskP thing3;
     
     DynArr *mainList;
     mainList = createDynArr(3);
