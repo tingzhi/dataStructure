@@ -1,3 +1,12 @@
+/* CS261- Assignment 5
+ * Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 5/16/2015
+ * Development Environment: Xcode & MSVC
+ * Solution description: Test code for the heap sort algorithm and any other heap functions.
+ */
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>

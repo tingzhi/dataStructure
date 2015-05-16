@@ -1,3 +1,12 @@
+/* CS261- Assignment 5
+ * Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 5/16/2015
+ * Development Environment: Xcode & MSVC
+ * Solution description: To-do list application. This main function controls the interactions between the user and the program.
+ */
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -122,6 +131,13 @@ int main(int argc, const char * argv[])
 		to use.  They can be found in toDoList.c */
 	} while (cmd != 'e');
 	printf("Bye!\n\n");
+    /* free tasks */
+    TaskP task;
+    for (int i = 0; i < sizeDynArr(mainList); i++) {
+        task = getDynArr(mainList, i);
+        free(task);
+    }
+    
 	/* delete the list */
 	deleteDynArr(mainList);
 

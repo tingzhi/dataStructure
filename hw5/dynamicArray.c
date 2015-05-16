@@ -1,4 +1,9 @@
-/*	dynArr.c: Dynamic Array implementation. */
+/* CS261- Assignment 5
+ * Name: Li, Tingzhi & Zhang, Chunyang
+ * Date: 5/16/2015
+ * Development Environment: Xcode & MSVC
+ * Solution description: Implement of heap ADT using dynamic array interface.  */
+
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
