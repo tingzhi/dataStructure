@@ -89,7 +89,7 @@ void saveList(DynArr *heap, FILE *filePtr)
 {
     int i;
 	TaskP task;
-	assert(sizeDynArr(heap) > 0);
+	assert(sizeDynArr(heap) >= 0);
 	for(i = 0; i < sizeDynArr(heap); i++)
 	{
 	  task = getDynArr(heap, i);

@@ -613,10 +613,14 @@ void removeMinHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write this */
 	int last = sizeDynArr(heap) - 1;
-	assert(last != 0);
-	putDynArr(heap, 0, getDynArr(heap, last));
-	removeAtDynArr(heap, last);
-	_adjustHeap(heap, last, 0, compare);
+	if (!isEmptyDynArr(heap))
+	{
+		putDynArr(heap, 0, getDynArr(heap, last));
+		removeAtDynArr(heap, last);
+		_adjustHeap(heap, last, 0, compare);
+	}
+	else
+		printf("The list is empty!\n");
 }
 
 /* builds a heap from an arbitrary dynArray

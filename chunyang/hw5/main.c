@@ -49,24 +49,20 @@ int main (int argc, const char * argv[])
 		  else
 		  {
 			  loadList(mainList, toDoFile);
+			  fclose(toDoFile);
 			  printf("The list has been loaded from file successfully.\n\n");
 		  }
-		  fclose(toDoFile);
-	  }
+		  }
 	  else if (cmd == 's')
 	  {
-		  if (isEmptyDynArr(mainList)) 
-			  printf("You have nothing in the to-do list. So there is nothing to be saved.\n\n");
-		  else
-		  {
-			  printf("Please enter the filename: ");
-			  setbuf(stdin, NULL);
-			  scanf("%s", newTask->description);
-			  toDoFile = fopen(newTask->description, "w");
-			  saveList(mainList, toDoFile);
-			  fclose(toDoFile);
-			  printf("The list has been saved into the file successfully.\n\n");
-		  }
+		  printf("Please enter the filename: ");
+		  setbuf(stdin, NULL);
+		  scanf("%s", newTask->description);
+		  toDoFile = fopen(newTask->description, "w");
+		  saveList(mainList, toDoFile);
+		  fclose(toDoFile);
+		  printf("The list has been saved into the file successfully.\n\n");
+		  //}
 	  }
 	  else if (cmd == 'a')
 	  {
