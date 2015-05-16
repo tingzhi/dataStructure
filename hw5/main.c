@@ -67,13 +67,13 @@ int main (int argc, const char * argv[])
                     *nlptr = '\0';
 
                 toDoFile = fopen(fileName, "w");
-                if (toDoFile == NULL)
-                    printf("This file could not be saved!\n\n");
-                else {
+                //if (toDoFile == NULL)
+                    //printf("This file could not be saved!\n\n");
+               // else {
                     saveList(mainList, toDoFile);
                     fclose(toDoFile);
                     printf("The list has been saved into the file successfully.\n\n");
-                }
+                //}
             }
         }
         else if (cmd == 'a') {
