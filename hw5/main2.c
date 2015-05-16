@@ -133,6 +133,12 @@ void testHeap() {
     
     printf("\n\nTest finished.\n\n");
     
+    TaskP task;
+    for (int i = 0; i < sizeDynArr(mainList); i++) {
+        task = getDynArr(mainList, i);
+        free(task);
+    }
+
     deleteDynArr(mainList);
 }
 
@@ -189,6 +195,12 @@ int main(int argc, const char * argv[])
 	/* print sorted tasks from the dynamic array */
         printDynArr(mainList, print_type);
     
+    TaskP task;
+    for (int i = 0; i < sizeDynArr(mainList); i++) {
+        task = getDynArr(mainList, i);
+        free(task);
+    }
+
     deleteDynArr(mainList);
     
     printf("\nStart new heap-based priority queue interface test...\n\n");
