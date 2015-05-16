@@ -5,8 +5,6 @@
  * Solution description: To-do list application. This main function controls the interactions between the user and the program.
  */
 
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -57,31 +55,25 @@ int main(int argc, const char * argv[])
 			}
 		}
 		else if (cmd == 's') {
-			if (isEmptyDynArr(mainList)) {
-				printf("You have nothing in the to-do list. So there is nothing to be saved.\n\n");
-			}
-			else {
-				char save[30];
-				//FILE *outputFile;
-				printf("Please enter the file name: ");
-				fgets(save, 30, stdin);
-				char *nlptr;
-				/* remove trailing newline character */
-				nlptr = strchr(save, '\n');
-				if (nlptr)
-					*nlptr = '\0';
+            char save[30];
+            printf("Please enter the file name: ");
+            fgets(save, 30, stdin);
+            char *nlptr;
+            /* remove trailing newline character */
+            nlptr = strchr(save, '\n');
+            if (nlptr)
+                *nlptr = '\0';
 
-				outputFile = fopen(save, "w");
-				if (outputFile != NULL){
-					saveList(mainList, outputFile);
-                    fclose(outputFile);
-					printf("The list has been saved into the file successfully.\n\n");
-				}
-				if (outputFile == NULL)
-					printf("This file could not be saved!\n\n");
-			}
+            outputFile = fopen(save, "w");
+            if (outputFile != NULL){
+                saveList(mainList, outputFile);
+                fclose(outputFile);
+                printf("The list has been saved into the file successfully.\n\n");
+            }
+            if (outputFile == NULL)
+                printf("This file could not be saved!\n\n");
 		}
-		else if (cmd == 'a') { //The bug is probably here!
+		else if (cmd == 'a') {
             char desc[TASK_DESC_SIZE];
             int prio;
             

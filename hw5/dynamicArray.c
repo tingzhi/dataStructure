@@ -672,7 +672,7 @@ void removeMinHeap(DynArr *heap, comparator compare)
 void _buildHeap(DynArr *heap, comparator compare)
 {
   /* FIXME: Write This */
-    assert (sizeDynArr(heap) > 0);\
+    assert (sizeDynArr(heap) > 0);
     int pos = sizeDynArr(heap)/2 - 1;
     while (pos > -1) {
         _adjustHeap(heap, sizeDynArr(heap), pos, compare);
