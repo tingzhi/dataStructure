@@ -43,10 +43,13 @@ int main (int argc, const char * argv[])
                 *nlptr = '\0';
 
             toDoFile = fopen(fileName, "r");
-            if (toDoFile != NULL)
+            if (toDoFile == NULL)
+                printf("Can't open the file! Please double check!\n\n");
+            else {
                 loadList(mainList, toDoFile);
-            fclose(toDoFile);
-            printf("The list has been loaded from file successfully.\n\n");
+                fclose(toDoFile);
+                printf("The list has been loaded from file successfully.\n\n");
+            }
         }
         else if (cmd == 's') {
             if (isEmptyDynArr(mainList)) {
@@ -64,10 +67,13 @@ int main (int argc, const char * argv[])
                     *nlptr = '\0';
 
                 toDoFile = fopen(fileName, "w");
-                if (toDoFile != NULL)
+                if (toDoFile == NULL)
+                    printf("This file could not be saved!\n\n");
+                else {
                     saveList(mainList, toDoFile);
-                fclose(toDoFile);
-                printf("The list has been saved into the file successfully.\n\n");
+                    fclose(toDoFile);
+                    printf("The list has been saved into the file successfully.\n\n");
+                }
             }
         }
         else if (cmd == 'a') {
