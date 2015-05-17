@@ -152,7 +152,7 @@ void printList(DynArr *heap)
 		/*task = getDynArr(temp, 0);*/
 
 		/* print the task */
-		printf("%d:  %s\n\n", task->priority, task->description);
+		printf("%d:\t%s\n\n", task->priority, task->description);
 		/* remove the task , but let's not free up the memory it's pointing to since old Arr is using it!*/
 		/* BINHEAP FIXME */
 		removeMinHeap(temp,compare); 
