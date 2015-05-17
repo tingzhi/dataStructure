@@ -27,7 +27,6 @@ int main (int argc, const char * argv[])
              "'e' to exit the program\n"
              );
       /* get input command (from the keyboard) */
-	  setbuf(stdin, NULL);
       cmd = getchar();
       /* clear the trailing newline character */
       while (getchar() != '\n');
@@ -41,8 +40,8 @@ int main (int argc, const char * argv[])
 	  if (cmd == 'l')
 	  {
 		  printf("Please enter the filename: ");
-		  setbuf(stdin, NULL);
-		  scanf("%s", newTask->description);
+		  //setbuf(stdin, NULL);
+		  scanf("%[^\n]", newTask->description);
 		  toDoFile = fopen(newTask->description, "r");
 		  if (toDoFile == NULL)
 			  printf("Can't open the file! Please double check!\n\n");
@@ -56,8 +55,8 @@ int main (int argc, const char * argv[])
 	  else if (cmd == 's')
 	  {
 		  printf("Please enter the filename: ");
-		  setbuf(stdin, NULL);
-		  scanf("%s", newTask->description);
+		  //setbuf(stdin, NULL);
+		  scanf("%[^\n]", newTask->description);
 		  toDoFile = fopen(newTask->description, "w");
 		  saveList(mainList, toDoFile);
 		  fclose(toDoFile);
@@ -67,8 +66,8 @@ int main (int argc, const char * argv[])
 	  else if (cmd == 'a')
 	  {
 		  printf("Please enter the task description: ");
-		  setbuf(stdin, NULL);
-		  scanf("%s", newTask->description);
+		  //setbuf(stdin, NULL);
+		  scanf("%[^\n]", newTask->description);
 		  printf("Please enter the task priority (0-999): ");
 		  setbuf(stdin, NULL);
 		  scanf("%d", &newTask->priority);
@@ -106,6 +105,7 @@ int main (int argc, const char * argv[])
 	  }
 	  else if (cmd != 'e')
 		  printf("Wrong command, please choose again!\n\n");
+	  setbuf(stdin, NULL);
   } while (cmd != 'e');
 	printf("Bye!\n\n");
   /* delete the list */
