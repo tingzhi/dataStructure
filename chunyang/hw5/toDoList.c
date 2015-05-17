@@ -135,26 +135,29 @@ off the smallest element one at a time.  That's what we've done here.
 */
 void printList(DynArr *heap)
 {
-  DynArr *temp;
-  TaskP task;
-  assert(sizeDynArr(heap) > 0);
+	DynArr *temp;
+	TaskP task;
+	assert(sizeDynArr(heap) > 0);
 
-  temp = createDynArr(sizeDynArr(heap));
-  /* copy the main list to a temp list
-   * so that tasks can be printed out and removed.
-   */
-  copyDynArr(heap, temp);
-  while(sizeDynArr(temp) > 0)
-    {
-      /* get the task */
-      /* BINHEAP FIXME */
-      task = getMinHeap(temp);
-      /* print the task */
-      printf("%d:  %s\n\n", task->priority, task->description);
-      /* remove the task , but let's not free up the memory it's pointing to since old Arr is using it!*/
-      /* BINHEAP FIXME */
-      removeMinHeap(temp);
-    }
-  /* free the temp list */
-  deleteDynArr(temp);
+	temp = createDynArr(sizeDynArr(heap));
+	/* copy the main list to a temp list
+	* so that tasks can be printed out and removed.
+	*/
+	copyDynArr(heap, temp);
+	while (sizeDynArr(temp) > 0)
+	{
+		/* get the task */
+		/* BINHEAP FIXME */
+		task = getMinHeap(temp); 
+		/*task = getDynArr(temp, 0);*/
+
+		/* print the task */
+		printf("%d:  %s\n\n", task->priority, task->description);
+		/* remove the task , but let's not free up the memory it's pointing to since old Arr is using it!*/
+		/* BINHEAP FIXME */
+		removeMinHeap(temp,compare); 
+		/*removeAtDynArr(temp, 0);*/
+	}
+	/* free the temp list */
+	deleteDynArr(temp);
 }

@@ -107,6 +107,7 @@ int main(int argc, const char * argv[])
 			else {
 				TaskP temp = (TaskP)getMinHeap(mainList);
 				printf("Your first task '%s' has been removed from the list.\n\n", temp->description);
+				free(temp);
 				removeMinHeap(mainList, compare);
 			}
 		}
@@ -126,7 +127,7 @@ int main(int argc, const char * argv[])
     /* free tasks */
     TaskP task;
     for (int i = 0; i < sizeDynArr(mainList); i++) {
-        task = getDynArr(mainList, i);
+		task = (TaskP)getDynArr(mainList, i);
         free(task);
     }
     
