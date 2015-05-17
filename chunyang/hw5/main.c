@@ -72,7 +72,7 @@ int main (int argc, const char * argv[])
 		  printf("Please enter the task priority (0-999): ");
 		  setbuf(stdin, NULL);
 		  scanf("%d", &newTask->priority);
-		  addHeap(mainList, newTask, compare);
+		  addHeap(mainList, createTask(newTask->priority, newTask->description), compare);
 		  printf("The task '%s' has been added to your to-do list.\n\n", newTask->description);
 	  }
 	  else if (cmd == 'g')
