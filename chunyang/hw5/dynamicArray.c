@@ -439,6 +439,7 @@ void copyDynArr(DynArr *source, DynArr *destination)
 {
   int i;
   assert(source->size > 0);
+  freeDynArr(destination);
   _initDynArr(destination, source->capacity);
   /* copy elements to destination array */
   for(i = 0; i < source->size; i++)

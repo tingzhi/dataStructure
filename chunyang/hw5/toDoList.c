@@ -133,6 +133,7 @@ off the smallest element one at a time.  That's what we've done here.
     post:   The tasks from the list are printed out in priority order.
 			The tasks are not removed from the list.
 */
+
 void printList(DynArr *heap)
 {
 	DynArr *temp;
@@ -140,10 +141,14 @@ void printList(DynArr *heap)
 	assert(sizeDynArr(heap) > 0);
 
 	temp = createDynArr(sizeDynArr(heap));
+
 	/* copy the main list to a temp list
 	* so that tasks can be printed out and removed.
 	*/
 	copyDynArr(heap, temp);
+	/*both createDynArr and copyDynArr has _initDynArr here! That's why we have two v->data = malloc!
+	  I add freeDynArr inside the copyDynArr so that we won't have that problem
+	  which also makes sense because when we want to copy to a destination we have to free it to empty first.*/
 	while (sizeDynArr(temp) > 0)
 	{
 		/* get the task */

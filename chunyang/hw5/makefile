@@ -23,4 +23,5 @@ clean:
 	rm toDoList.o
 	rm main.o
 	rm prog
+	rm main2.o
 	rm sprog
