@@ -74,10 +74,10 @@ void print_type(TYPE val)
 TaskP createThing (int priority, char *desc)
 {
   /*FIXME: Write this */
-    TaskP new = malloc(sizeof(struct Task));
-    new->priority = priority;
-    strcpy(new->description, desc);
-    return new;
+    TaskP newThing = malloc(sizeof(struct Task));
+	newThing->priority = priority;
+	strcpy(newThing->description, desc);
+	return newThing;
 }
 
 //printTestResult(containsBSTree(tree, &myData1), "containsBSTree", "when test containing 50 as root");
@@ -117,16 +117,19 @@ void testHeap() {
     printf("\n");
 
     printf("Call removeMinHeap()...\n");
+	free((TaskP)getMinHeap(mainList));
     removeMinHeap(mainList, compare);
     printf("Print out the heap...\n");
     printDynArr(mainList, print_type);
     
     printf("Call removeMinHeap()...\n");
+	free((TaskP)getMinHeap(mainList));
     removeMinHeap(mainList, compare);
     printf("Print out the heap...\n");
     printDynArr(mainList, print_type);
     
     printf("Call removeMinHeap()...\n");
+	free((TaskP)getMinHeap(mainList));
     removeMinHeap(mainList, compare);
     printf("Print out the heap...\n");
     printDynArr(mainList, print_type);
@@ -138,9 +141,9 @@ void testHeap() {
         task = getDynArr(mainList, i);
         free(task);
     }
-    free(thing1);
+    /*free(thing1);
     free(thing2);
-    free(thing3);
+    free(thing3);*/
     
     deleteDynArr(mainList);
 }
