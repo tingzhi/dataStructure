@@ -1,4 +1,4 @@
-all: prog
+all: prog sprog
 
 prog: dynamicArray.o main.o toDoList.o
 	gcc -g -Wall -std=c99 -o prog dynamicArray.o toDoList.o main.o
@@ -23,3 +23,4 @@ clean:
 	rm toDoList.o
 	rm main.o
 	rm prog
+	rm sprog
