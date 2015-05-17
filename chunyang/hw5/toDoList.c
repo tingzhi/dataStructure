@@ -1,3 +1,10 @@
+/* CS261- Assignment 5
+* Name: Li, Tingzhi & Zhang, Chunyang
+* Date: 5/16/2015
+* Development Environment: Xcode & MSVC
+* Solution description: Implementation of functions specialized for a to-do list application.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>

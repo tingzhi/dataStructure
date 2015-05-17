@@ -5,8 +5,6 @@
  * Solution description: Implementation of functions specialized for a to-do list application.
  */
 
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
