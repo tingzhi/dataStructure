@@ -641,10 +641,16 @@ void _buildHeap(DynArr *heap, comparator compare)
   /* FIXME: Write This */
 	assert(sizeDynArr(heap));
 	int max = sizeDynArr(heap);	
-	for (int i = (max - 1 - 1) / 2; i >= 0; i--)
+	for (int i = max / 2 - 1; i >= 0; i--)
 		_adjustHeap(heap, max, i, compare);
-
 }
+
+/*test build heap function*/
+void testbuildHeap(DynArr *heap, comparator compare)
+{
+	_buildHeap(heap, compare);
+}
+
 /*
     In-place sort of the heap
 

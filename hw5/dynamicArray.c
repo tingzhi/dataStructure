@@ -681,6 +681,12 @@ void _buildHeap(DynArr *heap, comparator compare)
     }
 }
             
+/*test build heap function*/
+void testbuildHeap(DynArr *heap, comparator compare)
+{
+	_buildHeap(heap, compare);
+}
+
 /*
     In-place sort of the heap
 

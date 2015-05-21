@@ -47,6 +47,7 @@ TYPE getMinHeap(DynArr *heap);
 void addHeap(DynArr *heap, TYPE node, comparator compare);
 void removeMinHeap(DynArr *heap, comparator compare);
 void sortHeap(DynArr *heap, comparator compare);
+void testbuildHeap(DynArr *heap, comparator compare);
 
 /* Iterator Interface */
 struct DynArrIter *createDynArrIter(struct DynArr *da);

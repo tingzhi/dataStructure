@@ -142,48 +142,51 @@ void testHeap() {
 
 int main(int argc, const char * argv[])
 {
-  	TYPE thing1;
-	TYPE thing2;
-	TYPE thing3;
-	TYPE thing4;
-	TYPE thing5;
-	TYPE thing6;
-	TYPE thing7;
-	TYPE thing8;
-	TYPE thing9;
-	TYPE thing10;
+	TYPE thing;
 
 	DynArr *mainList;
 	mainList = createDynArr(10);
 
 	/* create tasks - arbitrary objects I want to sort from highest to lowest
-	 */
-	thing1 = createThing(9, "task 1");
-	thing2 = createThing(3, "task 2");
-	thing3 = createThing(2, "task 3");
-	thing4 = createThing(4, "task 4");
-	thing5 = createThing(5, "task 5");
-	thing6 = createThing(7, "task 6");
-	thing7 = createThing(8, "task 7");
-	thing8 = createThing(6, "task 8");
-	thing9 = createThing(1, "task 9");
-	thing10 = createThing(0, "task 10");
+	*/
+	thing = createThing(9, "task 1");
+	addDynArr(mainList, thing);
 
-	/* add tasks to the dynamic array */
-	addDynArr(mainList, thing1);
-	addDynArr(mainList, thing2);
-	addDynArr(mainList, thing3);
-	addDynArr(mainList, thing4);
-	addDynArr(mainList, thing5);
-	addDynArr(mainList, thing6);
-	addDynArr(mainList, thing7);
-	addDynArr(mainList, thing8);
-	addDynArr(mainList, thing9);
-	addDynArr(mainList, thing10);
+	thing = createThing(3, "task 2");
+	addDynArr(mainList, thing);
+
+	thing = createThing(2, "task 3");
+	addDynArr(mainList, thing);
+
+	thing = createThing(4, "task 4");
+	addDynArr(mainList, thing);
+
+	thing = createThing(5, "task 5");
+	addDynArr(mainList, thing);
+
+	thing = createThing(7, "task 6");
+	addDynArr(mainList, thing);
+
+	thing = createThing(8, "task 7");
+	addDynArr(mainList, thing);
+
+	thing = createThing(6, "task 8");
+	addDynArr(mainList, thing);
+
+	thing = createThing(1, "task 9");
+	addDynArr(mainList, thing);
+
+	thing = createThing(0, "task 10");
+	addDynArr(mainList, thing);
 
 
 	printf("Before Sort Called \n");
         printDynArr(mainList, print_type);
+
+	/*build tasks*/
+	printf("After Build Called \n");
+	testbuildHeap(mainList, compare);
+	printDynArr(mainList, print_type);
 
 	/* sort tasks */
 	sortHeap(mainList, compare);
