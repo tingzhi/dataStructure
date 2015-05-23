@@ -1,6 +1,6 @@
 /* CS261- Assignment 5
  * Name: Li, Tingzhi & Zhang, Chunyang
- * Date: 5/16/2015
+ * Date: 5/22/2015
  * Development Environment: Xcode & MSVC
  * Solution description: To-do list application. This main function controls the interactions between the user and the program.
  */
