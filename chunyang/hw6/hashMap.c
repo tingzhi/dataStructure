@@ -21,7 +21,7 @@ typedef struct hashMap hashMap;
 
 
 /* initialize the supplied hashMap struct*/
-void _initMap (struct hashMap * ht, int tableSize)
+void _initMap (struct hashMap *ht, int tableSize)
 {
 	int index;
 	if(ht == NULL)
@@ -46,7 +46,7 @@ hashMap *createMap(int tableSize) {
 /*
  Free all memory used by the buckets.
  */
-void _freeMap (struct hashMap * ht)
+void _freeMap (struct hashMap *ht)
 {  
 	/*write this*/		
 	assert(ht);
@@ -57,6 +57,8 @@ void _freeMap (struct hashMap * ht)
 		while (temp2 != NULL)
 		{
 			temp2 = temp1->next;
+			//free(temp1->key);
+			//free(temp1->value);
 			free(temp1);
 			temp1 = temp2;
 		}
@@ -80,7 +82,23 @@ void _setTableSize(struct hashMap *ht, int newTableSize, comparator keyCompare, 
 
 {
 	/*write this*/	
-
+	hashMap *tempht = malloc(sizeof(hashMap));
+	tempht->table = ht->table;
+	tempht->count = ht->count;
+	tempht->tableSize = ht->tableSize;
+	_initMap(ht, newTableSize);
+	for (int i = 0; i < tempht->tableSize; i++)
+	{
+		hashLink *temp = tempht->table[i];
+		while (temp != NULL)
+		{
+			void *k = temp->key;
+			void *v = temp->value;
+			insertMap(ht, k, v, keyCompare, hashFunc);
+			temp = temp->next;
+		}
+	}
+	deleteMap(tempht);
 }
 
 /*
@@ -95,9 +113,38 @@ void _setTableSize(struct hashMap *ht, int newTableSize, comparator keyCompare, 
  also, you must monitor the load factor and resize when the load factor is greater than
  or equal LOAD_FACTOR_THRESHOLD (defined in hashMap.h).
  */
-void insertMap (struct hashMap * ht, void* k, void* v, comparator keyCompare, hashFuncPtr hashFunc)
+void insertMap (struct hashMap *ht, void* k, void* v, comparator keyCompare, hashFuncPtr hashFunc)
 {  
 	/*write this*/	
+	if (containsKey(ht, k, keyCompare, hashFunc) != 0)
+	{
+		hashLink *temp = ht->table[(*hashFunc)(k)];
+		while (temp != NULL)
+		{
+			if ((*keyCompare)(temp->key, k) == 0)
+			{
+				//free(temp->value);
+				temp->value = v;
+			}
+			temp = temp->next;
+		}
+	}
+	else
+	{
+		hashLink *newhashLink = malloc(sizeof(hashLink));
+		newhashLink->key = k;
+		newhashLink->value = v;
+		newhashLink->next = NULL;
+		hashLink *temp = ht->table[(*hashFunc)(k)];
+		if (temp == NULL)
+			ht->table[(*hashFunc)(k)] = newhashLink;
+		else
+		{
+			while (temp->next != NULL)
+				temp = temp->next;
+			temp->next = newhashLink;
+		}
+	}
 }
 
 /*
@@ -108,19 +155,34 @@ void insertMap (struct hashMap * ht, void* k, void* v, comparator keyCompare, ha
  
  if the supplied key is not in the hashtable return NULL.
  */
-void* atMap (struct hashMap * ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
+void* atMap (struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
 { 
 	/*write this*/
-	return 0;
+	hashLink *temp = ht->table[(*hashFunc)(k)];
+	while (temp != NULL)
+	{
+		if ((*keyCompare)(temp->key, k) == 0)
+			return temp->value;
+		temp = temp->next;
+	}
+	printf("No such key contained!\n");
+	return NULL;
 }
 
 /*
  a simple yes/no if the key is in the hashtable. 
  0 is no, all other values are yes.
  */
-int containsKey (struct hashMap * ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
+int containsKey (struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
 {  
 	/*write this*/
+	hashLink *temp = ht->table[(*hashFunc)(k)];
+	while (temp != NULL)
+	{
+		if ((*keyCompare)(temp->key, k) == 0)
+			return 1;
+		temp = temp->next;
+	}
 	return 0;
 }
 
@@ -130,7 +192,7 @@ int containsKey (struct hashMap * ht, void* k, comparator keyCompare, hashFuncPt
  cannot be found do nothing (or print a message) but do not use an assert which
  will end your program.
  */
-void removeKey (struct hashMap * ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
+void removeKey (struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
 {  
 	/*write this*/	
 }
@@ -141,7 +203,7 @@ void removeKey (struct hashMap * ht, void* k, comparator keyCompare, hashFuncPtr
 int size (struct hashMap *ht)
 {  
 	/*write this*/
-	return 0;
+	return ht->count;
 	
 }
 
@@ -151,7 +213,7 @@ int size (struct hashMap *ht)
 int capacity(struct hashMap *ht)
 {  
 	/*write this*/
-	return 0;
+	return ht->tableSize;
 }
 
 /*
@@ -174,11 +236,11 @@ int emptyBuckets(struct hashMap *ht)
 float tableLoad(struct hashMap *ht)
 {  
 	/*write this*/
-	return 0;
+	return (size(ht) / capacity(ht));
 }
 
 /* print the hashMap */
- void printMap (struct hashMap * ht, keyPrinter kp, valPrinter vp)
+ void printMap (struct hashMap *ht, keyPrinter kp, valPrinter vp)
 {
         int i;
         struct hashLink *temp;
@@ -199,7 +261,7 @@ float tableLoad(struct hashMap *ht)
 }
 
 /* print the keys/values ..in linear form, no buckets */
- void printKeyValues (struct hashMap * ht, keyPrinter kp, valPrinter vp)
+ void printKeyValues (struct hashMap *ht, keyPrinter kp, valPrinter vp)
 {
         int i;
         struct hashLink *temp;
