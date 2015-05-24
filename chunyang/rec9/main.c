@@ -30,7 +30,7 @@ int main() {
     
     // Create a hashMap to hold our dictionary
     dictionaryMap = createHashMap(size);
-    
+
     // Open the textfile containing our dictionary words, read each word,
     // and add it to our hashmap.
     // You'll need to copy the "dictionary.txt" file to the same directory
@@ -83,6 +83,10 @@ int main() {
         // tell them that it's spelled correctly. Otherwise, tell them it's
         // misspelled.
         // FIXME: you get to implement this
+		if (containsKey(dictionaryMap, line) == 1)
+			printf("The word is spelled correctly.\n");
+		else
+			printf("The word is misspelled.\n");
         
         // Prompt the user to enter another word
         printf("Enter a word (or press 'Return' to exit): ");

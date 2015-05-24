@@ -70,6 +70,26 @@ void insertMap(struct hashMap *map, char *key, int value) {
     // hashmap. Don't worry about what to do if 'key' is already in the hashmap
     // (this is different behavior than Assignment #6!)
     // Hint: you'll need to use strcpy to copy 'key' into the new hashLink.
+	if (map == NULL)
+	{
+		printf("The hashMap doesn't exist!\n");
+		return;
+	}
+	struct hashLink *newhashLink = malloc(sizeof(struct hashLink));
+	strcpy(newhashLink->key, key);
+	newhashLink->value = value;
+	newhashLink->next = NULL;
+	int i = _hashString(key) % map->tableSize;
+	if (map->table[i] == NULL)
+		map->table[i] = newhashLink;
+	else
+	{
+		struct hashLink *temp = map->table[i];
+		while (temp->next != NULL)
+			temp = temp->next;
+		temp->next = newhashLink;
+	}
+	map->count++;
 }
 
 // Return 1 if 'key' exists in 'map', otherwise return 0.
@@ -80,8 +100,23 @@ int containsKey(struct hashMap *map, char *key) {
     
     // To find the key, figure out which bucket it should be in, then loop
     // through the items in that bucket. If one of them matches 'key', return 1.
-
-    
+	int i = _hashString(key) % map->tableSize;
+	struct hashLink *temp = map->table[i];
+	if (temp == NULL)
+		retval = 0;
+	else
+	{
+		do
+		{
+			if (strcmp(temp->key,key) == 0)
+			{
+				retval = 1;
+				return retval;
+			}
+			temp = temp->next;
+		} while (temp != NULL);
+		retval = 0;
+	}
     return retval;
 }
 
@@ -89,5 +124,5 @@ int containsKey(struct hashMap *map, char *key) {
 double tableLoad(struct hashMap *map) {
     // FIXME: You get to implement this.
     
-    return 0;
+	return (map->count / map->tableSize);
 }
