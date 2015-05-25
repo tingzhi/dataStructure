@@ -57,8 +57,11 @@ void _freeMap (struct hashMap *ht)
 		while (temp2 != NULL)
 		{
 			temp2 = temp1->next;
+			
+			/*Just in case we would have to free the key and value. Same thing in other functions.*/
 			//free(temp1->key);
 			//free(temp1->value);
+
 			free(temp1);
 			temp1 = temp2;
 		}
@@ -105,17 +108,17 @@ void _setTableSize(struct hashMap *ht, int newTableSize, comparator keyCompare, 
  insert the following values into a hashLink, you must create this hashLink but
  only after you confirm that this key does not already exist in the table. For example, you
  cannot have two hashLinks for the word "taco".
- 
+
  if a hashLink already exists in the table for the key provided you should
  replace that hashLink--this requires freeing up the old memory pointed by hashLink->value
  and then pointing hashLink->value to value v.
- 
+
  also, you must monitor the load factor and resize when the load factor is greater than
  or equal LOAD_FACTOR_THRESHOLD (defined in hashMap.h).
  */
-void insertMap (struct hashMap *ht, void* k, void* v, comparator keyCompare, hashFuncPtr hashFunc)
-{  
-	/*write this*/	
+void insertMap(struct hashMap *ht, void* k, void* v, comparator keyCompare, hashFuncPtr hashFunc)
+{
+	/*write this*/
 	if (containsKey(ht, k, keyCompare, hashFunc) != 0)
 	{
 		hashLink *temp = ht->table[(*hashFunc)(k)];
@@ -144,19 +147,22 @@ void insertMap (struct hashMap *ht, void* k, void* v, comparator keyCompare, has
 				temp = temp->next;
 			temp->next = newhashLink;
 		}
+		ht->count++;
 	}
+	if (tableLoad(ht) >= LOAD_FACTOR_THRESHOLD)
+		_setTableSize(ht, 2 * ht->tableSize, keyCompare, hashFunc);
 }
 
 /*
  this returns the value (which is void*) stored in a hashLink specified by the key k.
- 
+
  if the user supplies the key "taco" you should find taco in the hashTable, then
  return the value member of the hashLink that represents taco.
- 
+
  if the supplied key is not in the hashtable return NULL.
  */
-void* atMap (struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
-{ 
+void* atMap(struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
+{
 	/*write this*/
 	hashLink *temp = ht->table[(*hashFunc)(k)];
 	while (temp != NULL)
@@ -170,11 +176,11 @@ void* atMap (struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr has
 }
 
 /*
- a simple yes/no if the key is in the hashtable. 
+ a simple yes/no if the key is in the hashtable.
  0 is no, all other values are yes.
  */
-int containsKey (struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
-{  
+int containsKey(struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
+{
 	/*write this*/
 	hashLink *temp = ht->table[(*hashFunc)(k)];
 	while (temp != NULL)
@@ -192,9 +198,36 @@ int containsKey (struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr
  cannot be found do nothing (or print a message) but do not use an assert which
  will end your program.
  */
-void removeKey (struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
-{  
-	/*write this*/	
+void removeKey(struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
+{
+	/*write this*/
+	hashLink *temp = ht->table[(*hashFunc)(k)];
+	if (temp != NULL)
+	{
+		if ((*keyCompare)(temp->key, k) == 0)
+		{
+			ht->table[(*hashFunc)(k)] = temp->next;
+			//free(temp->key);
+			//free(temp->value);
+			free(temp);
+			return;
+		}
+		hashLink *temp2 = temp->next;
+		while (temp2 != NULL)
+		{
+			if ((*keyCompare)(temp2->key, k) == 0)
+			{
+				temp->next = temp2->next;
+				//free(temp2->key);
+				//free(temp2->value);
+				free(temp2);
+				return;
+			}
+			temp = temp2;
+			temp2 = temp->next;
+		}
+	}
+	printf("Cannot remove this key since no such key contained!\n");
 }
 
 /*
@@ -223,7 +256,13 @@ int capacity(struct hashMap *ht)
 int emptyBuckets(struct hashMap *ht)
 {  
 	/*write this*/
-	return 0;
+	int count;
+	for (int i = 0; i < ht->tableSize; i++)
+	{
+		if (ht->table[i] == NULL)
+			count++;
+	}
+	return count;
 }
 
 /*
@@ -339,9 +378,10 @@ void*  nextMap(struct mapItr *itr)
 
 void removeMap(struct mapItr *itr)
 {
-  printf("Not yet implemented \n");
+  //printf("Not yet implemented \n");
   /* Actually only a convenience since I can iterate through, get keys, and then call removeKey */
-  /* This is, in fact, how I wouldimplement it here...I would simply get the last returned key and call remove Key */
-  /* A slighlty more efficient solution would include double links and allow a remove iwthout calling removeKey...but it's not worth the effort here! */
-
+  /* This is, in fact, how I would implement it here...I would simply get the last returned key and call remove Key */
+  /* A slighlty more efficient solution would include double links and allow a remove without calling removeKey...but it's not worth the effort here! */
+	deleteMap(itr->map);
+	free(itr);
 }
