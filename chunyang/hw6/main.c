@@ -147,9 +147,10 @@ int main (int argc, const char * argv[]) {
 	struct mapItr *myItr = createMapIterator(hashTable);
 	fileptr = fopen(filename, "r");
 	key = (void *)getWord(fileptr);
+	void *v;
 	while (key != NULL)
 	{
-		void *v = (void*)1;
+		v = (void *)1;
 		if (containsKey(hashTable, key, myCompare, hash2) == 0)
 		{
 			insertMap(hashTable, key, v, myCompare, hash2);
@@ -160,11 +161,10 @@ int main (int argc, const char * argv[]) {
 			removeKey(hashTable, key, myCompare, hash2);
 			insertMap(hashTable, key, v, myCompare, hash2);
 		}
-		free((char*)key);
+		free((char *)key);
 		key = (void *)getWord(fileptr);
 	}
-	fclose(fileptr);
-	printKeyValues(hashTable, keyPrint, valPrint);
+	//printKeyValues(hashTable, keyPrint, valPrint);
 	/*... concordance code ends here ...*/
 
 	printMap(hashTable, keyPrint, valPrint);
@@ -216,7 +216,7 @@ char* getWord(FILE *file)
 
 	while( (character = fgetc(file)) != EOF)
 	{
-                character = tolower(character);  /* On will be the same as on */
+		character = tolower(character);  /* On will be the same as on */
 		if((length+1) > maxLength)
 		{
 			maxLength *= 2;

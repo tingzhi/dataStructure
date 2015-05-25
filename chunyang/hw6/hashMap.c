@@ -119,9 +119,10 @@ void _setTableSize(struct hashMap *ht, int newTableSize, comparator keyCompare, 
 void insertMap(struct hashMap *ht, void* k, void* v, comparator keyCompare, hashFuncPtr hashFunc)
 {
 	/*write this*/
+	int i = (*hashFunc)(k) % ht->tableSize;
 	if (containsKey(ht, k, keyCompare, hashFunc) != 0)
 	{
-		hashLink *temp = ht->table[(*hashFunc)(k)];
+		hashLink *temp = ht->table[i];
 		while (temp != NULL)
 		{
 			if ((*keyCompare)(temp->key, k) == 0)
@@ -138,9 +139,9 @@ void insertMap(struct hashMap *ht, void* k, void* v, comparator keyCompare, hash
 		newhashLink->key = k;
 		newhashLink->value = v;
 		newhashLink->next = NULL;
-		hashLink *temp = ht->table[(*hashFunc)(k)];
+		hashLink *temp = ht->table[i];
 		if (temp == NULL)
-			ht->table[(*hashFunc)(k)] = newhashLink;
+			ht->table[i] = newhashLink;
 		else
 		{
 			while (temp->next != NULL)
@@ -164,7 +165,8 @@ void insertMap(struct hashMap *ht, void* k, void* v, comparator keyCompare, hash
 void* atMap(struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
 {
 	/*write this*/
-	hashLink *temp = ht->table[(*hashFunc)(k)];
+	int i = (*hashFunc)(k) % ht->tableSize;
+	hashLink *temp = ht->table[i];
 	while (temp != NULL)
 	{
 		if ((*keyCompare)(temp->key, k) == 0)
@@ -182,7 +184,8 @@ void* atMap(struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hash
 int containsKey(struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
 {
 	/*write this*/
-	hashLink *temp = ht->table[(*hashFunc)(k)];
+	int i = (*hashFunc)(k) % ht->tableSize;
+	hashLink *temp = ht->table[i];
 	while (temp != NULL)
 	{
 		if ((*keyCompare)(temp->key, k) == 0)
@@ -201,12 +204,13 @@ int containsKey(struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr 
 void removeKey(struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr hashFunc)
 {
 	/*write this*/
-	hashLink *temp = ht->table[(*hashFunc)(k)];
+	int i = (*hashFunc)(k) % ht->tableSize;
+	hashLink *temp = ht->table[i];
 	if (temp != NULL)
 	{
 		if ((*keyCompare)(temp->key, k) == 0)
 		{
-			ht->table[(*hashFunc)(k)] = temp->next;
+			ht->table[i] = temp->next;
 			//free(temp->key);
 			//free(temp->value);
 			free(temp);
