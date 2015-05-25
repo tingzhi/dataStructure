@@ -87,7 +87,7 @@ void generateTagCloudData(struct hashMap *ht, char *outFileName )
     {
       word = (char*) nextMap(myItr);
 	  count = (int *)atMap(ht, word, myCompare, hash2);
-      *count = sqrt(*count);
+      *count = (int)sqrt(*count);
     } 
 
   /* Now write them to file */
@@ -144,7 +144,27 @@ int main (int argc, const char * argv[]) {
 	hashTable = createMap(tableSize);
 
 	/*... concordance code goes here ...*/
-		
+	struct mapItr *myItr = createMapIterator(hashTable);
+	fileptr = fopen(filename, "r");
+	key = (void *)getWord(fileptr);
+	while (key != NULL)
+	{
+		void *v = (void*)1;
+		if (containsKey(hashTable, key, myCompare, hash2) == 0)
+		{
+			insertMap(hashTable, key, v, myCompare, hash2);
+		}
+		else
+		{
+			v = (void *)((int *)atMap(hashTable, key, myCompare, hash2) + 1);
+			removeKey(hashTable, key, myCompare, hash2);
+			insertMap(hashTable, key, v, myCompare, hash2);
+		}
+		free((char*)key);
+		key = (void *)getWord(fileptr);
+	}
+	fclose(fileptr);
+	printKeyValues(hashTable, keyPrint, valPrint);
 	/*... concordance code ends here ...*/
 
 	printMap(hashTable, keyPrint, valPrint);
@@ -174,8 +194,8 @@ int main (int argc, const char * argv[]) {
          while(hasNextMap(myItr))
            {
              key = nextMap(myItr);
-             int *value = atMap(hashTable,key, myCompare, hash2);
-             printf("Freeing ...Key = %s, value = %d \n", key, *value);
+             int *value = (int*)atMap(hashTable,key, myCompare, hash2);
+             printf("Freeing ...Key = %s, value = %d \n", (char*)key, *value);
              free(value);  /* To match the malloc above*/
              free(key);
            }
