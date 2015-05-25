@@ -256,7 +256,7 @@ int capacity(struct hashMap *ht)
 int emptyBuckets(struct hashMap *ht)
 {  
 	/*write this*/
-	int count;
+	int count = 0;
 	for (int i = 0; i < ht->tableSize; i++)
 	{
 		if (ht->table[i] == NULL)
@@ -275,7 +275,7 @@ int emptyBuckets(struct hashMap *ht)
 float tableLoad(struct hashMap *ht)
 {  
 	/*write this*/
-	return (size(ht) / capacity(ht));
+	return ((float)size(ht) / (float)capacity(ht));
 }
 
 /* print the hashMap */

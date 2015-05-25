@@ -86,7 +86,7 @@ void generateTagCloudData(struct hashMap *ht, char *outFileName )
    while(hasNextMap(myItr))
     {
       word = (char*) nextMap(myItr);
-      count = (int *)atMap(ht,word, myCompare, hash2);
+	  count = (int *)atMap(ht, word, myCompare, hash2);
       *count = sqrt(*count);
     } 
 
