@@ -147,24 +147,25 @@ int main (int argc, const char * argv[]) {
 	struct mapItr *myItr = createMapIterator(hashTable);
 	fileptr = fopen(filename, "r");
 	key = (void *)getWord(fileptr);
-	void *v;
+	int val = 1;
+	int *v = &val;
 	while (key != NULL)
 	{
-		v = (void *)1;
+		val = 1;
 		if (containsKey(hashTable, key, myCompare, hash2) == 0)
 		{
-			insertMap(hashTable, key, v, myCompare, hash2);
+			insertMap(hashTable, key, (void *)v, myCompare, hash2);
 		}
 		else
 		{
-			v = (void *)((int *)atMap(hashTable, key, myCompare, hash2) + 1);
+			val = *(int *)atMap(hashTable, key, myCompare, hash2) + 1;
 			removeKey(hashTable, key, myCompare, hash2);
-			insertMap(hashTable, key, v, myCompare, hash2);
+			insertMap(hashTable, key, (void *)v, myCompare, hash2);
 		}
 		free((char *)key);
 		key = (void *)getWord(fileptr);
 	}
-	//printKeyValues(hashTable, keyPrint, valPrint);
+	printKeyValues(hashTable, keyPrint, valPrint);
 	/*... concordance code ends here ...*/
 
 	printMap(hashTable, keyPrint, valPrint);
