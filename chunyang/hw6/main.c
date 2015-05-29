@@ -121,7 +121,7 @@ char* getWord(FILE *file);
 int main (int argc, const char * argv[]) {
 	const char* filename;
 	struct hashMap *hashTable;
-	int tableSize = 10; 
+	int tableSize = 5; 
 	clock_t timer;
 	FILE *fileptr;
         void*  key;

@@ -6,13 +6,15 @@
 2. Why does the above make stringHash2() superior to stringHash1()?
    The reason is that if the two words contain the same letters, then in stringHash1() it would return the same value for the two words. But in stringHash2(), we can get different values because we use the index multiply by the word value so that we can avoid this phenomenon.
 
-3. When we run our program on the same input file but one run using stringHash1() and on the other run using stringHash2(), it is not possible for our size() function to return different values because the size() function returns the number of hashLinks in the table, and although the index for the same words could be different, the number of links will be the same.
+3. No, when we run our program on the same input file but one run using stringHash1() and on the other run using stringHash2(), it is not possible for our size() function to return different values because the size() function returns the number of hashLinks in the table, and although the index for the same words could be different, the number of links will be the same.
 
 4. 
-When we run our program on the same input file but one run using stringHash1() and on the other run using stringHash2(), it is not possible for our tableLoad() function to return different values because the count and tableSize are both the same so that the tableLoad = count/tableSize would be the same value as well.
+No, hen we run our program on the same input file but one run using stringHash1() and on the other run using stringHash2(), it is not possible for our tableLoad() function to return different values because the count and tableSize are both the same so that the tableLoad = count/tableSize would be the same value as well.
 
 5. 
-When we run our program on the same input file but one run using stringHash1() and on the other run using stringHash2(), it is possible for our emptyBuckets() function to return different values because the index for the two words could be different so that they can be in diffrent position inside a table.
+Yes, when we run our program on the same input file but one run using stringHash1() and on the other run using stringHash2(), it is possible for our emptyBuckets() function to return different values because the index for the two words could be different so that they can be in diffrent position inside a table.
 
 6. Is there any difference in the number of 'empty buckets' when you change the table size from an even number, like 1000 to a prime like 997 ?
-   Say there's only one key and the value returned from stringHash2() which is 999. For the table size 1000, the index is 999, the empty buckets is 999. For the table size 997, the index is 2, and the empty buckets is 996. Therefore, it is different.
+   Yes. Primes are unique numbers. They are unique in that, the product of a prime with any other number has the best chance of being unique due to the fact that a prime is used to compose it. Therefore, the empty buckets could be less if we use a prime for the table size rather than an even number.
+
+7. When the size is pretty small, it takes a long time to find a null position to insert the value. But when the size is larger, because different keys may return different index for them, the time to insert that key would be much less. The graph result for this problem is in 'graph.jpg'.

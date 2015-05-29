@@ -89,7 +89,7 @@ void _setTableSize(struct hashMap *ht, int newTableSize, comparator keyCompare, 
 	tempht->tableSize = ht->tableSize;
 	tempht->count = ht->count;
 	tempht->table = ht->table;
-	ht->table = (hashLink**)malloc(sizeof(hashLink*) * ht->tableSize);
+	ht->table = (hashLink**)malloc(sizeof(hashLink*) * newTableSize);
 	ht->tableSize = newTableSize;
 	for (int index = 0; index < newTableSize; index++)
 		ht->table[index] = NULL;
