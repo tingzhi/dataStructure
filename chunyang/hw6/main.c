@@ -104,6 +104,7 @@ void generateTagCloudData(struct hashMap *ht, char *outFileName )
     }
 
   fclose(tagFile);
+  free(myItr);
 }
 
 /*
@@ -159,6 +160,7 @@ int main (int argc, const char * argv[]) {
 		{
 			*v = *(int *)atMap(hashTable, key, myCompare, hash2) + 1;
 			insertMap(hashTable, key, (void *)v, myCompare, hash2);
+			free(key);
 		}
 		key = (void *)getWord(fileptr);
 	}
@@ -197,7 +199,7 @@ int main (int argc, const char * argv[]) {
              free(key);
            }
 
-	deleteMap(hashTable);
+	removeMap(myItr);
 	printf("\nDeleted the table\n");
 	return 0;
 }
