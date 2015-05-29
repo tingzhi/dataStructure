@@ -1,3 +1,10 @@
+/* CS261- Assignment 6
+* Name: Li, Tingzhi & Zhang, Chunyang
+* Date: 5/29/2015
+* Development Environment: Xcode & MSVC
+* Solution description: Concordance implementation by using Hash Table. Tag Cloud generating function.
+*/
+
 #include <assert.h>
 #include <stdio.h>
 #include <ctype.h>
