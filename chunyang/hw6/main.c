@@ -144,25 +144,22 @@ int main (int argc, const char * argv[]) {
 	hashTable = createMap(tableSize);
 
 	/*... concordance code goes here ...*/
-	struct mapItr *myItr = createMapIterator(hashTable);
 	fileptr = fopen(filename, "r");
 	key = (void *)getWord(fileptr);
-	int val = 1;
-	int *v = &val;
+	int *v;
 	while (key != NULL)
 	{
-		val = 1;
+		v = malloc(sizeof(int));
+		*v = 1;
 		if (containsKey(hashTable, key, myCompare, hash2) == 0)
 		{
 			insertMap(hashTable, key, (void *)v, myCompare, hash2);
 		}
 		else
 		{
-			val = *(int *)atMap(hashTable, key, myCompare, hash2) + 1;
-			removeKey(hashTable, key, myCompare, hash2);
+			*v = *(int *)atMap(hashTable, key, myCompare, hash2) + 1;
 			insertMap(hashTable, key, (void *)v, myCompare, hash2);
 		}
-		free((char *)key);
 		key = (void *)getWord(fileptr);
 	}
 	printKeyValues(hashTable, keyPrint, valPrint);
@@ -187,14 +184,13 @@ int main (int argc, const char * argv[]) {
         printKeyValues(hashTable, keyPrint, valPrint);
 
 	 /* For Tag Cloud */
-	 /*generateTagCloudData(hashTable,"tag.csv");
-	*/
-
-
+	 generateTagCloudData(hashTable,"tag.csv");
+	
+	 struct mapItr *myItr = createMapIterator(hashTable);
          /* Free up our keys and values using our iterator!!  Also printing them as we go along */
          while(hasNextMap(myItr))
            {
-             key = nextMap(myItr);
+			 key = nextMap(myItr);
              int *value = (int*)atMap(hashTable,key, myCompare, hash2);
              printf("Freeing ...Key = %s, value = %d \n", (char*)key, *value);
              free(value);  /* To match the malloc above*/

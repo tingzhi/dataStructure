@@ -59,9 +59,9 @@ void _freeMap (struct hashMap *ht)
 			temp2 = temp1->next;
 			
 			/*Just in case we would have to free the key and value. Same thing in other functions.*/
+			/*However, there is a free function for key and value, so we don't have to do it here.*/
 			//free(temp1->key);
 			//free(temp1->value);
-
 			free(temp1);
 			temp1 = temp2;
 		}
@@ -85,27 +85,32 @@ void _setTableSize(struct hashMap *ht, int newTableSize, comparator keyCompare, 
 
 {
 	/*write this*/	
-	hashMap *newht = createMap(newTableSize);
-	newht->count = ht->count;
+	hashMap *tempht = malloc(sizeof(hashMap));
+	tempht->tableSize = ht->tableSize;
+	tempht->table = ht->table;
+	ht->table = (hashLink**)malloc(sizeof(hashLink*) * ht->tableSize);
+	ht->tableSize = newTableSize;
+	for (int index = 0; index < newTableSize; index++)
+		ht->table[index] = NULL;
 	void *k;
 	int j;
 	hashLink *temp;
 	hashLink *temp2;
-	for (int i = 0; i < ht->tableSize; i++)
+	for (int i = 0; i < tempht->tableSize; i++)
 	{
-		temp = ht->table[i];
+		temp = tempht->table[i];
 		while (temp != NULL)
 		{
 			k = temp->key;
-			j = (int)((*hashFunc)(k) % newht->tableSize);
+			j = (int)((*hashFunc)(k) % ht->tableSize);
 			if (j < 0)
-				j += newht->tableSize;
-			temp2 = newht->table[j];
+				j += ht->tableSize;
+			temp2 = ht->table[j];
 			if (temp2 == NULL)
 			{
-				newht->table[j] = temp;
+				ht->table[j] = temp;
 				temp = temp->next;
-				newht->table[j]->next = NULL;
+				ht->table[j]->next = NULL;
 			}
 			else
 			{
@@ -117,8 +122,6 @@ void _setTableSize(struct hashMap *ht, int newTableSize, comparator keyCompare, 
 			}
 		}
 	}
-	hashMap *tempht = ht;
-	ht = newht;
 	free(tempht->table);
 	free(tempht);
 }
@@ -148,7 +151,7 @@ void insertMap(struct hashMap *ht, void* k, void* v, comparator keyCompare, hash
 		{
 			if ((*keyCompare)(temp->key, k) == 0)
 			{
-				//free(temp->value);
+				free(temp->value);
 				temp->value = v;
 			}
 			temp = temp->next;
@@ -156,7 +159,7 @@ void insertMap(struct hashMap *ht, void* k, void* v, comparator keyCompare, hash
 	}
 	else
 	{
-		hashLink *newhashLink = malloc(sizeof(hashLink));
+		hashLink *newhashLink = (hashLink*)malloc(sizeof(hashLink));
 		newhashLink->key = k;
 		newhashLink->value = v;
 		newhashLink->next = NULL;
@@ -238,9 +241,10 @@ void removeKey(struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr h
 		if ((*keyCompare)(temp->key, k) == 0)
 		{
 			ht->table[i] = temp->next;
-			//free(temp->key);
-			//free(temp->value);
+			free(temp->key);
+			free(temp->value);
 			free(temp);
+			ht->count--;
 			return;
 		}
 		hashLink *temp2 = temp->next;
@@ -249,9 +253,10 @@ void removeKey(struct hashMap *ht, void* k, comparator keyCompare, hashFuncPtr h
 			if ((*keyCompare)(temp2->key, k) == 0)
 			{
 				temp->next = temp2->next;
-				//free(temp2->key);
-				//free(temp2->value);
+				free(temp2->key);
+				free(temp2->value);
 				free(temp2);
+				ht->count--;
 				return;
 			}
 			temp = temp2;
