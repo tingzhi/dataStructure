@@ -162,6 +162,8 @@ int main (int argc, const char * argv[]) {
 			insertMap(hashTable, key, (void *)v, myCompare, hash2);
 			free(key);
 		}
+		printf("Table count = %d\n", size(hashTable));
+		printf("Table capacity = %d\n", capacity(hashTable));
 		key = (void *)getWord(fileptr);
 	}
 	printKeyValues(hashTable, keyPrint, valPrint);
@@ -177,11 +179,22 @@ int main (int argc, const char * argv[]) {
 	printf("Table capacity = %d\n", capacity(hashTable));
 	printf("Table load = %f\n", tableLoad(hashTable));
 
+	printf("\nBefore deleteing 'and', 'me' and 'the', calling atmap()\n");
+	printf("The value for 'and' is %d\n", *(int *)atMap(hashTable, "and", myCompare, hash2));
+	printf("The value for 'me' is %d\n", *(int *)atMap(hashTable, "me", myCompare, hash2));
+	printf("The value for 'the' is %d\n", *(int *)atMap(hashTable, "the", myCompare, hash2));
 	printf("Deleting keys\n");
 
 	removeKey(hashTable, "and", myCompare, hash2);
 	removeKey(hashTable, "me", myCompare, hash2);
 	removeKey(hashTable, "the", myCompare, hash2);
+
+	printf("\nAfter deleteing 'and', 'me' and 'the', calling atmap() for them again\n");
+	atMap(hashTable, "and", myCompare, hash2);
+	atMap(hashTable, "me", myCompare, hash2);
+	atMap(hashTable, "the", myCompare, hash2);
+	printf("\n");
+
 	/* printMap(hashTable); */
         printKeyValues(hashTable, keyPrint, valPrint);
 
