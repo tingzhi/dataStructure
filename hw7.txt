@@ -1,0 +1,46 @@
+Hash tables
+1. In searching for a good hash function over the set of integer values, one student thought he could use the following:
+int index = (int) cos(value); // Cosine of 'value'
+What was wrong with this choice?
+
+Answer: When using the hash function above, the index will be zero for all values except when value is 0, which will produce index 1. This is not preferable because this hash function introduced a huge collision problem. 
+
+
+2. Can you come up with a perfect hash function for the names of days of the week? The names of the months of the year? Assume a table size of 10 for days of the week and 15 for names of the months. In case you cannot find any perfect hash functions, we will accept solutions that produce a small number of collisions (< 3).
+
+Answer: Hash function for names of days of the week. Summing the alphabetical values of each character in the string. Table size = 10
+sunday		84 % 10 = 4
+monday		72 % 10 = 2
+tuesday		95 % 10 = 5
+wednesday	100 % 10 = 0
+thursday	116 % 10 = 6
+friday		63 % 10 = 3
+saturday	109 % 10 = 9
+
+Hash function for names of the months of the year. Summing the alphabetical values of each character in the string. Table size = 15
+january		90 % 15 = 0
+february	96 % 15 = 6
+march		43 % 15 = 13
+april		56 % 15 = 11
+may 		39 % 15 = 9
+june		50 % 15 = 5
+july		68 % 15 = 8
+august		89 % 15 = 14
+september	103 % 15 = 13
+october		78 % 15 = 3
+november	94 % 15 = 4
+december	55 % 15 = 10
+
+
+3. The function containsKey() can be used to see if a dictionary contains a given key. How could you determine if a dictionary contains a given value? What is the complexity of your procedure?
+
+Answer: We would go through all the associations in the bag, comparing the key of each association to the key that we are searching for. If the comparison returns 0, then a dictionary contains that given key. Otherwise, a dictionary doesn't contain that given key.
+The complexity of my procedure is O(n).
+
+
+Graphs
+4. Represent the following graph as both an adjacency matrix and an edge list
+
+Answer:
+
+
